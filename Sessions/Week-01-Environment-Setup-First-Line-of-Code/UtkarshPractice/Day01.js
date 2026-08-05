@@ -20,7 +20,7 @@ let age =30 ;
 console.log(age);
 console.log("program finished");
 
-///////////////// Assignmet ///////////////
+///////////////// Assignmets ///////////////
 
 console.log ("Welcome");
 
@@ -38,4 +38,6 @@ console.log(company);
 console.log("Start");
 console.log("Learning Node");
 console.log("End");
+console.log("End");
+
 
