@@ -1,0 +1,6 @@
+console.log(43)
+console.log(65)
+console.log(32)
+console.log(87)
+console.log(7)
+console.log("expected output order: 43,65,32,87,7")
