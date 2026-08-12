@@ -1,0 +1,10 @@
+let num1 = 50;
+let num2 = 30;
+let sum = num1+num2;
+let diff = num1-num2;
+let product = num1*num2;
+let division = num1%num2;
+console.log(sum);
+console.log(diff);
+console.log(product);
+console.log(division);
