@@ -1,0 +1,10 @@
+let num1 = 35;
+let num2 = 7;
+let sum = num1 + num2;
+let sub = num1 - num2;
+let mul = num1 * num2;
+let div = num1 / num2;
+console.log("Sum: " + sum);
+console.log("Difference: " + sub);
+console.log("Multiplication: " + mul);
+console.log("Division: " + div);
