@@ -18,7 +18,7 @@ console.log("Second");
 console.log("Third");
  
 console.log("Program started");
-let age =30 ;
+let age =31 ;
 console.log(age);
 console.log("program finished");
  
@@ -27,7 +27,7 @@ console.log("program finished");
 console.log ("Welcome");
  
 console.log ("Name : Viraj");
-console.log ("Age: 28");
+console.log ("Age: 31");
 console.log ("City: Pune");
  
 console.log(10);
