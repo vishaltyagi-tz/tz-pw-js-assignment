@@ -31,7 +31,7 @@ console.log ("Age: 31");
 console.log ("City: Pune");
  
 console.log(10);
-console.log(20);
+console.log(25);
 console.log(30);
  
 console.log("Start");
