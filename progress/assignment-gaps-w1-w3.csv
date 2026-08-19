@@ -1,0 +1,24 @@
+Participant,Week,Issue Category,Detail
+Abhishek Kumbhar,W1/W2,Nested folder,Files inside extra assignment/Assignment subfolder instead of flat
+Aishwarya Thakur,W1,Wrong deliverable,Generic misspelled file "Assigmnent-day1.js" instead of hello.js/about-me.js
+Akshay Choudhari,W1,Nested folder,Files inside Week-1/ subfolder; missing required hello.js/about-me.js
+Amrendra Raj,W1-W3,Duplicate/inconsistent folder naming,Folders exist as both "Amrendra-Raj" and "Amrendra Raj" (space); W2 work landed in the non-convention space-named folder while canonical folder is empty
+Amrendra Raj,W2,Junk filenames,"new.js, new2.js (empty), final.js, practice.js, placeholder.md"
+Amruta / Amruta Zargad,W1-W2,Inconsistent folder naming,"Amruta (W1) vs Amruta-Zargad (W2) - same person, name drifted"
+Avinash Singh,W1,Missing deliverable,No about-me.js; generic Assignment.js/Misc.js used instead
+Avinash Singh,W1,Casing inconsistency,"Number.js, Intro.js, Favorite.js capitalized unlike rest of cohort"
+Awanti Mahadik,W1-W2,Missing/incomplete deliverables,No about-me.js in W1; W2 crams required exercises into one generic info.js
+Debasish Sahoo,W1,Nested folder,Files inside Assignment/ subfolder; missing hello.js/about-me.js
+Deepali Bhatnagar,W1,Nested folder (severe),Buried under NodeTraining/Day1/assignment/ExerciseSolutions/ - multiple levels deep
+Deepali Bhatnagar,W2,Non-descriptive naming,Numbered generic names (01_printVariable.js ... 10_shortIntro.js) instead of descriptive names
+Jyoti Kumari,W1,Wrong deliverable,Single generic assignment-1.js instead of required files
+Nikhil Deshmukh,W1-W2,Duplicate/inconsistent folder naming,"Nikhil-Deshmukh (hyphen) vs Nikhil_Deshmukh (underscore) used inconsistently; W1 content duplicated both flat and nested"
+Om Menkudale,W1,Nested folder,Split across Assignment/ and Training/ subfolders; generic variable.js/demo1.js
+Shubham Saraswat,W1-W3,Nested folder (all weeks),Consistently submits inside assignment/ subfolder; W1 hello.js buried under NodeTraining/day1/
+Sumit Dhage,W3,Misplaced submission (FIXED),Work was placed inside shared Week-03/Artifacts/Sumit-Dhage/ instead of top-level participant folder; moved to Sessions/Week-03-Conditional-Logic-Operators/Sumit-Dhage/ on 2026-08-19
+Utkarsh Neb,W1,Filenames with spaces,"""Assignment 1.js"", ""Assignment 2.js"" - spaces violate convention; also non-descriptive"
+Vaishnavi Kurhade,W1,Stray folder,Empty non-convention folder "Vaishnavi-Assignment1" created alongside canonical Vaishnavi-Kurhade
+Vaishnavi Kurhade,W3,Misplaced submission (FIXED),Work was placed inside shared Week-03/Artifacts/Vaishnavi-Kurhade/ instead of participant's own folder; moved to Sessions/Week-03-Conditional-Logic-Operators/Vaishnavi-Kurhade/ on 2026-08-19
+Vikas Shukla,W1,Nested folder,Files inside assignment/ subfolder; missing about-me.js
+Viraj Mandavkar,W1,Wrong deliverable,Single generic Day01.js instead of required files
+Multiple participants,W1-W3,Generic filenames,"assignment.js, practice.js, final.js, demo1.js, info.js, variable.js etc. used instead of descriptive names matching the exercise"

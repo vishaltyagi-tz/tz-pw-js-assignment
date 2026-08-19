@@ -1,0 +1,23 @@
+Participant,Week 1,Week 2,Week 3,Notes
+Abhishek Kumbhar,Submitted (nested, incomplete),Submitted (nested),Not submitted,W1/W2 files nested in extra subfolder instead of flat; W3 folder empty
+Aishwarya Thakur,Submitted (wrong deliverables),Not submitted,Not submitted,W1 has one generic misspelled file instead of hello.js/about-me.js
+Akshay Choudhari,Submitted (nested, missing hello/about-me),Submitted,Submitted,W1 files nested in Week-1/ subfolder
+Amrendra Raj,Submitted,Submitted (landed in mis-named folder),Submitted,Folder naming inconsistent across weeks: "Amrendra-Raj" vs "Amrendra Raj" (space)
+Amruta / Amruta Zargad,Submitted (missing hello.js),Submitted,Not submitted,Folder name drifted from "Amruta" (W1) to "Amruta-Zargad" (W2) for same person
+Anas Javed,Not submitted,Not submitted,Not submitted,All three week folders empty
+Avinash Singh,Submitted (missing about-me.js),Submitted,Submitted,Casing inconsistency in W1 filenames
+Awanti Mahadik,Submitted (missing about-me.js),Submitted (incomplete/generic),Not submitted,W2 crams required exercises into one generic file
+Debasish Sahoo,Submitted (nested, missing hello/about-me),Submitted,Submitted,W1 files nested in Assignment/ subfolder
+Deepali Bhatnagar,Submitted (deeply nested, missing about-me.js),Submitted (present, odd naming),Not submitted,W1 buried multiple subfolder levels deep; W2 uses numbered generic filenames
+Jyoti Kumari,Submitted (wrong deliverables),Not submitted,Not submitted,Single generic filename instead of required files
+Nikhil Deshmukh,Submitted (duplicated flat + nested),Submitted (nested),Not submitted,Folder naming inconsistent: hyphen vs underscore across weeks
+Om Menkudale,Submitted (nested, missing hello/about-me),Submitted,Submitted,W1 split across Assignment/ and Training/ subfolders
+Purnima Gautam,Not submitted,Not submitted,Not submitted,All three week folders empty
+Shilpa Mattoo,Not submitted,Not submitted,Not submitted,All three week folders empty
+Shubham Saraswat,Submitted (buried 3 levels deep),Submitted (nested),Submitted (nested),Consistently nests files in assignment/ subfolder across all 3 weeks
+Sumit Dhage,Not submitted,Not submitted,Submitted (fixed - moved from Artifacts/),W3 work was misfiled in Week-03/Artifacts/Sumit-Dhage/; moved to correct participant folder on 2026-08-19
+Utkarsh Neb,Submitted (bad filenames),Submitted (generic filename),Not submitted,W1 filenames contain spaces (e.g. "Assignment 1.js")
+Vaishnavi Kurhade,Not submitted,Submitted,Submitted (fixed - moved from Artifacts/),Stray empty folder "Vaishnavi-Assignment1" also created in W1; W3 work was misfiled in Week-03/Artifacts/Vaishnavi-Kurhade/, moved to correct folder on 2026-08-19
+Vikas Shukla,Submitted (nested, missing about-me.js),Submitted,Submitted,W1 files nested in assignment/ subfolder
+Viraj Mandavkar,Submitted (wrong deliverables),Not submitted,Not submitted,Single generic filename instead of required files
+Day1test,Submitted (test/placeholder - not a real participant),n/a,n/a,Not in canonical participant list; likely a test folder
