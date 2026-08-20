@@ -1,0 +1,1 @@
+console.log("JavaScript Trainig and Practice Program ");
