@@ -13,4 +13,4 @@ function generateUserEmail(firstName, lastName, domain) {
 console.log(calculateTotalPrice(100,0.05));
 console.log(calculateTotalPrice(250,0.15));
 console.log(generateUserEmail("OM", "MenKUDALe", "taazaa.com" ));
-console.log(generateUserEmail("AkshaY","ChowDHAri","taazaa.com"));
+console.log(generateUserEmail("AkshaY","ChouDHAri","taazaa.com"));
