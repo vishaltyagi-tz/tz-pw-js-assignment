@@ -36,6 +36,20 @@ const FORBIDDEN_DIRS = new Set([
   "node_modules", "test-results", "playwright-report", ".cache", "playwright",
 ]);
 const FORBIDDEN_FILES = [/^\.env$/, /^\.env\..+/];
+// --- "was this actually run?" markers -------------------------------------
+// Several deliverables can only be completed by RUNNING the code: paste the
+// real error, record the actual output, compare a prediction to what happened.
+// A submission that leaves those placeholders empty was not run - regardless of
+// how it was produced. These findings are factual, not accusations.
+const PLACEHOLDER_MARKER =
+  /^[ \t]*(?:\/\/|\*)[ \t]*(OUTPUT|WHY|ERROR|PREDICTION|ACTUAL|ANSWER|RESULT|DIFFERENCE|COMPILER ERROR|WHAT HAPPENED|WHICH FAILS ON SLOW CI|FAILURES REPORTED)[ \t]*:[ \t]*(?:\.{2,}|\?+)?[ \t]*$/im;
+const LEFTOVER_TODO = /^[ \t]*(?:\/\/|\*)[ \t]*TODO\b/im;
+// Text that only appears if you ran something and copied the result back.
+const REAL_ERROR_TEXT =
+  /(TypeError|SyntaxError|ReferenceError|RangeError|TimeoutError|strict mode violation|error TS\d+|Assignment to constant variable|is not defined|Cannot find module|UnhandledPromiseRejection)/;
+// Deliverable wording that demands evidence of a real run.
+const WANTS_REAL_OUTPUT = /\b(paste|observe|record|capture)\b[^.]{0,60}\b(error|output|message|result|prediction)\b|\berror (text|message)\b|\bcompiler error\b/i;
+
 const CODE_SMELLS = [
   { re: /waitForTimeout\s*\(/, msg: "uses page.waitForTimeout() - use a web-first assertion instead" },
   { re: /test\.only\s*\(/, msg: "contains test.only() - this silently skips the rest of the suite" },
@@ -171,6 +185,9 @@ for (const session of targetSessions) {
     if (!files.length) continue; // nothing submitted - PROGRESS.md's job, not ours
     submissionsChecked++;
 
+    let sawRealError = false;
+    let sawUnfilled = false;
+
     // --- structure -----------------------------------------------------
     for (const e of entries.filter((x) => x.dir)) {
       const top = e.rel.split(path.sep)[0];
@@ -206,12 +223,24 @@ for (const session of targetSessions) {
         if (re.test(text)) add("WARN", session.folder, participant, f.rel, msg);
       }
 
+      if (PLACEHOLDER_MARKER.test(text)) {
+        add("WARN", session.folder, participant, f.rel,
+          "an explanation placeholder (OUTPUT/WHY/ERROR/PREDICTION) was left unfilled - " +
+          "these are answered by running the code and writing down what happened");
+        sawUnfilled = true;
+      }
+      if (LEFTOVER_TODO.test(text)) {
+        add("WARN", session.folder, participant, f.rel,
+          "a `// TODO` from the practice file is still present - that exercise looks incomplete");
+      }
+      if (REAL_ERROR_TEXT.test(text)) sawRealError = true;
+
       const fp = fingerprint(text);
       if (fp) {
         const prior = fingerprints.get(fp);
         if (prior && !prior.startsWith(participant + "/")) {
           add("ERROR", session.folder, participant, f.rel,
-            `code is byte-identical (ignoring comments/whitespace) to ${prior} - review for copying`);
+            `identical code to ${prior} once comments and whitespace are removed - confirm both authors can explain it`);
         } else if (!prior) {
           fingerprints.set(fp, `${participant}/${f.rel}`);
         }
@@ -225,7 +254,7 @@ for (const session of targetSessions) {
           for (const c of comments) if (otherSet.has(c)) shared++;
           if (shared >= SHARED_COMMENT_THRESHOLD) {
             add("WARN", session.folder, participant, f.rel,
-              `shares ${shared} distinctive comment lines with ${otherKey} - copied work often keeps the original's comments`);
+              `shares ${shared} distinctive comment lines with ${otherKey} - worth confirming these were written independently`);
             break;
           }
         }
@@ -244,6 +273,16 @@ for (const session of targetSessions) {
     if (missing.length) {
       add("WARN", session.folder, participant, "-",
         `missing ${missing.length} of ${required.length} required file(s): ${missing.join(", ")}`);
+    }
+
+    // If this session asks for real, pasted output and none of the submitted
+    // files contain anything that looks like a genuine runtime/compiler
+    // message, the code most likely was not executed.
+    const needsEvidence = (session.deliverables || []).some(([, what]) => WANTS_REAL_OUTPUT.test(what));
+    if (needsEvidence && !sawRealError && !sawUnfilled) {
+      add("WARN", session.folder, participant, "-",
+        "this session asks for the real error or output to be pasted in, and no runtime " +
+        "or compiler message appears anywhere in the submission - check it was actually run");
     }
   }
 }

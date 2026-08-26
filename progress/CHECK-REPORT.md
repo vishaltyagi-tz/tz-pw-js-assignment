@@ -9,28 +9,37 @@ Checks submissions against the Deliverables in each `Session-Guide.md`.
 |---|---|
 | Submissions checked | 61 |
 | Errors | 9 |
-| Warnings | 95 |
+| Warnings | 126 |
 
 ## Week-01-Environment-Setup-First-Line-of-Code
 
 | Level | Participant | File | Finding |
 |---|---|---|---|
-| ERROR | Avinash-Singh | `favorite.js` | code is byte-identical (ignoring comments/whitespace) to Anas-Javed/favorite.js - review for copying |
+| ERROR | Avinash-Singh | `favorite.js` | identical code to Anas-Javed/favorite.js once comments and whitespace are removed - confirm both authors can explain it |
 | WARN | Abhishek-Kumbhar | `-` | missing 3 of 11 required file(s): intro.js, favorite.js, fullName.js |
+| WARN | Abhishek-Kumbhar | `-` | this session asks for the real error or output to be pasted in, and no runtime or compiler message appears anywhere in the submission - check it was actually run |
 | WARN | Aishwarya-Thakur | `-` | missing 11 of 11 required file(s): hello.js, intro.js, profile.js, numbers.js, favorite.js, courseName.js, fullName.js, sequence.js, types.js, message.js, syntaxError.js |
+| WARN | Aishwarya-Thakur | `-` | this session asks for the real error or output to be pasted in, and no runtime or compiler message appears anywhere in the submission - check it was actually run |
 | WARN | Akshay-Choudhari | `demo1.js` | generic filename - use the descriptive name from the Deliverables table |
 | WARN | Akshay-Choudhari | `-` | missing 5 of 11 required file(s): hello.js, courseName.js, fullName.js, message.js, syntaxError.js |
+| WARN | Akshay-Choudhari | `-` | this session asks for the real error or output to be pasted in, and no runtime or compiler message appears anywhere in the submission - check it was actually run |
 | WARN | Amrendra-Raj | `assignment.js` | generic filename - use the descriptive name from the Deliverables table |
 | WARN | Amrendra-Raj | `-` | missing 10 of 11 required file(s): hello.js, profile.js, numbers.js, favorite.js, courseName.js, fullName.js, sequence.js, types.js, message.js, syntaxError.js |
+| WARN | Amrendra-Raj | `-` | this session asks for the real error or output to be pasted in, and no runtime or compiler message appears anywhere in the submission - check it was actually run |
 | WARN | Amruta-Zargad | `-` | missing 6 of 11 required file(s): hello.js, intro.js, favorite.js, courseName.js, fullName.js, syntaxError.js |
+| WARN | Amruta-Zargad | `-` | this session asks for the real error or output to be pasted in, and no runtime or compiler message appears anywhere in the submission - check it was actually run |
 | WARN | Anas-Javed | `misc.js` | generic filename - use the descriptive name from the Deliverables table |
 | WARN | Anas-Javed | `-` | missing 5 of 11 required file(s): numbers.js, courseName.js, fullName.js, types.js, syntaxError.js |
+| WARN | Anas-Javed | `-` | this session asks for the real error or output to be pasted in, and no runtime or compiler message appears anywhere in the submission - check it was actually run |
 | WARN | Avinash-Singh | `assignment.js` | generic filename - use the descriptive name from the Deliverables table |
 | WARN | Avinash-Singh | `misc.js` | generic filename - use the descriptive name from the Deliverables table |
-| WARN | Avinash-Singh | `misc.js` | shares 3 distinctive comment lines with Anas-Javed/misc.js - copied work often keeps the original's comments |
+| WARN | Avinash-Singh | `misc.js` | shares 3 distinctive comment lines with Anas-Javed/misc.js - worth confirming these were written independently |
 | WARN | Avinash-Singh | `-` | missing 5 of 11 required file(s): numbers.js, courseName.js, fullName.js, types.js, syntaxError.js |
+| WARN | Avinash-Singh | `-` | this session asks for the real error or output to be pasted in, and no runtime or compiler message appears anywhere in the submission - check it was actually run |
 | WARN | Awanti-Mahadik | `-` | missing 6 of 11 required file(s): intro.js, favorite.js, courseName.js, fullName.js, types.js, syntaxError.js |
+| WARN | Awanti-Mahadik | `-` | this session asks for the real error or output to be pasted in, and no runtime or compiler message appears anywhere in the submission - check it was actually run |
 | WARN | Debasish-Sahoo | `-` | missing 3 of 11 required file(s): favorite.js, fullName.js, syntaxError.js |
+| WARN | Debasish-Sahoo | `-` | this session asks for the real error or output to be pasted in, and no runtime or compiler message appears anywhere in the submission - check it was actually run |
 | WARN | Deepali-Bhatnagar | `NodeTraining` | unexpected subfolder - submissions should be flat in your participant folder |
 | WARN | Deepali-Bhatnagar | `NodeTraining/Day1` | unexpected subfolder - submissions should be flat in your participant folder |
 | WARN | Deepali-Bhatnagar | `NodeTraining/Day1/ExerciseSolutions` | unexpected subfolder - submissions should be flat in your participant folder |
@@ -42,61 +51,82 @@ Checks submissions against the Deliverables in each `Session-Guide.md`.
 | WARN | Nikhil-Deshmukh | `Day1.js` | generic filename - use the descriptive name from the Deliverables table |
 | WARN | Nikhil-Deshmukh | `assignment/Day1.js` | generic filename - use the descriptive name from the Deliverables table |
 | WARN | Nikhil-Deshmukh | `-` | missing 6 of 11 required file(s): hello.js, favorite.js, courseName.js, fullName.js, types.js, syntaxError.js |
+| WARN | Nikhil-Deshmukh | `-` | this session asks for the real error or output to be pasted in, and no runtime or compiler message appears anywhere in the submission - check it was actually run |
 | WARN | Om-Menkudale | `demo1.js` | generic filename - use the descriptive name from the Deliverables table |
 | WARN | Om-Menkudale | `-` | missing 7 of 11 required file(s): hello.js, intro.js, favorite.js, courseName.js, fullName.js, message.js, syntaxError.js |
+| WARN | Om-Menkudale | `-` | this session asks for the real error or output to be pasted in, and no runtime or compiler message appears anywhere in the submission - check it was actually run |
 | WARN | Shubham-Saraswat | `-` | missing 3 of 11 required file(s): courseName.js, fullName.js, syntaxError.js |
+| WARN | Shubham-Saraswat | `-` | this session asks for the real error or output to be pasted in, and no runtime or compiler message appears anywhere in the submission - check it was actually run |
 | WARN | Utkarsh-Neb | `Assignment 1.js` | filename contains a space - use hyphens or camelCase |
 | WARN | Utkarsh-Neb | `-` | missing 11 of 11 required file(s): hello.js, intro.js, profile.js, numbers.js, favorite.js, courseName.js, fullName.js, sequence.js, types.js, message.js, syntaxError.js |
+| WARN | Utkarsh-Neb | `-` | this session asks for the real error or output to be pasted in, and no runtime or compiler message appears anywhere in the submission - check it was actually run |
 | WARN | Vaishnavi-Kurhade | `-` | missing 11 of 11 required file(s): hello.js, intro.js, profile.js, numbers.js, favorite.js, courseName.js, fullName.js, sequence.js, types.js, message.js, syntaxError.js |
+| WARN | Vaishnavi-Kurhade | `-` | this session asks for the real error or output to be pasted in, and no runtime or compiler message appears anywhere in the submission - check it was actually run |
 | WARN | Vikas-Shukla | `assignment` | unexpected subfolder - submissions should be flat in your participant folder |
 | WARN | Vikas-Shukla | `-` | missing 5 of 11 required file(s): numbers.js, courseName.js, fullName.js, types.js, syntaxError.js |
+| WARN | Vikas-Shukla | `-` | this session asks for the real error or output to be pasted in, and no runtime or compiler message appears anywhere in the submission - check it was actually run |
 | WARN | Viraj-Mandavkar | `-` | missing 5 of 11 required file(s): hello.js, numbers.js, courseName.js, fullName.js, syntaxError.js |
+| WARN | Viraj-Mandavkar | `-` | this session asks for the real error or output to be pasted in, and no runtime or compiler message appears anywhere in the submission - check it was actually run |
 
 ## Week-02-Variables-Basic-Data-Types
 
 | Level | Participant | File | Finding |
 |---|---|---|---|
-| ERROR | Avinash-Singh | `arithmaticOperations.js` | code is byte-identical (ignoring comments/whitespace) to Anas-Javed/arithmaticoperations.js - review for copying |
-| ERROR | Vaishnavi-Kurhade | `Assignment2.js` | code is byte-identical (ignoring comments/whitespace) to Utkarsh-Neb/Assignment2.js - review for copying |
-| ERROR | Vaishnavi-Kurhade | `assignmentarithmatic.js` | code is byte-identical (ignoring comments/whitespace) to Utkarsh-Neb/Assignment2.js - review for copying |
+| ERROR | Avinash-Singh | `arithmaticOperations.js` | identical code to Anas-Javed/arithmaticoperations.js once comments and whitespace are removed - confirm both authors can explain it |
+| ERROR | Vaishnavi-Kurhade | `Assignment2.js` | identical code to Utkarsh-Neb/Assignment2.js once comments and whitespace are removed - confirm both authors can explain it |
+| ERROR | Vaishnavi-Kurhade | `assignmentarithmatic.js` | identical code to Utkarsh-Neb/Assignment2.js once comments and whitespace are removed - confirm both authors can explain it |
 | WARN | Abhishek-Kumbhar | `practice.js` | generic filename - use the descriptive name from the Deliverables table |
 | WARN | Abhishek-Kumbhar | `-` | missing 4 of 10 required file(s): numbers.js, courseName.js, vote.js, selfIntro.js |
+| WARN | Abhishek-Kumbhar | `-` | this session asks for the real error or output to be pasted in, and no runtime or compiler message appears anywhere in the submission - check it was actually run |
 | WARN | Akshay-Choudhari | `-` | missing 4 of 10 required file(s): numbers.js, marks.js, city.js, vote.js |
+| WARN | Akshay-Choudhari | `-` | this session asks for the real error or output to be pasted in, and no runtime or compiler message appears anywhere in the submission - check it was actually run |
 | WARN | Amrendra-Raj | `assignment2.js` | generic filename - use the descriptive name from the Deliverables table |
 | WARN | Amrendra-Raj | `final.js` | generic filename - use the descriptive name from the Deliverables table |
 | WARN | Amrendra-Raj | `new.js` | generic filename - use the descriptive name from the Deliverables table |
 | WARN | Amrendra-Raj | `new2.js` | generic filename - use the descriptive name from the Deliverables table |
 | WARN | Amrendra-Raj | `practice.js` | generic filename - use the descriptive name from the Deliverables table |
 | WARN | Amrendra-Raj | `-` | missing 10 of 10 required file(s): studentName.js, birthYear.js, numbers.js, courseName.js, fullName.js, marks.js, city.js, vote.js, totalPrice.js, selfIntro.js |
+| WARN | Amrendra-Raj | `-` | this session asks for the real error or output to be pasted in, and no runtime or compiler message appears anywhere in the submission - check it was actually run |
 | WARN | Amruta-Zargad | `-` | missing 4 of 10 required file(s): studentName.js, birthYear.js, numbers.js, selfIntro.js |
+| WARN | Amruta-Zargad | `-` | this session asks for the real error or output to be pasted in, and no runtime or compiler message appears anywhere in the submission - check it was actually run |
 | WARN | Anas-Javed | `-` | missing 3 of 10 required file(s): numbers.js, city.js, selfIntro.js |
-| WARN | Avinash-Singh | `introduction.js` | shares 4 distinctive comment lines with Anas-Javed/introduction.js - copied work often keeps the original's comments |
+| WARN | Anas-Javed | `-` | this session asks for the real error or output to be pasted in, and no runtime or compiler message appears anywhere in the submission - check it was actually run |
+| WARN | Avinash-Singh | `introduction.js` | shares 4 distinctive comment lines with Anas-Javed/introduction.js - worth confirming these were written independently |
 | WARN | Avinash-Singh | `-` | missing 3 of 10 required file(s): numbers.js, city.js, selfIntro.js |
+| WARN | Avinash-Singh | `-` | this session asks for the real error or output to be pasted in, and no runtime or compiler message appears anywhere in the submission - check it was actually run |
 | WARN | Awanti-Mahadik | `info.js` | generic filename - use the descriptive name from the Deliverables table |
 | WARN | Awanti-Mahadik | `-` | missing 9 of 10 required file(s): studentName.js, birthYear.js, courseName.js, fullName.js, marks.js, city.js, vote.js, totalPrice.js, selfIntro.js |
+| WARN | Awanti-Mahadik | `-` | this session asks for the real error or output to be pasted in, and no runtime or compiler message appears anywhere in the submission - check it was actually run |
 | WARN | Debasish-Sahoo | `-` | missing 3 of 10 required file(s): studentName.js, numbers.js, totalPrice.js |
+| WARN | Debasish-Sahoo | `-` | this session asks for the real error or output to be pasted in, and no runtime or compiler message appears anywhere in the submission - check it was actually run |
 | WARN | Deepali-Bhatnagar | `-` | missing 10 of 10 required file(s): studentName.js, birthYear.js, numbers.js, courseName.js, fullName.js, marks.js, city.js, vote.js, totalPrice.js, selfIntro.js |
+| WARN | Deepali-Bhatnagar | `-` | this session asks for the real error or output to be pasted in, and no runtime or compiler message appears anywhere in the submission - check it was actually run |
 | WARN | Jyoti-Kumari | `Assignment` | unexpected subfolder - submissions should be flat in your participant folder |
 | WARN | Jyoti-Kumari | `-` | missing 2 of 10 required file(s): numbers.js, vote.js |
 | WARN | Nikhil-Deshmukh | `Assignment` | unexpected subfolder - submissions should be flat in your participant folder |
 | WARN | Nikhil-Deshmukh | `-` | missing 4 of 10 required file(s): numbers.js, vote.js, totalPrice.js, selfIntro.js |
+| WARN | Nikhil-Deshmukh | `-` | this session asks for the real error or output to be pasted in, and no runtime or compiler message appears anywhere in the submission - check it was actually run |
 | WARN | Om-Menkudale | `-` | missing 3 of 10 required file(s): studentName.js, numbers.js, vote.js |
+| WARN | Om-Menkudale | `-` | this session asks for the real error or output to be pasted in, and no runtime or compiler message appears anywhere in the submission - check it was actually run |
 | WARN | Shubham-Saraswat | `-` | missing 7 of 10 required file(s): studentName.js, birthYear.js, courseName.js, fullName.js, vote.js, totalPrice.js, selfIntro.js |
 | WARN | Utkarsh-Neb | `Assignment2.js` | generic filename - use the descriptive name from the Deliverables table |
 | WARN | Utkarsh-Neb | `-` | missing 10 of 10 required file(s): studentName.js, birthYear.js, numbers.js, courseName.js, fullName.js, marks.js, city.js, vote.js, totalPrice.js, selfIntro.js |
+| WARN | Utkarsh-Neb | `-` | this session asks for the real error or output to be pasted in, and no runtime or compiler message appears anywhere in the submission - check it was actually run |
 | WARN | Vaishnavi-Kurhade | `Assignment2.js` | generic filename - use the descriptive name from the Deliverables table |
 | WARN | Vaishnavi-Kurhade | `-` | missing 10 of 10 required file(s): studentName.js, birthYear.js, numbers.js, courseName.js, fullName.js, marks.js, city.js, vote.js, totalPrice.js, selfIntro.js |
+| WARN | Vaishnavi-Kurhade | `-` | this session asks for the real error or output to be pasted in, and no runtime or compiler message appears anywhere in the submission - check it was actually run |
 | WARN | Vikas-Shukla | `-` | missing 3 of 10 required file(s): numbers.js, vote.js, totalPrice.js |
 | WARN | Viraj-Mandavkar | `-` | missing 6 of 10 required file(s): numbers.js, courseName.js, marks.js, city.js, vote.js, totalPrice.js |
+| WARN | Viraj-Mandavkar | `-` | this session asks for the real error or output to be pasted in, and no runtime or compiler message appears anywhere in the submission - check it was actually run |
 
 ## Week-03-Conditional-Logic-Operators
 
 | Level | Participant | File | Finding |
 |---|---|---|---|
-| ERROR | Avinash-Singh | `loginAccess.js` | code is byte-identical (ignoring comments/whitespace) to Anas-Javed/loginaccess.js - review for copying |
-| ERROR | Om-Menkudale | `access_using_switch.js` | code is byte-identical (ignoring comments/whitespace) to Abhishek-Kumbhar/access_using_switch.js - review for copying |
-| ERROR | Om-Menkudale | `login.js` | code is byte-identical (ignoring comments/whitespace) to Abhishek-Kumbhar/login.js - review for copying |
-| ERROR | Om-Menkudale | `useraccess.js` | code is byte-identical (ignoring comments/whitespace) to Abhishek-Kumbhar/useraccess.js - review for copying |
+| ERROR | Avinash-Singh | `loginAccess.js` | identical code to Anas-Javed/loginaccess.js once comments and whitespace are removed - confirm both authors can explain it |
+| ERROR | Om-Menkudale | `access_using_switch.js` | identical code to Abhishek-Kumbhar/access_using_switch.js once comments and whitespace are removed - confirm both authors can explain it |
+| ERROR | Om-Menkudale | `login.js` | identical code to Abhishek-Kumbhar/login.js once comments and whitespace are removed - confirm both authors can explain it |
+| ERROR | Om-Menkudale | `useraccess.js` | identical code to Abhishek-Kumbhar/useraccess.js once comments and whitespace are removed - confirm both authors can explain it |
 | WARN | Abhishek-Kumbhar | `-` | missing 5 of 6 required file(s): userRoles.js, gradeCalculator.js, entryCheck.js, roleSwitch.js, ternaryDemo.js |
 | WARN | Akshay-Choudhari | `-` | missing 6 of 6 required file(s): userRoles.js, userAccess.js, gradeCalculator.js, entryCheck.js, roleSwitch.js, ternaryDemo.js |
 | WARN | Amrendra-Raj | `-` | missing 6 of 6 required file(s): userRoles.js, userAccess.js, gradeCalculator.js, entryCheck.js, roleSwitch.js, ternaryDemo.js |
@@ -119,18 +149,19 @@ Checks submissions against the Deliverables in each `Session-Guide.md`.
 
 | Level | Participant | File | Finding |
 |---|---|---|---|
-| ERROR | Shubham-Saraswat | `is-valid-password.js` | code is byte-identical (ignoring comments/whitespace) to Abhishek-Kumbhar/isValidPassword.js - review for copying |
+| ERROR | Shubham-Saraswat | `is-valid-password.js` | identical code to Abhishek-Kumbhar/isValidPassword.js once comments and whitespace are removed - confirm both authors can explain it |
 | WARN | Abhishek-Kumbhar | `-` | missing 6 of 6 required file(s): helpers.js, arrowHelpers.js, formatProductLabel.js, passwordValidator.js, average.js, testRunner.js |
 | WARN | Amrendra-Raj | `excercise.js` | generic filename - use the descriptive name from the Deliverables table |
+| WARN | Amrendra-Raj | `excercise.js` | a `// TODO` from the practice file is still present - that exercise looks incomplete |
 | WARN | Amrendra-Raj | `-` | missing 6 of 6 required file(s): helpers.js, arrowHelpers.js, formatProductLabel.js, passwordValidator.js, average.js, testRunner.js |
 | WARN | Avinash-Singh | `-` | missing 6 of 6 required file(s): helpers.js, arrowHelpers.js, formatProductLabel.js, passwordValidator.js, average.js, testRunner.js |
 | WARN | Deepali-Bhatnagar | `-` | missing 3 of 6 required file(s): formatProductLabel.js, average.js, testRunner.js |
 | WARN | Jyoti-Kumari | `Assignment` | unexpected subfolder - submissions should be flat in your participant folder |
 | WARN | Jyoti-Kumari | `-` | missing 6 of 6 required file(s): helpers.js, arrowHelpers.js, formatProductLabel.js, passwordValidator.js, average.js, testRunner.js |
 | WARN | Nikhil-Deshmukh | `-` | missing 6 of 6 required file(s): helpers.js, arrowHelpers.js, formatProductLabel.js, passwordValidator.js, average.js, testRunner.js |
-| WARN | Om-Menkudale | `arrowfunctions.js` | shares 5 distinctive comment lines with Abhishek-Kumbhar/arrowfunctions.js - copied work often keeps the original's comments |
+| WARN | Om-Menkudale | `arrowfunctions.js` | shares 5 distinctive comment lines with Abhishek-Kumbhar/arrowfunctions.js - worth confirming these were written independently |
 | WARN | Om-Menkudale | `-` | missing 6 of 6 required file(s): helpers.js, arrowHelpers.js, formatProductLabel.js, passwordValidator.js, average.js, testRunner.js |
-| WARN | Shubham-Saraswat | `arrow-functions.js` | shares 11 distinctive comment lines with Avinash-Singh/arrowFunction.js - copied work often keeps the original's comments |
+| WARN | Shubham-Saraswat | `arrow-functions.js` | shares 11 distinctive comment lines with Avinash-Singh/arrowFunction.js - worth confirming these were written independently |
 | WARN | Shubham-Saraswat | `-` | missing 6 of 6 required file(s): helpers.js, arrowHelpers.js, formatProductLabel.js, passwordValidator.js, average.js, testRunner.js |
 | WARN | Vikas-Shukla | `-` | missing 6 of 6 required file(s): helpers.js, arrowHelpers.js, formatProductLabel.js, passwordValidator.js, average.js, testRunner.js |
 | WARN | Viraj-Mandavkar | `-` | missing 6 of 6 required file(s): helpers.js, arrowHelpers.js, formatProductLabel.js, passwordValidator.js, average.js, testRunner.js |

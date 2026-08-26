@@ -89,6 +89,22 @@ Your submission is complete when every box below is true:
 
 Never commit `node_modules/`, `test-results/`, `playwright-report/`, or `.env`.
 
+## Using an AI Assistant
+
+AI assistance is **allowed** on this programme — Optional K teaches it deliberately. Two conditions:
+
+1. **Disclose it.** Add a comment at the top of any file where an assistant helped:
+   `// AI-assisted: <tool> helped with <what>. I have verified and can explain every line.`
+2. **Be able to explain every line.** You may be asked, in a spot check, why a
+   particular line is there and to make a small change to it live.
+
+What that rules out is submitting code you cannot explain. That fails the
+Definition of Done above regardless of how it was produced, and it leaves you
+unable to debug your own suite later in the course.
+
+Note that several deliverables ask for the *real* error, output, or timing from
+your machine. Those can only be completed by actually running the code.
+
 ## For Session Owners
 
 - Prepare talking points and live-demo code against the agenda and key points above.

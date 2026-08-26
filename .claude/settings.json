@@ -1,0 +1,17 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Write|Edit|NotebookEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"${CLAUDE_PROJECT_DIR:-.}/scripts/guard-assignment-folders.js\"",
+            "timeout": 10,
+            "statusMessage": "Checking assignment-folder guard"
+          }
+        ]
+      }
+    ]
+  }
+}
