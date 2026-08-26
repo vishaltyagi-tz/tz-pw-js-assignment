@@ -1,5 +1,7 @@
 let marks = 82;
 
+// This is the extra assignment i am doing for the practice
+
 if (marks >= 90) {
     console.log("Grade A");
 } else if (marks >= 75) {
