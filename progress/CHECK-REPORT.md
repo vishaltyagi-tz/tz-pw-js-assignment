@@ -7,9 +7,9 @@ Checks submissions against the Deliverables in each `Session-Guide.md`.
 
 | | |
 |---|---|
-| Submissions checked | 61 |
+| Submissions checked | 62 |
 | Errors | 9 |
-| Warnings | 126 |
+| Warnings | 125 |
 
 ## Week-01-Environment-Setup-First-Line-of-Code
 
@@ -77,7 +77,6 @@ Checks submissions against the Deliverables in each `Session-Guide.md`.
 | ERROR | Vaishnavi-Kurhade | `assignmentarithmatic.js` | identical code to Utkarsh-Neb/Assignment2.js once comments and whitespace are removed - confirm both authors can explain it |
 | WARN | Abhishek-Kumbhar | `practice.js` | generic filename - use the descriptive name from the Deliverables table |
 | WARN | Abhishek-Kumbhar | `-` | missing 4 of 10 required file(s): numbers.js, courseName.js, vote.js, selfIntro.js |
-| WARN | Abhishek-Kumbhar | `-` | this session asks for the real error or output to be pasted in, and no runtime or compiler message appears anywhere in the submission - check it was actually run |
 | WARN | Akshay-Choudhari | `-` | missing 4 of 10 required file(s): numbers.js, marks.js, city.js, vote.js |
 | WARN | Akshay-Choudhari | `-` | this session asks for the real error or output to be pasted in, and no runtime or compiler message appears anywhere in the submission - check it was actually run |
 | WARN | Amrendra-Raj | `assignment2.js` | generic filename - use the descriptive name from the Deliverables table |
@@ -107,7 +106,6 @@ Checks submissions against the Deliverables in each `Session-Guide.md`.
 | WARN | Nikhil-Deshmukh | `-` | missing 4 of 10 required file(s): numbers.js, vote.js, totalPrice.js, selfIntro.js |
 | WARN | Nikhil-Deshmukh | `-` | this session asks for the real error or output to be pasted in, and no runtime or compiler message appears anywhere in the submission - check it was actually run |
 | WARN | Om-Menkudale | `-` | missing 3 of 10 required file(s): studentName.js, numbers.js, vote.js |
-| WARN | Om-Menkudale | `-` | this session asks for the real error or output to be pasted in, and no runtime or compiler message appears anywhere in the submission - check it was actually run |
 | WARN | Shubham-Saraswat | `-` | missing 7 of 10 required file(s): studentName.js, birthYear.js, courseName.js, fullName.js, vote.js, totalPrice.js, selfIntro.js |
 | WARN | Utkarsh-Neb | `Assignment2.js` | generic filename - use the descriptive name from the Deliverables table |
 | WARN | Utkarsh-Neb | `-` | missing 10 of 10 required file(s): studentName.js, birthYear.js, numbers.js, courseName.js, fullName.js, marks.js, city.js, vote.js, totalPrice.js, selfIntro.js |
@@ -155,6 +153,7 @@ Checks submissions against the Deliverables in each `Session-Guide.md`.
 | WARN | Amrendra-Raj | `excercise.js` | a `// TODO` from the practice file is still present - that exercise looks incomplete |
 | WARN | Amrendra-Raj | `-` | missing 6 of 6 required file(s): helpers.js, arrowHelpers.js, formatProductLabel.js, passwordValidator.js, average.js, testRunner.js |
 | WARN | Avinash-Singh | `-` | missing 6 of 6 required file(s): helpers.js, arrowHelpers.js, formatProductLabel.js, passwordValidator.js, average.js, testRunner.js |
+| WARN | Debasish-Sahoo | `-` | missing 6 of 6 required file(s): helpers.js, arrowHelpers.js, formatProductLabel.js, passwordValidator.js, average.js, testRunner.js |
 | WARN | Deepali-Bhatnagar | `-` | missing 3 of 6 required file(s): formatProductLabel.js, average.js, testRunner.js |
 | WARN | Jyoti-Kumari | `Assignment` | unexpected subfolder - submissions should be flat in your participant folder |
 | WARN | Jyoti-Kumari | `-` | missing 6 of 6 required file(s): helpers.js, arrowHelpers.js, formatProductLabel.js, passwordValidator.js, average.js, testRunner.js |
