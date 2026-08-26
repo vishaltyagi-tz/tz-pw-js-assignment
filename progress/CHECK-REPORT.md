@@ -7,9 +7,9 @@ Checks submissions against the Deliverables in each `Session-Guide.md`.
 
 | | |
 |---|---|
-| Submissions checked | 60 |
+| Submissions checked | 61 |
 | Errors | 9 |
-| Warnings | 93 |
+| Warnings | 95 |
 
 ## Week-01-Environment-Setup-First-Line-of-Code
 
@@ -123,12 +123,14 @@ Checks submissions against the Deliverables in each `Session-Guide.md`.
 | WARN | Abhishek-Kumbhar | `-` | missing 6 of 6 required file(s): helpers.js, arrowHelpers.js, formatProductLabel.js, passwordValidator.js, average.js, testRunner.js |
 | WARN | Amrendra-Raj | `excercise.js` | generic filename - use the descriptive name from the Deliverables table |
 | WARN | Amrendra-Raj | `-` | missing 6 of 6 required file(s): helpers.js, arrowHelpers.js, formatProductLabel.js, passwordValidator.js, average.js, testRunner.js |
+| WARN | Avinash-Singh | `-` | missing 6 of 6 required file(s): helpers.js, arrowHelpers.js, formatProductLabel.js, passwordValidator.js, average.js, testRunner.js |
 | WARN | Deepali-Bhatnagar | `-` | missing 3 of 6 required file(s): formatProductLabel.js, average.js, testRunner.js |
 | WARN | Jyoti-Kumari | `Assignment` | unexpected subfolder - submissions should be flat in your participant folder |
 | WARN | Jyoti-Kumari | `-` | missing 6 of 6 required file(s): helpers.js, arrowHelpers.js, formatProductLabel.js, passwordValidator.js, average.js, testRunner.js |
 | WARN | Nikhil-Deshmukh | `-` | missing 6 of 6 required file(s): helpers.js, arrowHelpers.js, formatProductLabel.js, passwordValidator.js, average.js, testRunner.js |
 | WARN | Om-Menkudale | `arrowfunctions.js` | shares 5 distinctive comment lines with Abhishek-Kumbhar/arrowfunctions.js - copied work often keeps the original's comments |
 | WARN | Om-Menkudale | `-` | missing 6 of 6 required file(s): helpers.js, arrowHelpers.js, formatProductLabel.js, passwordValidator.js, average.js, testRunner.js |
+| WARN | Shubham-Saraswat | `arrow-functions.js` | shares 11 distinctive comment lines with Avinash-Singh/arrowFunction.js - copied work often keeps the original's comments |
 | WARN | Shubham-Saraswat | `-` | missing 6 of 6 required file(s): helpers.js, arrowHelpers.js, formatProductLabel.js, passwordValidator.js, average.js, testRunner.js |
 | WARN | Vikas-Shukla | `-` | missing 6 of 6 required file(s): helpers.js, arrowHelpers.js, formatProductLabel.js, passwordValidator.js, average.js, testRunner.js |
 | WARN | Viraj-Mandavkar | `-` | missing 6 of 6 required file(s): helpers.js, arrowHelpers.js, formatProductLabel.js, passwordValidator.js, average.js, testRunner.js |

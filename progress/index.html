@@ -1,0 +1,1504 @@
+<title>Cohort Progress Board</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root {
+    --bg: #f4f6f8;
+    --surface: #ffffff;
+    --surface-2: #eef1f5;
+    --line: #d8dee6;
+    --line-soft: #e7ebf0;
+    --ink: #14181d;
+    --ink-2: #47535f;
+    --muted: #6b7885;
+    --accent: #1f4e79;
+    --accent-soft: #e4edf6;
+    --good: #1b7f4b;
+    --good-soft: #e0f0e7;
+    --warn: #a8620a;
+    --warn-soft: #fbeddc;
+    --crit: #a5232b;
+    --crit-soft: #fbe4e5;
+    --radius: 6px;
+    --shadow: 0 1px 2px rgba(20, 24, 29, .06), 0 1px 8px rgba(20, 24, 29, .04);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #101418;
+      --surface: #171c22;
+      --surface-2: #1e242b;
+      --line: #2c343d;
+      --line-soft: #232a32;
+      --ink: #e8edf2;
+      --ink-2: #b3bfcb;
+      --muted: #8b98a5;
+      --accent: #7fa9d4;
+      --accent-soft: #1c2b3a;
+      --good: #4caf7d;
+      --good-soft: #16301f;
+      --warn: #d99a3e;
+      --warn-soft: #322411;
+      --crit: #e06c74;
+      --crit-soft: #351a1d;
+      --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 1px 8px rgba(0, 0, 0, .25);
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #101418;
+    --surface: #171c22;
+    --surface-2: #1e242b;
+    --line: #2c343d;
+    --line-soft: #232a32;
+    --ink: #e8edf2;
+    --ink-2: #b3bfcb;
+    --muted: #8b98a5;
+    --accent: #7fa9d4;
+    --accent-soft: #1c2b3a;
+    --good: #4caf7d;
+    --good-soft: #16301f;
+    --warn: #d99a3e;
+    --warn-soft: #322411;
+    --crit: #e06c74;
+    --crit-soft: #351a1d;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 1px 8px rgba(0, 0, 0, .25);
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "IBM Plex Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
+    font-size: 15px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 1240px; margin: 0 auto; padding: 40px 24px 80px; display: flex; flex-direction: column; gap: 40px; }
+
+  h1, h2, h3 { font-family: Archivo, ui-sans-serif, system-ui, sans-serif; margin: 0; text-wrap: balance; letter-spacing: -0.01em; }
+  h1 { font-size: clamp(28px, 4vw, 40px); font-weight: 700; line-height: 1.1; }
+  h2 { font-size: 20px; font-weight: 600; }
+  p { margin: 0; }
+
+  .eyebrow {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: .14em;
+    color: var(--accent);
+  }
+  .lede { color: var(--ink-2); max-width: 66ch; }
+  .meta { color: var(--muted); font-size: 13px; font-family: "IBM Plex Mono", monospace; }
+
+  header.masthead { display: flex; flex-direction: column; gap: 10px; border-bottom: 2px solid var(--ink); padding-bottom: 22px; }
+
+  section { display: flex; flex-direction: column; gap: 14px; }
+  .shead { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap; border-bottom: 1px solid var(--line); padding-bottom: 8px; }
+  .shead p { color: var(--muted); font-size: 13px; }
+
+  /* ---- stat tiles ---- */
+  .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px; }
+  .tile {
+    background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 16px 18px; display: flex; flex-direction: column; gap: 4px;
+    border-top: 3px solid var(--accent); box-shadow: var(--shadow);
+  }
+  .tile.is-good { border-top-color: var(--good); }
+  .tile.is-warn { border-top-color: var(--warn); }
+  .tile.is-crit { border-top-color: var(--crit); }
+  .tile .n { font-family: Archivo, sans-serif; font-size: 30px; font-weight: 700; line-height: 1; font-variant-numeric: tabular-nums; }
+  .tile .k { font-size: 12px; text-transform: uppercase; letter-spacing: .09em; color: var(--muted); font-weight: 500; }
+  .tile .sub { font-size: 12px; color: var(--ink-2); }
+
+  /* ---- shared table furniture ---- */
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; }
+  .scroller { overflow-x: auto; }
+  table { border-collapse: separate; border-spacing: 0; width: 100%; font-size: 13.5px; }
+  th, td { text-align: left; padding: 9px 12px; border-bottom: 1px solid var(--line-soft); }
+  thead th {
+    background: var(--surface-2); color: var(--ink-2); font-family: "IBM Plex Mono", monospace;
+    font-size: 10.5px; font-weight: 500; text-transform: uppercase; letter-spacing: .1em;
+    position: sticky; top: 0; z-index: 2; border-bottom: 1px solid var(--line); white-space: nowrap;
+  }
+  tbody tr:last-child td, tbody tr:last-child th { border-bottom: 0; }
+  tbody tr:hover td, tbody tr:hover th { background: var(--accent-soft); }
+  .num { text-align: right; font-variant-numeric: tabular-nums; font-family: "IBM Plex Mono", monospace; white-space: nowrap; }
+  .of { color: var(--muted); font-size: .85em; }
+  .zero { color: var(--muted); }
+  .who { font-weight: 500; white-space: nowrap; }
+  .mono { font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--ink-2); word-break: break-all; }
+  .tight { white-space: nowrap; }
+
+  /* ---- state chips ---- */
+  .pill, .chip {
+    display: inline-block; font-family: "IBM Plex Mono", monospace; font-size: 11px; font-weight: 500;
+    padding: 2px 8px; border-radius: 100px; white-space: nowrap; border: 1px solid transparent;
+  }
+  .pill.good, .chip.good { background: var(--good-soft); color: var(--good); border-color: var(--good); }
+  .pill.warn, .chip.warn { background: var(--warn-soft); color: var(--warn); border-color: var(--warn); }
+  .pill.crit, .chip.crit { background: var(--crit-soft); color: var(--crit); border-color: var(--crit); }
+  .pill.ahead { background: var(--surface-2); color: var(--muted); border-color: var(--line); }
+
+  /* ---- progress bars ---- */
+  .bar { width: 130px; }
+  .track { height: 6px; background: var(--surface-2); border-radius: 100px; overflow: hidden; border: 1px solid var(--line-soft); }
+  .fill { height: 100%; border-radius: 100px; }
+  .fill.good { background: var(--good); }
+  .fill.warn { background: var(--warn); }
+  .fill.crit { background: var(--crit); }
+
+  /* ---- the matrix ---- */
+  .matrix { font-size: 12px; }
+  .matrix th.rowhead {
+    position: sticky; left: 0; z-index: 3; background: var(--surface);
+    border-right: 1px solid var(--line); font-weight: 500; white-space: nowrap;
+    text-align: left; font-family: "IBM Plex Sans", sans-serif; font-size: 13px;
+    text-transform: none; letter-spacing: 0; color: var(--ink); top: auto;
+  }
+  .matrix tbody tr:hover th.rowhead { background: var(--accent-soft); }
+  .matrix thead th.colhead {
+    padding: 8px 0; width: 26px; min-width: 26px; text-align: center;
+    font-size: 9.5px; letter-spacing: .04em;
+  }
+  .matrix thead th.colhead.ahead { color: var(--muted); }
+  .matrix thead th:first-child { position: sticky; left: 0; z-index: 4; background: var(--surface-2); border-right: 1px solid var(--line); }
+  .matrix td.cell { padding: 0; width: 26px; min-width: 26px; height: 26px; text-align: center; border-bottom: 1px solid var(--line-soft); }
+  .matrix td.cell span { display: block; width: 12px; height: 12px; margin: 0 auto; border-radius: 3px; }
+  .cell.done span { background: var(--good); }
+  .cell.missing span { background: var(--crit-soft); border: 1px solid var(--crit); }
+  .cell.none span, .cell.future span { background: var(--surface-2); border: 1px solid var(--line); }
+  .cell.nofolder span { background: repeating-linear-gradient(45deg, var(--crit) 0 2px, transparent 2px 4px); border: 1px solid var(--crit); }
+  .cell.flagged span { box-shadow: 0 0 0 2px var(--warn); }
+  .matrix td.tally { text-align: right; white-space: nowrap; border-left: 1px solid var(--line); }
+
+  .legend { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 12px; color: var(--ink-2); }
+  .legend span { display: inline-flex; align-items: center; gap: 6px; }
+  .legend i { width: 12px; height: 12px; border-radius: 3px; display: inline-block; }
+  .lg-done { background: var(--good); }
+  .lg-missing { background: var(--crit-soft); border: 1px solid var(--crit); }
+  .lg-future { background: var(--surface-2); border: 1px solid var(--line); }
+  .lg-nofolder { background: repeating-linear-gradient(45deg, var(--crit) 0 2px, transparent 2px 4px); border: 1px solid var(--crit); }
+  .lg-flag { background: var(--good); box-shadow: 0 0 0 2px var(--warn); }
+
+  /* ---- findings ---- */
+  .fgroup { border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); overflow: hidden; box-shadow: var(--shadow); }
+  .fgroup + .fgroup { margin-top: 10px; }
+  .fgroup summary {
+    cursor: pointer; padding: 12px 16px; display: flex; justify-content: space-between;
+    align-items: baseline; gap: 14px; flex-wrap: wrap; background: var(--surface-2);
+  }
+  .fgroup summary:hover { background: var(--accent-soft); }
+  .fgroup summary::marker { color: var(--accent); }
+  .fname { font-family: Archivo, sans-serif; font-weight: 600; font-size: 14px; }
+  .fcount { font-family: "IBM Plex Mono", monospace; font-size: 11px; color: var(--muted); }
+  .ftable td { vertical-align: top; }
+  .empty { color: var(--muted); padding: 16px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+
+  /* ---- controls ---- */
+  .controls { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+  .controls button {
+    font-family: "IBM Plex Mono", monospace; font-size: 11px; text-transform: uppercase; letter-spacing: .08em;
+    padding: 5px 12px; border-radius: 100px; border: 1px solid var(--line);
+    background: var(--surface); color: var(--ink-2); cursor: pointer;
+  }
+  .controls button:hover { border-color: var(--accent); color: var(--accent); }
+  .controls button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--surface); }
+  :root[data-theme="dark"] .controls button[aria-pressed="true"],
+  .controls button[aria-pressed="true"] { color: var(--bg); }
+  button:focus-visible, summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .hide-optional [data-type="Optional"] { display: none; }
+
+  footer { border-top: 1px solid var(--line); padding-top: 18px; color: var(--muted); font-size: 12.5px; display: flex; flex-direction: column; gap: 6px; }
+  code { font-family: "IBM Plex Mono", monospace; font-size: .9em; background: var(--surface-2); padding: 1px 5px; border-radius: 3px; border: 1px solid var(--line-soft); }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+  @media (max-width: 640px) { .wrap { padding: 24px 14px 60px; } .bar { width: 80px; } }
+</style>
+
+<div class="wrap">
+  <header class="masthead">
+    <p class="eyebrow">QA Playwright &amp; JavaScript Training</p>
+    <h1>Cohort Progress Board</h1>
+    <p class="lede">Assignment submissions across 18 core weeks and 11 optional sessions, for 21 participants. Submission counts come from the files in each participant folder; the findings below come from checking those files against each Session Guide.</p>
+    <p class="meta">Generated 2026-08-26 · 5 of 18 core sessions due so far</p>
+  </header>
+
+  <section>
+    <div class="shead"><h2>Where the cohort stands</h2><p>Against the 5 core sessions that have already run</p></div>
+    <div class="tiles">
+      <div class="tile is-good">
+        <span class="k">Up to date</span>
+        <span class="n">0</span>
+        <span class="sub">of 21 have submitted every due week</span>
+      </div>
+      <div class="tile is-warn">
+        <span class="k">Behind</span>
+        <span class="n">19</span>
+        <span class="sub">have submitted something, but not everything</span>
+      </div>
+      <div class="tile is-crit">
+        <span class="k">Nothing submitted</span>
+        <span class="n">2</span>
+        <span class="sub">Purnima Gautam, Shilpa Mattoo</span>
+      </div>
+      <div class="tile">
+        <span class="k">Files submitted</span>
+        <span class="n">368</span>
+        <span class="sub">across all sessions</span>
+      </div>
+      <div class="tile is-crit">
+        <span class="k">Open errors</span>
+        <span class="n">9</span>
+        <span class="sub">need a decision, not a nudge</span>
+      </div>
+      <div class="tile is-warn">
+        <span class="k">Warnings</span>
+        <span class="n">95</span>
+        <span class="sub">missing deliverables, naming, structure</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="matrix">
+    <div class="shead"><h2>Submission matrix</h2><p>Hover any square for detail</p></div>
+    <div class="controls">
+      <button type="button" id="toggleOptional" aria-pressed="false">Hide optional sessions</button>
+    </div>
+    <div class="legend">
+      <span><i class="lg-done"></i> Submitted</span>
+      <span><i class="lg-missing"></i> Due, nothing submitted</span>
+      <span><i class="lg-future"></i> Not due yet</span>
+      <span><i class="lg-nofolder"></i> No folder — cannot submit</span>
+      <span><i class="lg-flag"></i> Submitted, but flagged</span>
+    </div>
+    <div class="card"><div class="scroller">
+      <table class="matrix">
+        <thead><tr><th scope="col">Participant</th><th scope="col" class="colhead past" data-type="Core" title="Week 1 · Wed, Jul 29, 2026 · Environment Setup &amp; First Line of Code · owner: Vishal Tyagi"><span>W1</span></th><th scope="col" class="colhead ahead" data-type="Optional" title="Optional Session A · Self-paced, anytime after Week 1 · Git Basics &amp; Local Workflow · owner: Self-study"><span>Opt-A</span></th><th scope="col" class="colhead past" data-type="Core" title="Week 2 · Wed, Aug 05, 2026 · Variables &amp; Basic Data Types · owner: Tarun"><span>W2</span></th><th scope="col" class="colhead past" data-type="Core" title="Week 3 · Wed, Aug 12, 2026 · Conditional Logic &amp; Operators · owner: Aruneema"><span>W3</span></th><th scope="col" class="colhead past" data-type="Core" title="Week 4 · Wed, Aug 19, 2026 · Functions &amp; Reusability · owner: Prachi"><span>W4</span></th><th scope="col" class="colhead past" data-type="Core" title="Week 5 · Wed, Aug 26, 2026 · Arrays &amp; Loops · owner: Tarun"><span>W5</span></th><th scope="col" class="colhead ahead" data-type="Optional" title="Optional Session B · Self-paced, anytime after Week 5 · Branching &amp; Merging · owner: Self-study"><span>Opt-B</span></th><th scope="col" class="colhead ahead" data-type="Core" title="Week 6 · Wed, Sep 02, 2026 · Async/Await &amp; Promises · owner: Prachi"><span>W6</span></th><th scope="col" class="colhead ahead" data-type="Core" title="Week 7 · Wed, Sep 09, 2026 · Playwright Setup &amp; CodeGen Intro · owner: Hritik"><span>W7</span></th><th scope="col" class="colhead ahead" data-type="Optional" title="Optional Session C · Self-paced, anytime after Week 7 · Remote Repositories &amp; GitHub Collaboration · owner: Self-study"><span>Opt-C</span></th><th scope="col" class="colhead ahead" data-type="Optional" title="Optional Session D · Self-paced, anytime after Week 7 · Project Config, package.json &amp; npm · owner: Self-study"><span>Opt-D</span></th><th scope="col" class="colhead ahead" data-type="Optional" title="Optional Session E · Self-paced, anytime after Week 7 · DOM Basics &amp; Chrome DevTools · owner: Self-study"><span>Opt-E</span></th><th scope="col" class="colhead ahead" data-type="Core" title="Week 8 · Wed, Sep 16, 2026 · Locators &amp; Page Interactions · owner: Vishal Tyagi"><span>W8</span></th><th scope="col" class="colhead ahead" data-type="Core" title="Week 9 · Wed, Sep 23, 2026 · Actions &amp; User Inputs · owner: Tarun"><span>W9</span></th><th scope="col" class="colhead ahead" data-type="Core" title="Week 10 · Wed, Sep 30, 2026 · Assertions &amp; Verification · owner: Hritik"><span>W10</span></th><th scope="col" class="colhead ahead" data-type="Core" title="Week 11 · Wed, Oct 07, 2026 · Auto-Waiting &amp; Handling Delays · owner: Vishal Tyagi - Jr"><span>W11</span></th><th scope="col" class="colhead ahead" data-type="Optional" title="Optional Session F · Self-paced, anytime after Week 11 · IFrames, Dialogs &amp; Complex Popups · owner: Self-study"><span>Opt-F</span></th><th scope="col" class="colhead ahead" data-type="Core" title="Week 12 · Wed, Oct 14, 2026 · Test Execution &amp; Debugging · owner: Aruneema"><span>W12</span></th><th scope="col" class="colhead ahead" data-type="Optional" title="Optional Session G · Self-paced, anytime after Week 12 · Git Workflow for Test Automation Projects · owner: Self-study"><span>Opt-G</span></th><th scope="col" class="colhead ahead" data-type="Optional" title="Optional Session H · Self-paced, anytime after Week 12 · Writing Clean &amp; Maintainable Test Code · owner: Self-study"><span>Opt-H</span></th><th scope="col" class="colhead ahead" data-type="Core" title="Week 13 · Wed, Oct 21, 2026 · Test Suite Organization &amp; Hooks · owner: Vishal Tyagi - Jr"><span>W13</span></th><th scope="col" class="colhead ahead" data-type="Optional" title="Optional Session I · Self-paced, anytime after Week 13 · Environment Variables &amp; Config Management · owner: Self-study"><span>Opt-I</span></th><th scope="col" class="colhead ahead" data-type="Core" title="Week 14 · Wed, Oct 28, 2026 · Page Object Model (POM) - Part 1 · owner: Hritik"><span>W14</span></th><th scope="col" class="colhead ahead" data-type="Core" title="Week 15 · Wed, Nov 04, 2026 · Page Object Model (POM) - Part 2 · owner: Vishal Tyagi"><span>W15</span></th><th scope="col" class="colhead ahead" data-type="Optional" title="Optional Session J · Self-paced, anytime after Week 15 · API Testing &amp; Seeding (Bonus) · owner: Self-study"><span>Opt-J</span></th><th scope="col" class="colhead ahead" data-type="Optional" title="Optional Session K · Self-paced, anytime after Week 15 · AI Tools for Test Automation - Awareness &amp; Judgement · owner: Self-study"><span>Opt-K</span></th><th scope="col" class="colhead ahead" data-type="Core" title="Week 16 · Wed, Nov 11, 2026 · Transitioning JS to TypeScript · owner: Vishal Tyagi"><span>W16</span></th><th scope="col" class="colhead ahead" data-type="Core" title="Week 17 · Wed, Nov 18, 2026 · TypeScript Interfaces &amp; Typed Page Objects · owner: Vishal Tyagi"><span>W17</span></th><th scope="col" class="colhead ahead" data-type="Core" title="Week 18 · Wed, Nov 25, 2026 · Capstone Project &amp; Review · owner: Vishal Tyagi"><span>W18</span></th><th scope="col" class="num">Due</th></tr></thead>
+        <tbody>
+<tr>
+      <th scope="row" class="rowhead"><span class="pname">Abhishek Kumbhar</span></th>
+      <td class="cell done" title="Abhishek Kumbhar — Week 1: 11 files" data-type="Core"><span></span></td><td class="cell future" title="Abhishek Kumbhar — Optional Session A: not due yet" data-type="Optional"><span></span></td><td class="cell done" title="Abhishek Kumbhar — Week 2: 11 files" data-type="Core"><span></span></td><td class="cell done" title="Abhishek Kumbhar — Week 3: 3 files" data-type="Core"><span></span></td><td class="cell done" title="Abhishek Kumbhar — Week 4: 3 files" data-type="Core"><span></span></td><td class="cell missing" title="Abhishek Kumbhar — Week 5: DUE, nothing submitted" data-type="Core"><span></span></td><td class="cell future" title="Abhishek Kumbhar — Optional Session B: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Abhishek Kumbhar — Week 6: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Abhishek Kumbhar — Week 7: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Abhishek Kumbhar — Optional Session C: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Abhishek Kumbhar — Optional Session D: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Abhishek Kumbhar — Optional Session E: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Abhishek Kumbhar — Week 8: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Abhishek Kumbhar — Week 9: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Abhishek Kumbhar — Week 10: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Abhishek Kumbhar — Week 11: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Abhishek Kumbhar — Optional Session F: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Abhishek Kumbhar — Week 12: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Abhishek Kumbhar — Optional Session G: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Abhishek Kumbhar — Optional Session H: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Abhishek Kumbhar — Week 13: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Abhishek Kumbhar — Optional Session I: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Abhishek Kumbhar — Week 14: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Abhishek Kumbhar — Week 15: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Abhishek Kumbhar — Optional Session J: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Abhishek Kumbhar — Optional Session K: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Abhishek Kumbhar — Week 16: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Abhishek Kumbhar — Week 17: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Abhishek Kumbhar — Week 18: not due yet" data-type="Core"><span></span></td>
+      <td class="tally"><span class="pill warn">4/5</span></td>
+    </tr>
+<tr>
+      <th scope="row" class="rowhead"><span class="pname">Aishwarya Thakur</span></th>
+      <td class="cell done" title="Aishwarya Thakur — Week 1: 1 file" data-type="Core"><span></span></td><td class="cell future" title="Aishwarya Thakur — Optional Session A: not due yet" data-type="Optional"><span></span></td><td class="cell missing" title="Aishwarya Thakur — Week 2: DUE, nothing submitted" data-type="Core"><span></span></td><td class="cell missing" title="Aishwarya Thakur — Week 3: DUE, nothing submitted" data-type="Core"><span></span></td><td class="cell missing" title="Aishwarya Thakur — Week 4: DUE, nothing submitted" data-type="Core"><span></span></td><td class="cell missing" title="Aishwarya Thakur — Week 5: DUE, nothing submitted" data-type="Core"><span></span></td><td class="cell future" title="Aishwarya Thakur — Optional Session B: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Aishwarya Thakur — Week 6: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Aishwarya Thakur — Week 7: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Aishwarya Thakur — Optional Session C: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Aishwarya Thakur — Optional Session D: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Aishwarya Thakur — Optional Session E: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Aishwarya Thakur — Week 8: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Aishwarya Thakur — Week 9: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Aishwarya Thakur — Week 10: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Aishwarya Thakur — Week 11: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Aishwarya Thakur — Optional Session F: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Aishwarya Thakur — Week 12: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Aishwarya Thakur — Optional Session G: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Aishwarya Thakur — Optional Session H: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Aishwarya Thakur — Week 13: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Aishwarya Thakur — Optional Session I: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Aishwarya Thakur — Week 14: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Aishwarya Thakur — Week 15: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Aishwarya Thakur — Optional Session J: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Aishwarya Thakur — Optional Session K: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Aishwarya Thakur — Week 16: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Aishwarya Thakur — Week 17: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Aishwarya Thakur — Week 18: not due yet" data-type="Core"><span></span></td>
+      <td class="tally"><span class="pill warn">1/5</span></td>
+    </tr>
+<tr>
+      <th scope="row" class="rowhead"><span class="pname">Akshay Choudhari</span></th>
+      <td class="cell done" title="Akshay Choudhari — Week 1: 7 files" data-type="Core"><span></span></td><td class="cell future" title="Akshay Choudhari — Optional Session A: not due yet" data-type="Optional"><span></span></td><td class="cell done" title="Akshay Choudhari — Week 2: 10 files" data-type="Core"><span></span></td><td class="cell done" title="Akshay Choudhari — Week 3: 7 files" data-type="Core"><span></span></td><td class="cell missing" title="Akshay Choudhari — Week 4: DUE, nothing submitted" data-type="Core"><span></span></td><td class="cell missing" title="Akshay Choudhari — Week 5: DUE, nothing submitted" data-type="Core"><span></span></td><td class="cell future" title="Akshay Choudhari — Optional Session B: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Akshay Choudhari — Week 6: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Akshay Choudhari — Week 7: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Akshay Choudhari — Optional Session C: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Akshay Choudhari — Optional Session D: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Akshay Choudhari — Optional Session E: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Akshay Choudhari — Week 8: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Akshay Choudhari — Week 9: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Akshay Choudhari — Week 10: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Akshay Choudhari — Week 11: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Akshay Choudhari — Optional Session F: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Akshay Choudhari — Week 12: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Akshay Choudhari — Optional Session G: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Akshay Choudhari — Optional Session H: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Akshay Choudhari — Week 13: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Akshay Choudhari — Optional Session I: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Akshay Choudhari — Week 14: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Akshay Choudhari — Week 15: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Akshay Choudhari — Optional Session J: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Akshay Choudhari — Optional Session K: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Akshay Choudhari — Week 16: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Akshay Choudhari — Week 17: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Akshay Choudhari — Week 18: not due yet" data-type="Core"><span></span></td>
+      <td class="tally"><span class="pill warn">3/5</span></td>
+    </tr>
+<tr>
+      <th scope="row" class="rowhead"><span class="pname">Amrendra Raj</span></th>
+      <td class="cell done" title="Amrendra Raj — Week 1: 2 files" data-type="Core"><span></span></td><td class="cell future" title="Amrendra Raj — Optional Session A: not due yet" data-type="Optional"><span></span></td><td class="cell done" title="Amrendra Raj — Week 2: 5 files" data-type="Core"><span></span></td><td class="cell done" title="Amrendra Raj — Week 3: 3 files" data-type="Core"><span></span></td><td class="cell done" title="Amrendra Raj — Week 4: 2 files" data-type="Core"><span></span></td><td class="cell missing" title="Amrendra Raj — Week 5: DUE, nothing submitted" data-type="Core"><span></span></td><td class="cell future" title="Amrendra Raj — Optional Session B: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Amrendra Raj — Week 6: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Amrendra Raj — Week 7: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Amrendra Raj — Optional Session C: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Amrendra Raj — Optional Session D: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Amrendra Raj — Optional Session E: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Amrendra Raj — Week 8: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Amrendra Raj — Week 9: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Amrendra Raj — Week 10: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Amrendra Raj — Week 11: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Amrendra Raj — Optional Session F: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Amrendra Raj — Week 12: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Amrendra Raj — Optional Session G: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Amrendra Raj — Optional Session H: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Amrendra Raj — Week 13: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Amrendra Raj — Optional Session I: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Amrendra Raj — Week 14: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Amrendra Raj — Week 15: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Amrendra Raj — Optional Session J: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Amrendra Raj — Optional Session K: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Amrendra Raj — Week 16: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Amrendra Raj — Week 17: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Amrendra Raj — Week 18: not due yet" data-type="Core"><span></span></td>
+      <td class="tally"><span class="pill warn">4/5</span></td>
+    </tr>
+<tr>
+      <th scope="row" class="rowhead"><span class="pname">Amruta Zargad</span></th>
+      <td class="cell done" title="Amruta Zargad — Week 1: 6 files" data-type="Core"><span></span></td><td class="cell future" title="Amruta Zargad — Optional Session A: not due yet" data-type="Optional"><span></span></td><td class="cell done" title="Amruta Zargad — Week 2: 9 files" data-type="Core"><span></span></td><td class="cell done" title="Amruta Zargad — Week 3: 1 file" data-type="Core"><span></span></td><td class="cell missing" title="Amruta Zargad — Week 4: DUE, nothing submitted" data-type="Core"><span></span></td><td class="cell missing" title="Amruta Zargad — Week 5: DUE, nothing submitted" data-type="Core"><span></span></td><td class="cell future" title="Amruta Zargad — Optional Session B: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Amruta Zargad — Week 6: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Amruta Zargad — Week 7: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Amruta Zargad — Optional Session C: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Amruta Zargad — Optional Session D: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Amruta Zargad — Optional Session E: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Amruta Zargad — Week 8: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Amruta Zargad — Week 9: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Amruta Zargad — Week 10: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Amruta Zargad — Week 11: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Amruta Zargad — Optional Session F: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Amruta Zargad — Week 12: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Amruta Zargad — Optional Session G: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Amruta Zargad — Optional Session H: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Amruta Zargad — Week 13: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Amruta Zargad — Optional Session I: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Amruta Zargad — Week 14: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Amruta Zargad — Week 15: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Amruta Zargad — Optional Session J: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Amruta Zargad — Optional Session K: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Amruta Zargad — Week 16: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Amruta Zargad — Week 17: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Amruta Zargad — Week 18: not due yet" data-type="Core"><span></span></td>
+      <td class="tally"><span class="pill warn">3/5</span></td>
+    </tr>
+<tr>
+      <th scope="row" class="rowhead"><span class="pname">Anas Javed</span></th>
+      <td class="cell done" title="Anas Javed — Week 1: 10 files" data-type="Core"><span></span></td><td class="cell future" title="Anas Javed — Optional Session A: not due yet" data-type="Optional"><span></span></td><td class="cell done" title="Anas Javed — Week 2: 10 files" data-type="Core"><span></span></td><td class="cell done" title="Anas Javed — Week 3: 1 file" data-type="Core"><span></span></td><td class="cell missing" title="Anas Javed — Week 4: DUE, nothing submitted" data-type="Core"><span></span></td><td class="cell missing" title="Anas Javed — Week 5: DUE, nothing submitted" data-type="Core"><span></span></td><td class="cell future" title="Anas Javed — Optional Session B: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Anas Javed — Week 6: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Anas Javed — Week 7: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Anas Javed — Optional Session C: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Anas Javed — Optional Session D: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Anas Javed — Optional Session E: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Anas Javed — Week 8: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Anas Javed — Week 9: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Anas Javed — Week 10: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Anas Javed — Week 11: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Anas Javed — Optional Session F: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Anas Javed — Week 12: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Anas Javed — Optional Session G: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Anas Javed — Optional Session H: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Anas Javed — Week 13: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Anas Javed — Optional Session I: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Anas Javed — Week 14: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Anas Javed — Week 15: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Anas Javed — Optional Session J: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Anas Javed — Optional Session K: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Anas Javed — Week 16: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Anas Javed — Week 17: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Anas Javed — Week 18: not due yet" data-type="Core"><span></span></td>
+      <td class="tally"><span class="pill warn">3/5</span></td>
+    </tr>
+<tr>
+      <th scope="row" class="rowhead"><span class="pname">Avinash Singh</span></th>
+      <td class="cell done flagged" title="Avinash Singh — Week 1: 10 files" data-type="Core"><span></span></td><td class="cell future" title="Avinash Singh — Optional Session A: not due yet" data-type="Optional"><span></span></td><td class="cell done flagged" title="Avinash Singh — Week 2: 10 files" data-type="Core"><span></span></td><td class="cell done flagged" title="Avinash Singh — Week 3: 2 files" data-type="Core"><span></span></td><td class="cell done" title="Avinash Singh — Week 4: 3 files" data-type="Core"><span></span></td><td class="cell missing" title="Avinash Singh — Week 5: DUE, nothing submitted" data-type="Core"><span></span></td><td class="cell future" title="Avinash Singh — Optional Session B: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Avinash Singh — Week 6: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Avinash Singh — Week 7: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Avinash Singh — Optional Session C: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Avinash Singh — Optional Session D: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Avinash Singh — Optional Session E: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Avinash Singh — Week 8: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Avinash Singh — Week 9: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Avinash Singh — Week 10: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Avinash Singh — Week 11: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Avinash Singh — Optional Session F: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Avinash Singh — Week 12: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Avinash Singh — Optional Session G: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Avinash Singh — Optional Session H: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Avinash Singh — Week 13: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Avinash Singh — Optional Session I: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Avinash Singh — Week 14: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Avinash Singh — Week 15: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Avinash Singh — Optional Session J: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Avinash Singh — Optional Session K: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Avinash Singh — Week 16: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Avinash Singh — Week 17: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Avinash Singh — Week 18: not due yet" data-type="Core"><span></span></td>
+      <td class="tally"><span class="pill warn">4/5</span></td>
+    </tr>
+<tr>
+      <th scope="row" class="rowhead"><span class="pname">Awanti Mahadik</span></th>
+      <td class="cell done" title="Awanti Mahadik — Week 1: 7 files" data-type="Core"><span></span></td><td class="cell future" title="Awanti Mahadik — Optional Session A: not due yet" data-type="Optional"><span></span></td><td class="cell done" title="Awanti Mahadik — Week 2: 3 files" data-type="Core"><span></span></td><td class="cell missing" title="Awanti Mahadik — Week 3: DUE, nothing submitted" data-type="Core"><span></span></td><td class="cell missing" title="Awanti Mahadik — Week 4: DUE, nothing submitted" data-type="Core"><span></span></td><td class="cell missing" title="Awanti Mahadik — Week 5: DUE, nothing submitted" data-type="Core"><span></span></td><td class="cell future" title="Awanti Mahadik — Optional Session B: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Awanti Mahadik — Week 6: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Awanti Mahadik — Week 7: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Awanti Mahadik — Optional Session C: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Awanti Mahadik — Optional Session D: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Awanti Mahadik — Optional Session E: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Awanti Mahadik — Week 8: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Awanti Mahadik — Week 9: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Awanti Mahadik — Week 10: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Awanti Mahadik — Week 11: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Awanti Mahadik — Optional Session F: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Awanti Mahadik — Week 12: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Awanti Mahadik — Optional Session G: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Awanti Mahadik — Optional Session H: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Awanti Mahadik — Week 13: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Awanti Mahadik — Optional Session I: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Awanti Mahadik — Week 14: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Awanti Mahadik — Week 15: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Awanti Mahadik — Optional Session J: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Awanti Mahadik — Optional Session K: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Awanti Mahadik — Week 16: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Awanti Mahadik — Week 17: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Awanti Mahadik — Week 18: not due yet" data-type="Core"><span></span></td>
+      <td class="tally"><span class="pill warn">2/5</span></td>
+    </tr>
+<tr>
+      <th scope="row" class="rowhead"><span class="pname">Debasish Sahoo</span></th>
+      <td class="cell done" title="Debasish Sahoo — Week 1: 11 files" data-type="Core"><span></span></td><td class="cell future" title="Debasish Sahoo — Optional Session A: not due yet" data-type="Optional"><span></span></td><td class="cell done" title="Debasish Sahoo — Week 2: 10 files" data-type="Core"><span></span></td><td class="cell done" title="Debasish Sahoo — Week 3: 2 files" data-type="Core"><span></span></td><td class="cell missing" title="Debasish Sahoo — Week 4: DUE, nothing submitted" data-type="Core"><span></span></td><td class="cell missing" title="Debasish Sahoo — Week 5: DUE, nothing submitted" data-type="Core"><span></span></td><td class="cell future" title="Debasish Sahoo — Optional Session B: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Debasish Sahoo — Week 6: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Debasish Sahoo — Week 7: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Debasish Sahoo — Optional Session C: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Debasish Sahoo — Optional Session D: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Debasish Sahoo — Optional Session E: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Debasish Sahoo — Week 8: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Debasish Sahoo — Week 9: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Debasish Sahoo — Week 10: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Debasish Sahoo — Week 11: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Debasish Sahoo — Optional Session F: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Debasish Sahoo — Week 12: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Debasish Sahoo — Optional Session G: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Debasish Sahoo — Optional Session H: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Debasish Sahoo — Week 13: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Debasish Sahoo — Optional Session I: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Debasish Sahoo — Week 14: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Debasish Sahoo — Week 15: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Debasish Sahoo — Optional Session J: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Debasish Sahoo — Optional Session K: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Debasish Sahoo — Week 16: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Debasish Sahoo — Week 17: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Debasish Sahoo — Week 18: not due yet" data-type="Core"><span></span></td>
+      <td class="tally"><span class="pill warn">3/5</span></td>
+    </tr>
+<tr>
+      <th scope="row" class="rowhead"><span class="pname">Deepali Bhatnagar</span></th>
+      <td class="cell done" title="Deepali Bhatnagar — Week 1: 16 files" data-type="Core"><span></span></td><td class="cell future" title="Deepali Bhatnagar — Optional Session A: not due yet" data-type="Optional"><span></span></td><td class="cell done" title="Deepali Bhatnagar — Week 2: 10 files" data-type="Core"><span></span></td><td class="cell done" title="Deepali Bhatnagar — Week 3: 2 files" data-type="Core"><span></span></td><td class="cell done" title="Deepali Bhatnagar — Week 4: 3 files" data-type="Core"><span></span></td><td class="cell missing" title="Deepali Bhatnagar — Week 5: DUE, nothing submitted" data-type="Core"><span></span></td><td class="cell future" title="Deepali Bhatnagar — Optional Session B: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Deepali Bhatnagar — Week 6: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Deepali Bhatnagar — Week 7: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Deepali Bhatnagar — Optional Session C: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Deepali Bhatnagar — Optional Session D: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Deepali Bhatnagar — Optional Session E: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Deepali Bhatnagar — Week 8: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Deepali Bhatnagar — Week 9: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Deepali Bhatnagar — Week 10: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Deepali Bhatnagar — Week 11: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Deepali Bhatnagar — Optional Session F: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Deepali Bhatnagar — Week 12: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Deepali Bhatnagar — Optional Session G: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Deepali Bhatnagar — Optional Session H: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Deepali Bhatnagar — Week 13: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Deepali Bhatnagar — Optional Session I: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Deepali Bhatnagar — Week 14: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Deepali Bhatnagar — Week 15: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Deepali Bhatnagar — Optional Session J: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Deepali Bhatnagar — Optional Session K: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Deepali Bhatnagar — Week 16: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Deepali Bhatnagar — Week 17: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Deepali Bhatnagar — Week 18: not due yet" data-type="Core"><span></span></td>
+      <td class="tally"><span class="pill warn">4/5</span></td>
+    </tr>
+<tr>
+      <th scope="row" class="rowhead"><span class="pname">Jyoti Kumari</span></th>
+      <td class="cell done" title="Jyoti Kumari — Week 1: 10 files" data-type="Core"><span></span></td><td class="cell future" title="Jyoti Kumari — Optional Session A: not due yet" data-type="Optional"><span></span></td><td class="cell done" title="Jyoti Kumari — Week 2: 10 files" data-type="Core"><span></span></td><td class="cell done" title="Jyoti Kumari — Week 3: 2 files" data-type="Core"><span></span></td><td class="cell done" title="Jyoti Kumari — Week 4: 2 files" data-type="Core"><span></span></td><td class="cell missing" title="Jyoti Kumari — Week 5: DUE, nothing submitted" data-type="Core"><span></span></td><td class="cell future" title="Jyoti Kumari — Optional Session B: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Jyoti Kumari — Week 6: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Jyoti Kumari — Week 7: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Jyoti Kumari — Optional Session C: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Jyoti Kumari — Optional Session D: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Jyoti Kumari — Optional Session E: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Jyoti Kumari — Week 8: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Jyoti Kumari — Week 9: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Jyoti Kumari — Week 10: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Jyoti Kumari — Week 11: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Jyoti Kumari — Optional Session F: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Jyoti Kumari — Week 12: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Jyoti Kumari — Optional Session G: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Jyoti Kumari — Optional Session H: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Jyoti Kumari — Week 13: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Jyoti Kumari — Optional Session I: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Jyoti Kumari — Week 14: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Jyoti Kumari — Week 15: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Jyoti Kumari — Optional Session J: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Jyoti Kumari — Optional Session K: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Jyoti Kumari — Week 16: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Jyoti Kumari — Week 17: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Jyoti Kumari — Week 18: not due yet" data-type="Core"><span></span></td>
+      <td class="tally"><span class="pill warn">4/5</span></td>
+    </tr>
+<tr>
+      <th scope="row" class="rowhead"><span class="pname">Nikhil Deshmukh</span></th>
+      <td class="cell done" title="Nikhil Deshmukh — Week 1: 17 files" data-type="Core"><span></span></td><td class="cell future" title="Nikhil Deshmukh — Optional Session A: not due yet" data-type="Optional"><span></span></td><td class="cell done" title="Nikhil Deshmukh — Week 2: 10 files" data-type="Core"><span></span></td><td class="cell done" title="Nikhil Deshmukh — Week 3: 9 files" data-type="Core"><span></span></td><td class="cell done" title="Nikhil Deshmukh — Week 4: 3 files" data-type="Core"><span></span></td><td class="cell missing" title="Nikhil Deshmukh — Week 5: DUE, nothing submitted" data-type="Core"><span></span></td><td class="cell future" title="Nikhil Deshmukh — Optional Session B: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Nikhil Deshmukh — Week 6: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Nikhil Deshmukh — Week 7: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Nikhil Deshmukh — Optional Session C: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Nikhil Deshmukh — Optional Session D: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Nikhil Deshmukh — Optional Session E: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Nikhil Deshmukh — Week 8: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Nikhil Deshmukh — Week 9: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Nikhil Deshmukh — Week 10: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Nikhil Deshmukh — Week 11: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Nikhil Deshmukh — Optional Session F: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Nikhil Deshmukh — Week 12: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Nikhil Deshmukh — Optional Session G: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Nikhil Deshmukh — Optional Session H: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Nikhil Deshmukh — Week 13: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Nikhil Deshmukh — Optional Session I: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Nikhil Deshmukh — Week 14: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Nikhil Deshmukh — Week 15: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Nikhil Deshmukh — Optional Session J: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Nikhil Deshmukh — Optional Session K: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Nikhil Deshmukh — Week 16: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Nikhil Deshmukh — Week 17: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Nikhil Deshmukh — Week 18: not due yet" data-type="Core"><span></span></td>
+      <td class="tally"><span class="pill warn">4/5</span></td>
+    </tr>
+<tr>
+      <th scope="row" class="rowhead"><span class="pname">Om Menkudale</span></th>
+      <td class="cell done" title="Om Menkudale — Week 1: 9 files" data-type="Core"><span></span></td><td class="cell future" title="Om Menkudale — Optional Session A: not due yet" data-type="Optional"><span></span></td><td class="cell done" title="Om Menkudale — Week 2: 10 files" data-type="Core"><span></span></td><td class="cell done flagged" title="Om Menkudale — Week 3: 3 files" data-type="Core"><span></span></td><td class="cell done" title="Om Menkudale — Week 4: 3 files" data-type="Core"><span></span></td><td class="cell missing" title="Om Menkudale — Week 5: DUE, nothing submitted" data-type="Core"><span></span></td><td class="cell future" title="Om Menkudale — Optional Session B: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Om Menkudale — Week 6: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Om Menkudale — Week 7: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Om Menkudale — Optional Session C: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Om Menkudale — Optional Session D: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Om Menkudale — Optional Session E: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Om Menkudale — Week 8: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Om Menkudale — Week 9: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Om Menkudale — Week 10: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Om Menkudale — Week 11: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Om Menkudale — Optional Session F: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Om Menkudale — Week 12: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Om Menkudale — Optional Session G: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Om Menkudale — Optional Session H: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Om Menkudale — Week 13: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Om Menkudale — Optional Session I: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Om Menkudale — Week 14: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Om Menkudale — Week 15: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Om Menkudale — Optional Session J: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Om Menkudale — Optional Session K: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Om Menkudale — Week 16: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Om Menkudale — Week 17: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Om Menkudale — Week 18: not due yet" data-type="Core"><span></span></td>
+      <td class="tally"><span class="pill warn">4/5</span></td>
+    </tr>
+<tr>
+      <th scope="row" class="rowhead"><span class="pname">Purnima Gautam</span></th>
+      <td class="cell missing" title="Purnima Gautam — Week 1: DUE, nothing submitted" data-type="Core"><span></span></td><td class="cell future" title="Purnima Gautam — Optional Session A: not due yet" data-type="Optional"><span></span></td><td class="cell missing" title="Purnima Gautam — Week 2: DUE, nothing submitted" data-type="Core"><span></span></td><td class="cell missing" title="Purnima Gautam — Week 3: DUE, nothing submitted" data-type="Core"><span></span></td><td class="cell missing" title="Purnima Gautam — Week 4: DUE, nothing submitted" data-type="Core"><span></span></td><td class="cell missing" title="Purnima Gautam — Week 5: DUE, nothing submitted" data-type="Core"><span></span></td><td class="cell future" title="Purnima Gautam — Optional Session B: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Purnima Gautam — Week 6: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Purnima Gautam — Week 7: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Purnima Gautam — Optional Session C: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Purnima Gautam — Optional Session D: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Purnima Gautam — Optional Session E: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Purnima Gautam — Week 8: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Purnima Gautam — Week 9: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Purnima Gautam — Week 10: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Purnima Gautam — Week 11: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Purnima Gautam — Optional Session F: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Purnima Gautam — Week 12: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Purnima Gautam — Optional Session G: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Purnima Gautam — Optional Session H: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Purnima Gautam — Week 13: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Purnima Gautam — Optional Session I: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Purnima Gautam — Week 14: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Purnima Gautam — Week 15: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Purnima Gautam — Optional Session J: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Purnima Gautam — Optional Session K: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Purnima Gautam — Week 16: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Purnima Gautam — Week 17: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Purnima Gautam — Week 18: not due yet" data-type="Core"><span></span></td>
+      <td class="tally"><span class="pill crit">0/5</span></td>
+    </tr>
+<tr>
+      <th scope="row" class="rowhead"><span class="pname">Shilpa Mattoo</span></th>
+      <td class="cell missing" title="Shilpa Mattoo — Week 1: DUE, nothing submitted" data-type="Core"><span></span></td><td class="cell future" title="Shilpa Mattoo — Optional Session A: not due yet" data-type="Optional"><span></span></td><td class="cell missing" title="Shilpa Mattoo — Week 2: DUE, nothing submitted" data-type="Core"><span></span></td><td class="cell missing" title="Shilpa Mattoo — Week 3: DUE, nothing submitted" data-type="Core"><span></span></td><td class="cell missing" title="Shilpa Mattoo — Week 4: DUE, nothing submitted" data-type="Core"><span></span></td><td class="cell missing" title="Shilpa Mattoo — Week 5: DUE, nothing submitted" data-type="Core"><span></span></td><td class="cell future" title="Shilpa Mattoo — Optional Session B: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Shilpa Mattoo — Week 6: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Shilpa Mattoo — Week 7: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Shilpa Mattoo — Optional Session C: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Shilpa Mattoo — Optional Session D: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Shilpa Mattoo — Optional Session E: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Shilpa Mattoo — Week 8: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Shilpa Mattoo — Week 9: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Shilpa Mattoo — Week 10: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Shilpa Mattoo — Week 11: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Shilpa Mattoo — Optional Session F: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Shilpa Mattoo — Week 12: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Shilpa Mattoo — Optional Session G: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Shilpa Mattoo — Optional Session H: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Shilpa Mattoo — Week 13: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Shilpa Mattoo — Optional Session I: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Shilpa Mattoo — Week 14: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Shilpa Mattoo — Week 15: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Shilpa Mattoo — Optional Session J: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Shilpa Mattoo — Optional Session K: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Shilpa Mattoo — Week 16: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Shilpa Mattoo — Week 17: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Shilpa Mattoo — Week 18: not due yet" data-type="Core"><span></span></td>
+      <td class="tally"><span class="pill crit">0/5</span></td>
+    </tr>
+<tr>
+      <th scope="row" class="rowhead"><span class="pname">Shubham Saraswat</span></th>
+      <td class="cell done" title="Shubham Saraswat — Week 1: 20 files" data-type="Core"><span></span></td><td class="cell future" title="Shubham Saraswat — Optional Session A: not due yet" data-type="Optional"><span></span></td><td class="cell done" title="Shubham Saraswat — Week 2: 10 files" data-type="Core"><span></span></td><td class="cell done" title="Shubham Saraswat — Week 3: 2 files" data-type="Core"><span></span></td><td class="cell done flagged" title="Shubham Saraswat — Week 4: 3 files" data-type="Core"><span></span></td><td class="cell missing" title="Shubham Saraswat — Week 5: DUE, nothing submitted" data-type="Core"><span></span></td><td class="cell future" title="Shubham Saraswat — Optional Session B: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Shubham Saraswat — Week 6: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Shubham Saraswat — Week 7: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Shubham Saraswat — Optional Session C: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Shubham Saraswat — Optional Session D: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Shubham Saraswat — Optional Session E: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Shubham Saraswat — Week 8: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Shubham Saraswat — Week 9: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Shubham Saraswat — Week 10: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Shubham Saraswat — Week 11: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Shubham Saraswat — Optional Session F: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Shubham Saraswat — Week 12: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Shubham Saraswat — Optional Session G: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Shubham Saraswat — Optional Session H: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Shubham Saraswat — Week 13: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Shubham Saraswat — Optional Session I: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Shubham Saraswat — Week 14: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Shubham Saraswat — Week 15: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Shubham Saraswat — Optional Session J: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Shubham Saraswat — Optional Session K: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Shubham Saraswat — Week 16: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Shubham Saraswat — Week 17: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Shubham Saraswat — Week 18: not due yet" data-type="Core"><span></span></td>
+      <td class="tally"><span class="pill warn">4/5</span></td>
+    </tr>
+<tr>
+      <th scope="row" class="rowhead"><span class="pname">Sumit Dhage</span></th>
+      <td class="cell missing" title="Sumit Dhage — Week 1: DUE, nothing submitted" data-type="Core"><span></span></td><td class="cell future" title="Sumit Dhage — Optional Session A: not due yet" data-type="Optional"><span></span></td><td class="cell missing" title="Sumit Dhage — Week 2: DUE, nothing submitted" data-type="Core"><span></span></td><td class="cell done" title="Sumit Dhage — Week 3: 3 files" data-type="Core"><span></span></td><td class="cell missing" title="Sumit Dhage — Week 4: DUE, nothing submitted" data-type="Core"><span></span></td><td class="cell missing" title="Sumit Dhage — Week 5: DUE, nothing submitted" data-type="Core"><span></span></td><td class="cell future" title="Sumit Dhage — Optional Session B: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Sumit Dhage — Week 6: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Sumit Dhage — Week 7: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Sumit Dhage — Optional Session C: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Sumit Dhage — Optional Session D: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Sumit Dhage — Optional Session E: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Sumit Dhage — Week 8: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Sumit Dhage — Week 9: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Sumit Dhage — Week 10: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Sumit Dhage — Week 11: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Sumit Dhage — Optional Session F: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Sumit Dhage — Week 12: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Sumit Dhage — Optional Session G: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Sumit Dhage — Optional Session H: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Sumit Dhage — Week 13: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Sumit Dhage — Optional Session I: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Sumit Dhage — Week 14: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Sumit Dhage — Week 15: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Sumit Dhage — Optional Session J: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Sumit Dhage — Optional Session K: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Sumit Dhage — Week 16: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Sumit Dhage — Week 17: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Sumit Dhage — Week 18: not due yet" data-type="Core"><span></span></td>
+      <td class="tally"><span class="pill warn">1/5</span></td>
+    </tr>
+<tr>
+      <th scope="row" class="rowhead"><span class="pname">Utkarsh Neb</span></th>
+      <td class="cell done" title="Utkarsh Neb — Week 1: 1 file" data-type="Core"><span></span></td><td class="cell future" title="Utkarsh Neb — Optional Session A: not due yet" data-type="Optional"><span></span></td><td class="cell done" title="Utkarsh Neb — Week 2: 1 file" data-type="Core"><span></span></td><td class="cell missing" title="Utkarsh Neb — Week 3: DUE, nothing submitted" data-type="Core"><span></span></td><td class="cell missing" title="Utkarsh Neb — Week 4: DUE, nothing submitted" data-type="Core"><span></span></td><td class="cell missing" title="Utkarsh Neb — Week 5: DUE, nothing submitted" data-type="Core"><span></span></td><td class="cell future" title="Utkarsh Neb — Optional Session B: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Utkarsh Neb — Week 6: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Utkarsh Neb — Week 7: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Utkarsh Neb — Optional Session C: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Utkarsh Neb — Optional Session D: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Utkarsh Neb — Optional Session E: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Utkarsh Neb — Week 8: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Utkarsh Neb — Week 9: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Utkarsh Neb — Week 10: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Utkarsh Neb — Week 11: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Utkarsh Neb — Optional Session F: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Utkarsh Neb — Week 12: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Utkarsh Neb — Optional Session G: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Utkarsh Neb — Optional Session H: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Utkarsh Neb — Week 13: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Utkarsh Neb — Optional Session I: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Utkarsh Neb — Week 14: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Utkarsh Neb — Week 15: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Utkarsh Neb — Optional Session J: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Utkarsh Neb — Optional Session K: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Utkarsh Neb — Week 16: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Utkarsh Neb — Week 17: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Utkarsh Neb — Week 18: not due yet" data-type="Core"><span></span></td>
+      <td class="tally"><span class="pill warn">2/5</span></td>
+    </tr>
+<tr>
+      <th scope="row" class="rowhead"><span class="pname">Vaishnavi Kurhade</span></th>
+      <td class="cell done" title="Vaishnavi Kurhade — Week 1: 1 file" data-type="Core"><span></span></td><td class="cell future" title="Vaishnavi Kurhade — Optional Session A: not due yet" data-type="Optional"><span></span></td><td class="cell done flagged" title="Vaishnavi Kurhade — Week 2: 3 files" data-type="Core"><span></span></td><td class="cell done" title="Vaishnavi Kurhade — Week 3: 1 file" data-type="Core"><span></span></td><td class="cell missing" title="Vaishnavi Kurhade — Week 4: DUE, nothing submitted" data-type="Core"><span></span></td><td class="cell missing" title="Vaishnavi Kurhade — Week 5: DUE, nothing submitted" data-type="Core"><span></span></td><td class="cell future" title="Vaishnavi Kurhade — Optional Session B: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Vaishnavi Kurhade — Week 6: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Vaishnavi Kurhade — Week 7: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Vaishnavi Kurhade — Optional Session C: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Vaishnavi Kurhade — Optional Session D: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Vaishnavi Kurhade — Optional Session E: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Vaishnavi Kurhade — Week 8: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Vaishnavi Kurhade — Week 9: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Vaishnavi Kurhade — Week 10: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Vaishnavi Kurhade — Week 11: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Vaishnavi Kurhade — Optional Session F: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Vaishnavi Kurhade — Week 12: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Vaishnavi Kurhade — Optional Session G: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Vaishnavi Kurhade — Optional Session H: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Vaishnavi Kurhade — Week 13: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Vaishnavi Kurhade — Optional Session I: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Vaishnavi Kurhade — Week 14: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Vaishnavi Kurhade — Week 15: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Vaishnavi Kurhade — Optional Session J: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Vaishnavi Kurhade — Optional Session K: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Vaishnavi Kurhade — Week 16: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Vaishnavi Kurhade — Week 17: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Vaishnavi Kurhade — Week 18: not due yet" data-type="Core"><span></span></td>
+      <td class="tally"><span class="pill warn">3/5</span></td>
+    </tr>
+<tr>
+      <th scope="row" class="rowhead"><span class="pname">Vikas Shukla</span></th>
+      <td class="cell done" title="Vikas Shukla — Week 1: 8 files" data-type="Core"><span></span></td><td class="cell future" title="Vikas Shukla — Optional Session A: not due yet" data-type="Optional"><span></span></td><td class="cell done" title="Vikas Shukla — Week 2: 10 files" data-type="Core"><span></span></td><td class="cell done" title="Vikas Shukla — Week 3: 2 files" data-type="Core"><span></span></td><td class="cell done" title="Vikas Shukla — Week 4: 3 files" data-type="Core"><span></span></td><td class="cell missing" title="Vikas Shukla — Week 5: DUE, nothing submitted" data-type="Core"><span></span></td><td class="cell future" title="Vikas Shukla — Optional Session B: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Vikas Shukla — Week 6: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Vikas Shukla — Week 7: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Vikas Shukla — Optional Session C: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Vikas Shukla — Optional Session D: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Vikas Shukla — Optional Session E: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Vikas Shukla — Week 8: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Vikas Shukla — Week 9: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Vikas Shukla — Week 10: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Vikas Shukla — Week 11: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Vikas Shukla — Optional Session F: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Vikas Shukla — Week 12: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Vikas Shukla — Optional Session G: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Vikas Shukla — Optional Session H: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Vikas Shukla — Week 13: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Vikas Shukla — Optional Session I: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Vikas Shukla — Week 14: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Vikas Shukla — Week 15: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Vikas Shukla — Optional Session J: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Vikas Shukla — Optional Session K: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Vikas Shukla — Week 16: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Vikas Shukla — Week 17: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Vikas Shukla — Week 18: not due yet" data-type="Core"><span></span></td>
+      <td class="tally"><span class="pill warn">4/5</span></td>
+    </tr>
+<tr>
+      <th scope="row" class="rowhead"><span class="pname">Viraj Mandavkar</span></th>
+      <td class="cell done" title="Viraj Mandavkar — Week 1: 6 files" data-type="Core"><span></span></td><td class="cell future" title="Viraj Mandavkar — Optional Session A: not due yet" data-type="Optional"><span></span></td><td class="cell done" title="Viraj Mandavkar — Week 2: 7 files" data-type="Core"><span></span></td><td class="cell done" title="Viraj Mandavkar — Week 3: 3 files" data-type="Core"><span></span></td><td class="cell done" title="Viraj Mandavkar — Week 4: 5 files" data-type="Core"><span></span></td><td class="cell missing" title="Viraj Mandavkar — Week 5: DUE, nothing submitted" data-type="Core"><span></span></td><td class="cell future" title="Viraj Mandavkar — Optional Session B: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Viraj Mandavkar — Week 6: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Viraj Mandavkar — Week 7: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Viraj Mandavkar — Optional Session C: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Viraj Mandavkar — Optional Session D: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Viraj Mandavkar — Optional Session E: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Viraj Mandavkar — Week 8: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Viraj Mandavkar — Week 9: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Viraj Mandavkar — Week 10: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Viraj Mandavkar — Week 11: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Viraj Mandavkar — Optional Session F: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Viraj Mandavkar — Week 12: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Viraj Mandavkar — Optional Session G: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Viraj Mandavkar — Optional Session H: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Viraj Mandavkar — Week 13: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Viraj Mandavkar — Optional Session I: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Viraj Mandavkar — Week 14: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Viraj Mandavkar — Week 15: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Viraj Mandavkar — Optional Session J: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Viraj Mandavkar — Optional Session K: not due yet" data-type="Optional"><span></span></td><td class="cell future" title="Viraj Mandavkar — Week 16: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Viraj Mandavkar — Week 17: not due yet" data-type="Core"><span></span></td><td class="cell future" title="Viraj Mandavkar — Week 18: not due yet" data-type="Core"><span></span></td>
+      <td class="tally"><span class="pill warn">4/5</span></td>
+    </tr>
+        </tbody>
+      </table>
+    </div></div>
+  </section>
+
+  <section>
+    <div class="shead"><h2>Individual standing</h2><p>Sorted by core sessions completed</p></div>
+    <div class="card"><div class="scroller">
+      <table>
+        <thead><tr>
+          <th>Participant</th><th class="num">Core due</th><th>Progress</th>
+          <th class="num">Optional</th><th class="num">Files</th>
+          <th class="num">Errors</th><th class="num">Warnings</th><th>Status</th>
+        </tr></thead>
+        <tbody>
+<tr>
+      <td class="who">Abhishek Kumbhar</td>
+      <td class="num">4 <span class="of">/ 5</span></td>
+      <td class="bar"><div class="track"><div class="fill warn" style="width:80%"></div></div></td>
+      <td class="num">0</td>
+      <td class="num">28</td>
+      <td class="num"><span class="zero">0</span></td>
+      <td class="num"><span class="chip warn">5</span></td>
+      <td><span class="pill warn">1 behind</span></td>
+    </tr>
+<tr>
+      <td class="who">Amrendra Raj</td>
+      <td class="num">4 <span class="of">/ 5</span></td>
+      <td class="bar"><div class="track"><div class="fill warn" style="width:80%"></div></div></td>
+      <td class="num">0</td>
+      <td class="num">12</td>
+      <td class="num"><span class="zero">0</span></td>
+      <td class="num"><span class="chip warn">11</span></td>
+      <td><span class="pill warn">1 behind</span></td>
+    </tr>
+<tr>
+      <td class="who">Avinash Singh</td>
+      <td class="num">4 <span class="of">/ 5</span></td>
+      <td class="bar"><div class="track"><div class="fill warn" style="width:80%"></div></div></td>
+      <td class="num">0</td>
+      <td class="num">25</td>
+      <td class="num"><span class="chip crit">3</span></td>
+      <td class="num"><span class="chip warn">8</span></td>
+      <td><span class="pill warn">1 behind</span></td>
+    </tr>
+<tr>
+      <td class="who">Deepali Bhatnagar</td>
+      <td class="num">4 <span class="of">/ 5</span></td>
+      <td class="bar"><div class="track"><div class="fill warn" style="width:80%"></div></div></td>
+      <td class="num">0</td>
+      <td class="num">31</td>
+      <td class="num"><span class="zero">0</span></td>
+      <td class="num"><span class="chip warn">8</span></td>
+      <td><span class="pill warn">1 behind</span></td>
+    </tr>
+<tr>
+      <td class="who">Jyoti Kumari</td>
+      <td class="num">4 <span class="of">/ 5</span></td>
+      <td class="bar"><div class="track"><div class="fill warn" style="width:80%"></div></div></td>
+      <td class="num">0</td>
+      <td class="num">24</td>
+      <td class="num"><span class="zero">0</span></td>
+      <td class="num"><span class="chip warn">8</span></td>
+      <td><span class="pill warn">1 behind</span></td>
+    </tr>
+<tr>
+      <td class="who">Nikhil Deshmukh</td>
+      <td class="num">4 <span class="of">/ 5</span></td>
+      <td class="bar"><div class="track"><div class="fill warn" style="width:80%"></div></div></td>
+      <td class="num">0</td>
+      <td class="num">39</td>
+      <td class="num"><span class="zero">0</span></td>
+      <td class="num"><span class="chip warn">8</span></td>
+      <td><span class="pill warn">1 behind</span></td>
+    </tr>
+<tr>
+      <td class="who">Om Menkudale</td>
+      <td class="num">4 <span class="of">/ 5</span></td>
+      <td class="bar"><div class="track"><div class="fill warn" style="width:80%"></div></div></td>
+      <td class="num">0</td>
+      <td class="num">25</td>
+      <td class="num"><span class="chip crit">3</span></td>
+      <td class="num"><span class="chip warn">6</span></td>
+      <td><span class="pill warn">1 behind</span></td>
+    </tr>
+<tr>
+      <td class="who">Shubham Saraswat</td>
+      <td class="num">4 <span class="of">/ 5</span></td>
+      <td class="bar"><div class="track"><div class="fill warn" style="width:80%"></div></div></td>
+      <td class="num">0</td>
+      <td class="num">35</td>
+      <td class="num"><span class="chip crit">1</span></td>
+      <td class="num"><span class="chip warn">5</span></td>
+      <td><span class="pill warn">1 behind</span></td>
+    </tr>
+<tr>
+      <td class="who">Vikas Shukla</td>
+      <td class="num">4 <span class="of">/ 5</span></td>
+      <td class="bar"><div class="track"><div class="fill warn" style="width:80%"></div></div></td>
+      <td class="num">0</td>
+      <td class="num">23</td>
+      <td class="num"><span class="zero">0</span></td>
+      <td class="num"><span class="chip warn">5</span></td>
+      <td><span class="pill warn">1 behind</span></td>
+    </tr>
+<tr>
+      <td class="who">Viraj Mandavkar</td>
+      <td class="num">4 <span class="of">/ 5</span></td>
+      <td class="bar"><div class="track"><div class="fill warn" style="width:80%"></div></div></td>
+      <td class="num">0</td>
+      <td class="num">21</td>
+      <td class="num"><span class="zero">0</span></td>
+      <td class="num"><span class="chip warn">4</span></td>
+      <td><span class="pill warn">1 behind</span></td>
+    </tr>
+<tr>
+      <td class="who">Akshay Choudhari</td>
+      <td class="num">3 <span class="of">/ 5</span></td>
+      <td class="bar"><div class="track"><div class="fill warn" style="width:60%"></div></div></td>
+      <td class="num">0</td>
+      <td class="num">24</td>
+      <td class="num"><span class="zero">0</span></td>
+      <td class="num"><span class="chip warn">4</span></td>
+      <td><span class="pill warn">2 behind</span></td>
+    </tr>
+<tr>
+      <td class="who">Amruta Zargad</td>
+      <td class="num">3 <span class="of">/ 5</span></td>
+      <td class="bar"><div class="track"><div class="fill warn" style="width:60%"></div></div></td>
+      <td class="num">0</td>
+      <td class="num">16</td>
+      <td class="num"><span class="zero">0</span></td>
+      <td class="num"><span class="chip warn">3</span></td>
+      <td><span class="pill warn">2 behind</span></td>
+    </tr>
+<tr>
+      <td class="who">Anas Javed</td>
+      <td class="num">3 <span class="of">/ 5</span></td>
+      <td class="bar"><div class="track"><div class="fill warn" style="width:60%"></div></div></td>
+      <td class="num">0</td>
+      <td class="num">21</td>
+      <td class="num"><span class="zero">0</span></td>
+      <td class="num"><span class="chip warn">4</span></td>
+      <td><span class="pill warn">2 behind</span></td>
+    </tr>
+<tr>
+      <td class="who">Debasish Sahoo</td>
+      <td class="num">3 <span class="of">/ 5</span></td>
+      <td class="bar"><div class="track"><div class="fill warn" style="width:60%"></div></div></td>
+      <td class="num">0</td>
+      <td class="num">23</td>
+      <td class="num"><span class="zero">0</span></td>
+      <td class="num"><span class="chip warn">3</span></td>
+      <td><span class="pill warn">2 behind</span></td>
+    </tr>
+<tr>
+      <td class="who">Vaishnavi Kurhade</td>
+      <td class="num">3 <span class="of">/ 5</span></td>
+      <td class="bar"><div class="track"><div class="fill warn" style="width:60%"></div></div></td>
+      <td class="num">0</td>
+      <td class="num">5</td>
+      <td class="num"><span class="chip crit">2</span></td>
+      <td class="num"><span class="chip warn">4</span></td>
+      <td><span class="pill warn">2 behind</span></td>
+    </tr>
+<tr>
+      <td class="who">Awanti Mahadik</td>
+      <td class="num">2 <span class="of">/ 5</span></td>
+      <td class="bar"><div class="track"><div class="fill warn" style="width:40%"></div></div></td>
+      <td class="num">0</td>
+      <td class="num">10</td>
+      <td class="num"><span class="zero">0</span></td>
+      <td class="num"><span class="chip warn">3</span></td>
+      <td><span class="pill warn">3 behind</span></td>
+    </tr>
+<tr>
+      <td class="who">Utkarsh Neb</td>
+      <td class="num">2 <span class="of">/ 5</span></td>
+      <td class="bar"><div class="track"><div class="fill warn" style="width:40%"></div></div></td>
+      <td class="num">0</td>
+      <td class="num">2</td>
+      <td class="num"><span class="zero">0</span></td>
+      <td class="num"><span class="chip warn">4</span></td>
+      <td><span class="pill warn">3 behind</span></td>
+    </tr>
+<tr>
+      <td class="who">Aishwarya Thakur</td>
+      <td class="num">1 <span class="of">/ 5</span></td>
+      <td class="bar"><div class="track"><div class="fill warn" style="width:20%"></div></div></td>
+      <td class="num">0</td>
+      <td class="num">1</td>
+      <td class="num"><span class="zero">0</span></td>
+      <td class="num"><span class="chip warn">1</span></td>
+      <td><span class="pill warn">4 behind</span></td>
+    </tr>
+<tr>
+      <td class="who">Sumit Dhage</td>
+      <td class="num">1 <span class="of">/ 5</span></td>
+      <td class="bar"><div class="track"><div class="fill warn" style="width:20%"></div></div></td>
+      <td class="num">0</td>
+      <td class="num">3</td>
+      <td class="num"><span class="zero">0</span></td>
+      <td class="num"><span class="chip warn">1</span></td>
+      <td><span class="pill warn">4 behind</span></td>
+    </tr>
+<tr>
+      <td class="who">Purnima Gautam</td>
+      <td class="num">0 <span class="of">/ 5</span></td>
+      <td class="bar"><div class="track"><div class="fill crit" style="width:0%"></div></div></td>
+      <td class="num">0</td>
+      <td class="num">0</td>
+      <td class="num"><span class="zero">0</span></td>
+      <td class="num"><span class="zero">0</span></td>
+      <td><span class="pill crit">No submissions</span></td>
+    </tr>
+<tr>
+      <td class="who">Shilpa Mattoo</td>
+      <td class="num">0 <span class="of">/ 5</span></td>
+      <td class="bar"><div class="track"><div class="fill crit" style="width:0%"></div></div></td>
+      <td class="num">0</td>
+      <td class="num">0</td>
+      <td class="num"><span class="zero">0</span></td>
+      <td class="num"><span class="zero">0</span></td>
+      <td><span class="pill crit">No submissions</span></td>
+    </tr>
+        </tbody>
+      </table>
+    </div></div>
+  </section>
+
+  <section>
+    <div class="shead"><h2>Findings by session</h2><p>From <code>node scripts/check-submissions.js</code></p></div>
+    <p class="lede">Errors are things that need a human decision — a possible copy, an empty file, a folder name git sees as a second person. Warnings are process drift: a missing deliverable, a generic filename, an unexpected subfolder. A copy flag is a prompt to look, not a verdict.</p>
+    <details class="fgroup" open>
+          <summary>
+            <span class="fname">Week 1 — Environment Setup &amp; First Line of Code</span>
+            <span class="fcount">36 findings · 1 error</span>
+          </summary>
+          <div class="scroller"><table class="ftable">
+            <thead><tr><th>Level</th><th>Participant</th><th>File</th><th>Finding</th></tr></thead>
+            <tbody><tr class="f-error">
+              <td><span class="chip crit">ERROR</span></td>
+              <td class="who">Avinash Singh</td>
+              <td class="mono">favorite.js</td>
+              <td>code is byte-identical (ignoring comments/whitespace) to Anas-Javed/favorite.js - review for copying</td>
+            </tr><tr class="f-warn">
+              <td><span class="chip warn">WARN</span></td>
+              <td class="who">Abhishek Kumbhar</td>
+              <td class="mono">-</td>
+              <td>missing 3 of 11 required file(s): intro.js, favorite.js, fullName.js</td>
+            </tr><tr class="f-warn">
+              <td><span class="chip warn">WARN</span></td>
+              <td class="who">Aishwarya Thakur</td>
+              <td class="mono">-</td>
+              <td>missing 11 of 11 required file(s): hello.js, intro.js, profile.js, numbers.js, favorite.js, courseName.js, fullName.js, sequence.js, types.js, message.js, syntaxError.js</td>
+            </tr><tr class="f-warn">
+              <td><span class="chip warn">WARN</span></td>
+              <td class="who">Akshay Choudhari</td>
+              <td class="mono">demo1.js</td>
+              <td>generic filename - use the descriptive name from the Deliverables table</td>
+            </tr><tr class="f-warn">
+              <td><span class="chip warn">WARN</span></td>
+              <td class="who">Akshay Choudhari</td>
+              <td class="mono">-</td>
+              <td>missing 5 of 11 required file(s): hello.js, courseName.js, fullName.js, message.js, syntaxError.js</td>
+            </tr><tr class="f-warn">
+              <td><span class="chip warn">WARN</span></td>
+              <td class="who">Amrendra Raj</td>
+              <td class="mono">assignment.js</td>
+              <td>generic filename - use the descriptive name from the Deliverables table</td>
+            </tr><tr class="f-warn">
+              <td><span class="chip warn">WARN</span></td>
+              <td class="who">Amrendra Raj</td>
+              <td class="mono">-</td>
+              <td>missing 10 of 11 required file(s): hello.js, profile.js, numbers.js, favorite.js, courseName.js, fullName.js, sequence.js, types.js, message.js, syntaxError.js</td>
+            </tr><tr class="f-warn">
+              <td><span class="chip warn">WARN</span></td>
+              <td class="who">Amruta Zargad</td>
+              <td class="mono">-</td>
+              <td>missing 6 of 11 required file(s): hello.js, intro.js, favorite.js, courseName.js, fullName.js, syntaxError.js</td>
+            </tr><tr class="f-warn">
+              <td><span class="chip warn">WARN</span></td>
+              <td class="who">Anas Javed</td>
+              <td class="mono">misc.js</td>
+              <td>generic filename - use the descriptive name from the Deliverables table</td>
+            </tr><tr class="f-warn">
+              <td><span class="chip warn">WARN</span></td>
+              <td class="who">Anas Javed</td>
+              <td class="mono">-</td>
+              <td>missing 5 of 11 required file(s): numbers.js, courseName.js, fullName.js, types.js, syntaxError.js</td>
+            </tr><tr class="f-warn">
+              <td><span class="chip warn">WARN</span></td>
+              <td class="who">Avinash Singh</td>
+              <td class="mono">assignment.js</td>
+              <td>generic filename - use the descriptive name from the Deliverables table</td>
+            </tr><tr class="f-warn">
+              <td><span class="chip warn">WARN</span></td>
+              <td class="who">Avinash Singh</td>
+              <td class="mono">misc.js</td>
+              <td>generic filename - use the descriptive name from the Deliverables table</td>
+            </tr><tr class="f-warn">
+              <td><span class="chip warn">WARN</span></td>
+              <td class="who">Avinash Singh</td>
+              <td class="mono">misc.js</td>
+              <td>shares 3 distinctive comment lines with Anas-Javed/misc.js - copied work often keeps the original&#39;s comments</td>
+            </tr><tr class="f-warn">
+              <td><span class="chip warn">WARN</span></td>
+              <td class="who">Avinash Singh</td>
+              <td class="mono">-</td>
+              <td>missing 5 of 11 required file(s): numbers.js, courseName.js, fullName.js, types.js, syntaxError.js</td>
+            </tr><tr class="f-warn">
+              <td><span class="chip warn">WARN</span></td>
+              <td class="who">Awanti Mahadik</td>
+              <td class="mono">-</td>
+              <td>missing 6 of 11 required file(s): intro.js, favorite.js, courseName.js, fullName.js, types.js, syntaxError.js</td>
+            </tr><tr class="f-warn">
+              <td><span class="chip warn">WARN</span></td>
+              <td class="who">Debasish Sahoo</td>
+              <td class="mono">-</td>
+              <td>missing 3 of 11 required file(s): favorite.js, fullName.js, syntaxError.js</td>
+            </tr><tr class="f-warn">
+              <td><span class="chip warn">WARN</span></td>
+              <td class="who">Deepali Bhatnagar</td>
+              <td class="mono">NodeTraining</td>
+              <td>unexpected subfolder - submissions should be flat in your participant folder</td>
+            </tr><tr class="f-warn">
+              <td><span class="chip warn">WARN</span></td>
+              <td class="who">Deepali Bhatnagar</td>
+              <td class="mono">NodeTraining/Day1</td>
+              <td>unexpected subfolder - submissions should be flat in your participant folder</td>
+            </tr><tr class="f-warn">
+              <td><span class="chip warn">WARN</span></td>
+              <td class="who">Deepali Bhatnagar</td>
+              <td class="mono">NodeTraining/Day1/ExerciseSolutions</td>
+              <td>unexpected subfolder - submissions should be flat in your participant folder</td>
+            </tr><tr class="f-warn">
+              <td><span class="chip warn">WARN</span></td>
+              <td class="who">Deepali Bhatnagar</td>
+              <td class="mono">NodeTraining/Day1/assignment</td>
+              <td>unexpected subfolder - submissions should be flat in your participant folder</td>
+            </tr><tr class="f-warn">
+              <td><span class="chip warn">WARN</span></td>
+              <td class="who">Deepali Bhatnagar</td>
+              <td class="mono">-</td>
+              <td>missing 2 of 11 required file(s): courseName.js, fullName.js</td>
+            </tr><tr class="f-warn">
+              <td><span class="chip warn">WARN</span></td>
+              <td class="who">Jyoti Kumari</td>
+              <td class="mono">Assignment</td>
+              <td>unexpected subfolder - submissions should be flat in your participant folder</td>
+            </tr><tr class="f-warn">
+              <td><span class="chip warn">WARN</span></td>
+              <td class="who">Jyoti Kumari</td>
+              <td class="mono">-</td>
+              <td>missing 2 of 11 required file(s): hello.js, syntaxError.js</td>
+            </tr><tr class="f-warn">
+              <td><span class="chip warn">WARN</span></td>
+              <td class="who">Nikhil Deshmukh</td>
+              <td class="mono">assignment</td>
+              <td>unexpected subfolder - submissions should be flat in your participant folder</td>
+            </tr><tr class="f-warn">
+              <td><span class="chip warn">WARN</span></td>
+              <td class="who">Nikhil Deshmukh</td>
+              <td class="mono">Day1.js</td>
+              <td>generic filename - use the descriptive name from the Deliverables table</td>
+            </tr><tr class="f-warn">
+              <td><span class="chip warn">WARN</span></td>
+              <td class="who">Nikhil Deshmukh</td>
+              <td class="mono">assignment/Day1.js</td>
+              <td>generic filename - use the descriptive name from the Deliverables table</td>
+            </tr><tr class="f-warn">
+              <td><span class="chip warn">WARN</span></td>
+              <td class="who">Nikhil Deshmukh</td>
+              <td class="mono">-</td>
+              <td>missing 6 of 11 required file(s): hello.js, favorite.js, courseName.js, fullName.js, types.js, syntaxError.js</td>
+            </tr><tr class="f-warn">
+              <td><span class="chip warn">WARN</span></td>
+              <td class="who">Om Menkudale</td>
+              <td class="mono">demo1.js</td>
+              <td>generic filename - use the descriptive name from the Deliverables table</td>
+            </tr><tr class="f-warn">
+              <td><span class="chip warn">WARN</span></td>
+              <td class="who">Om Menkudale</td>
+              <td class="mono">-</td>
+              <td>missing 7 of 11 required file(s): hello.js, intro.js, favorite.js, courseName.js, fullName.js, message.js, syntaxError.js</td>
+            </tr><tr class="f-warn">
+              <td><span class="chip warn">WARN</span></td>
+              <td class="who">Shubham Saraswat</td>
+              <td class="mono">-</td>
+              <td>missing 3 of 11 required file(s): courseName.js, fullName.js, syntaxError.js</td>
+            </tr><tr class="f-warn">
+              <td><span class="chip warn">WARN</span></td>
+              <td class="who">Utkarsh Neb</td>
+              <td class="mono">Assignment 1.js</td>
+              <td>filename contains a space - use hyphens or camelCase</td>
+            </tr><tr class="f-warn">
+              <td><span class="chip warn">WARN</span></td>
+              <td class="who">Utkarsh Neb</td>
+              <td class="mono">-</td>
+              <td>missing 11 of 11 required file(s): hello.js, intro.js, profile.js, numbers.js, favorite.js, courseName.js, fullName.js, sequence.js, types.js, message.js, syntaxError.js</td>
+            </tr><tr class="f-warn">
+              <td><span class="chip warn">WARN</span></td>
+              <td class="who">Vaishnavi Kurhade</td>
+              <td class="mono">-</td>
+              <td>missing 11 of 11 required file(s): hello.js, intro.js, profile.js, numbers.js, favorite.js, courseName.js, fullName.js, sequence.js, types.js, message.js, syntaxError.js</td>
+            </tr><tr class="f-warn">
+              <td><span class="chip warn">WARN</span></td>
+              <td class="who">Vikas Shukla</td>
+              <td class="mono">assignment</td>
+              <td>unexpected subfolder - submissions should be flat in your participant folder</td>
+            </tr><tr class="f-warn">
+              <td><span class="chip warn">WARN</span></td>
+              <td class="who">Vikas Shukla</td>
+              <td class="mono">-</td>
+              <td>missing 5 of 11 required file(s): numbers.js, courseName.js, fullName.js, types.js, syntaxError.js</td>
+            </tr><tr class="f-warn">
+              <td><span class="chip warn">WARN</span></td>
+              <td class="who">Viraj Mandavkar</td>
+              <td class="mono">-</td>
+              <td>missing 5 of 11 required file(s): hello.js, numbers.js, courseName.js, fullName.js, syntaxError.js</td>
+            </tr></tbody>
+          </table></div>
+        </details>
+<details class="fgroup" open>
+          <summary>
+            <span class="fname">Week 2 — Variables &amp; Basic Data Types</span>
+            <span class="fcount">32 findings · 3 errors</span>
+          </summary>
+          <div class="scroller"><table class="ftable">
+            <thead><tr><th>Level</th><th>Participant</th><th>File</th><th>Finding</th></tr></thead>
+            <tbody><tr class="f-error">
+              <td><span class="chip crit">ERROR</span></td>
+              <td class="who">Avinash Singh</td>
+              <td class="mono">arithmaticOperations.js</td>
+              <td>code is byte-identical (ignoring comments/whitespace) to Anas-Javed/arithmaticoperations.js - review for copying</td>
+            </tr><tr class="f-error">
+              <td><span class="chip crit">ERROR</span></td>
+              <td class="who">Vaishnavi Kurhade</td>
+              <td class="mono">Assignment2.js</td>
+              <td>code is byte-identical (ignoring comments/whitespace) to Utkarsh-Neb/Assignment2.js - review for copying</td>
+            </tr><tr class="f-error">
+              <td><span class="chip crit">ERROR</span></td>
+              <td class="who">Vaishnavi Kurhade</td>
+              <td class="mono">assignmentarithmatic.js</td>
+              <td>code is byte-identical (ignoring comments/whitespace) to Utkarsh-Neb/Assignment2.js - review for copying</td>
+            </tr><tr class="f-warn">
+              <td><span class="chip warn">WARN</span></td>
+              <td class="who">Abhishek Kumbhar</td>
+              <td class="mono">practice.js</td>
+              <td>generic filename - use the descriptive name from the Deliverables table</td>
+            </tr><tr class="f-warn">
+              <td><span class="chip warn">WARN</span></td>
+              <td class="who">Abhishek Kumbhar</td>
+              <td class="mono">-</td>
+              <td>missing 4 of 10 required file(s): numbers.js, courseName.js, vote.js, selfIntro.js</td>
+            </tr><tr class="f-warn">
+              <td><span class="chip warn">WARN</span></td>
+              <td class="who">Akshay Choudhari</td>
+              <td class="mono">-</td>
+              <td>missing 4 of 10 required file(s): numbers.js, marks.js, city.js, vote.js</td>
+            </tr><tr class="f-warn">
+              <td><span class="chip warn">WARN</span></td>
+              <td class="who">Amrendra Raj</td>
+              <td class="mono">assignment2.js</td>
+              <td>generic filename - use the descriptive name from the Deliverables table</td>
+            </tr><tr class="f-warn">
+              <td><span class="chip warn">WARN</span></td>
+              <td class="who">Amrendra Raj</td>
+              <td class="mono">final.js</td>
+              <td>generic filename - use the descriptive name from the Deliverables table</td>
+            </tr><tr class="f-warn">
+              <td><span class="chip warn">WARN</span></td>
+              <td class="who">Amrendra Raj</td>
+              <td class="mono">new.js</td>
+              <td>generic filename - use the descriptive name from the Deliverables table</td>
+            </tr><tr class="f-warn">
+              <td><span class="chip warn">WARN</span></td>
+              <td class="who">Amrendra Raj</td>
+              <td class="mono">new2.js</td>
+              <td>generic filename - use the descriptive name from the Deliverables table</td>
+            </tr><tr class="f-warn">
+              <td><span class="chip warn">WARN</span></td>
+              <td class="who">Amrendra Raj</td>
+              <td class="mono">practice.js</td>
+              <td>generic filename - use the descriptive name from the Deliverables table</td>
+            </tr><tr class="f-warn">
+              <td><span class="chip warn">WARN</span></td>
+              <td class="who">Amrendra Raj</td>
+              <td class="mono">-</td>
+              <td>missing 10 of 10 required file(s): studentName.js, birthYear.js, numbers.js, courseName.js, fullName.js, marks.js, city.js, vote.js, totalPrice.js, selfIntro.js</td>
+            </tr><tr class="f-warn">
+              <td><span class="chip warn">WARN</span></td>
+              <td class="who">Amruta Zargad</td>
+              <td class="mono">-</td>
+              <td>missing 4 of 10 required file(s): studentName.js, birthYear.js, numbers.js, selfIntro.js</td>
+            </tr><tr class="f-warn">
+              <td><span class="chip warn">WARN</span></td>
+              <td class="who">Anas Javed</td>
+              <td class="mono">-</td>
+              <td>missing 3 of 10 required file(s): numbers.js, city.js, selfIntro.js</td>
+            </tr><tr class="f-warn">
+              <td><span class="chip warn">WARN</span></td>
+              <td class="who">Avinash Singh</td>
+              <td class="mono">introduction.js</td>
+              <td>shares 4 distinctive comment lines with Anas-Javed/introduction.js - copied work often keeps the original&#39;s comments</td>
+            </tr><tr class="f-warn">
+              <td><span class="chip warn">WARN</span></td>
+              <td class="who">Avinash Singh</td>
+              <td class="mono">-</td>
+              <td>missing 3 of 10 required file(s): numbers.js, city.js, selfIntro.js</td>
+            </tr><tr class="f-warn">
+              <td><span class="chip warn">WARN</span></td>
+              <td class="who">Awanti Mahadik</td>
+              <td class="mono">info.js</td>
+              <td>generic filename - use the descriptive name from the Deliverables table</td>
+            </tr><tr class="f-warn">
+              <td><span class="chip warn">WARN</span></td>
+              <td class="who">Awanti Mahadik</td>
+              <td class="mono">-</td>
+              <td>missing 9 of 10 required file(s): studentName.js, birthYear.js, courseName.js, fullName.js, marks.js, city.js, vote.js, totalPrice.js, selfIntro.js</td>
+            </tr><tr class="f-warn">
+              <td><span class="chip warn">WARN</span></td>
+              <td class="who">Debasish Sahoo</td>
+              <td class="mono">-</td>
+              <td>missing 3 of 10 required file(s): studentName.js, numbers.js, totalPrice.js</td>
+            </tr><tr class="f-warn">
+              <td><span class="chip warn">WARN</span></td>
+              <td class="who">Deepali Bhatnagar</td>
+              <td class="mono">-</td>
+              <td>missing 10 of 10 required file(s): studentName.js, birthYear.js, numbers.js, courseName.js, fullName.js, marks.js, city.js, vote.js, totalPrice.js, selfIntro.js</td>
+            </tr><tr class="f-warn">
+              <td><span class="chip warn">WARN</span></td>
+              <td class="who">Jyoti Kumari</td>
+              <td class="mono">Assignment</td>
+              <td>unexpected subfolder - submissions should be flat in your participant folder</td>
+            </tr><tr class="f-warn">
+              <td><span class="chip warn">WARN</span></td>
+              <td class="who">Jyoti Kumari</td>
+              <td class="mono">-</td>
+              <td>missing 2 of 10 required file(s): numbers.js, vote.js</td>
+            </tr><tr class="f-warn">
+              <td><span class="chip warn">WARN</span></td>
+              <td class="who">Nikhil Deshmukh</td>
+              <td class="mono">Assignment</td>
+              <td>unexpected subfolder - submissions should be flat in your participant folder</td>
+            </tr><tr class="f-warn">
+              <td><span class="chip warn">WARN</span></td>
+              <td class="who">Nikhil Deshmukh</td>
+              <td class="mono">-</td>
+              <td>missing 4 of 10 required file(s): numbers.js, vote.js, totalPrice.js, selfIntro.js</td>
+            </tr><tr class="f-warn">
+              <td><span class="chip warn">WARN</span></td>
+              <td class="who">Om Menkudale</td>
+              <td class="mono">-</td>
+              <td>missing 3 of 10 required file(s): studentName.js, numbers.js, vote.js</td>
+            </tr><tr class="f-warn">
+              <td><span class="chip warn">WARN</span></td>
+              <td class="who">Shubham Saraswat</td>
+              <td class="mono">-</td>
+              <td>missing 7 of 10 required file(s): studentName.js, birthYear.js, courseName.js, fullName.js, vote.js, totalPrice.js, selfIntro.js</td>
+            </tr><tr class="f-warn">
+              <td><span class="chip warn">WARN</span></td>
+              <td class="who">Utkarsh Neb</td>
+              <td class="mono">Assignment2.js</td>
+              <td>generic filename - use the descriptive name from the Deliverables table</td>
+            </tr><tr class="f-warn">
+              <td><span class="chip warn">WARN</span></td>
+              <td class="who">Utkarsh Neb</td>
+              <td class="mono">-</td>
+              <td>missing 10 of 10 required file(s): studentName.js, birthYear.js, numbers.js, courseName.js, fullName.js, marks.js, city.js, vote.js, totalPrice.js, selfIntro.js</td>
+            </tr><tr class="f-warn">
+              <td><span class="chip warn">WARN</span></td>
+              <td class="who">Vaishnavi Kurhade</td>
+              <td class="mono">Assignment2.js</td>
+              <td>generic filename - use the descriptive name from the Deliverables table</td>
+            </tr><tr class="f-warn">
+              <td><span class="chip warn">WARN</span></td>
+              <td class="who">Vaishnavi Kurhade</td>
+              <td class="mono">-</td>
+              <td>missing 10 of 10 required file(s): studentName.js, birthYear.js, numbers.js, courseName.js, fullName.js, marks.js, city.js, vote.js, totalPrice.js, selfIntro.js</td>
+            </tr><tr class="f-warn">
+              <td><span class="chip warn">WARN</span></td>
+              <td class="who">Vikas Shukla</td>
+              <td class="mono">-</td>
+              <td>missing 3 of 10 required file(s): numbers.js, vote.js, totalPrice.js</td>
+            </tr><tr class="f-warn">
+              <td><span class="chip warn">WARN</span></td>
+              <td class="who">Viraj Mandavkar</td>
+              <td class="mono">-</td>
+              <td>missing 6 of 10 required file(s): numbers.js, courseName.js, marks.js, city.js, vote.js, totalPrice.js</td>
+            </tr></tbody>
+          </table></div>
+        </details>
+<details class="fgroup" open>
+          <summary>
+            <span class="fname">Week 3 — Conditional Logic &amp; Operators</span>
+            <span class="fcount">21 findings · 4 errors</span>
+          </summary>
+          <div class="scroller"><table class="ftable">
+            <thead><tr><th>Level</th><th>Participant</th><th>File</th><th>Finding</th></tr></thead>
+            <tbody><tr class="f-error">
+              <td><span class="chip crit">ERROR</span></td>
+              <td class="who">Avinash Singh</td>
+              <td class="mono">loginAccess.js</td>
+              <td>code is byte-identical (ignoring comments/whitespace) to Anas-Javed/loginaccess.js - review for copying</td>
+            </tr><tr class="f-error">
+              <td><span class="chip crit">ERROR</span></td>
+              <td class="who">Om Menkudale</td>
+              <td class="mono">access_using_switch.js</td>
+              <td>code is byte-identical (ignoring comments/whitespace) to Abhishek-Kumbhar/access_using_switch.js - review for copying</td>
+            </tr><tr class="f-error">
+              <td><span class="chip crit">ERROR</span></td>
+              <td class="who">Om Menkudale</td>
+              <td class="mono">login.js</td>
+              <td>code is byte-identical (ignoring comments/whitespace) to Abhishek-Kumbhar/login.js - review for copying</td>
+            </tr><tr class="f-error">
+              <td><span class="chip crit">ERROR</span></td>
+              <td class="who">Om Menkudale</td>
+              <td class="mono">useraccess.js</td>
+              <td>code is byte-identical (ignoring comments/whitespace) to Abhishek-Kumbhar/useraccess.js - review for copying</td>
+            </tr><tr class="f-warn">
+              <td><span class="chip warn">WARN</span></td>
+              <td class="who">Abhishek Kumbhar</td>
+              <td class="mono">-</td>
+              <td>missing 5 of 6 required file(s): userRoles.js, gradeCalculator.js, entryCheck.js, roleSwitch.js, ternaryDemo.js</td>
+            </tr><tr class="f-warn">
+              <td><span class="chip warn">WARN</span></td>
+              <td class="who">Akshay Choudhari</td>
+              <td class="mono">-</td>
+              <td>missing 6 of 6 required file(s): userRoles.js, userAccess.js, gradeCalculator.js, entryCheck.js, roleSwitch.js, ternaryDemo.js</td>
+            </tr><tr class="f-warn">
+              <td><span class="chip warn">WARN</span></td>
+              <td class="who">Amrendra Raj</td>
+              <td class="mono">-</td>
+              <td>missing 6 of 6 required file(s): userRoles.js, userAccess.js, gradeCalculator.js, entryCheck.js, roleSwitch.js, ternaryDemo.js</td>
+            </tr><tr class="f-warn">
+              <td><span class="chip warn">WARN</span></td>
+              <td class="who">Amruta Zargad</td>
+              <td class="mono">-</td>
+              <td>missing 6 of 6 required file(s): userRoles.js, userAccess.js, gradeCalculator.js, entryCheck.js, roleSwitch.js, ternaryDemo.js</td>
+            </tr><tr class="f-warn">
+              <td><span class="chip warn">WARN</span></td>
+              <td class="who">Anas Javed</td>
+              <td class="mono">-</td>
+              <td>missing 6 of 6 required file(s): userRoles.js, userAccess.js, gradeCalculator.js, entryCheck.js, roleSwitch.js, ternaryDemo.js</td>
+            </tr><tr class="f-warn">
+              <td><span class="chip warn">WARN</span></td>
+              <td class="who">Avinash Singh</td>
+              <td class="mono">-</td>
+              <td>missing 6 of 6 required file(s): userRoles.js, userAccess.js, gradeCalculator.js, entryCheck.js, roleSwitch.js, ternaryDemo.js</td>
+            </tr><tr class="f-warn">
+              <td><span class="chip warn">WARN</span></td>
+              <td class="who">Debasish Sahoo</td>
+              <td class="mono">-</td>
+              <td>missing 6 of 6 required file(s): userRoles.js, userAccess.js, gradeCalculator.js, entryCheck.js, roleSwitch.js, ternaryDemo.js</td>
+            </tr><tr class="f-warn">
+              <td><span class="chip warn">WARN</span></td>
+              <td class="who">Deepali Bhatnagar</td>
+              <td class="mono">-</td>
+              <td>missing 4 of 6 required file(s): gradeCalculator.js, entryCheck.js, roleSwitch.js, ternaryDemo.js</td>
+            </tr><tr class="f-warn">
+              <td><span class="chip warn">WARN</span></td>
+              <td class="who">Jyoti Kumari</td>
+              <td class="mono">Assignment</td>
+              <td>unexpected subfolder - submissions should be flat in your participant folder</td>
+            </tr><tr class="f-warn">
+              <td><span class="chip warn">WARN</span></td>
+              <td class="who">Jyoti Kumari</td>
+              <td class="mono">-</td>
+              <td>missing 6 of 6 required file(s): userRoles.js, userAccess.js, gradeCalculator.js, entryCheck.js, roleSwitch.js, ternaryDemo.js</td>
+            </tr><tr class="f-warn">
+              <td><span class="chip warn">WARN</span></td>
+              <td class="who">Nikhil Deshmukh</td>
+              <td class="mono">-</td>
+              <td>missing 6 of 6 required file(s): userRoles.js, userAccess.js, gradeCalculator.js, entryCheck.js, roleSwitch.js, ternaryDemo.js</td>
+            </tr><tr class="f-warn">
+              <td><span class="chip warn">WARN</span></td>
+              <td class="who">Om Menkudale</td>
+              <td class="mono">-</td>
+              <td>missing 5 of 6 required file(s): userRoles.js, gradeCalculator.js, entryCheck.js, roleSwitch.js, ternaryDemo.js</td>
+            </tr><tr class="f-warn">
+              <td><span class="chip warn">WARN</span></td>
+              <td class="who">Shubham Saraswat</td>
+              <td class="mono">-</td>
+              <td>missing 6 of 6 required file(s): userRoles.js, userAccess.js, gradeCalculator.js, entryCheck.js, roleSwitch.js, ternaryDemo.js</td>
+            </tr><tr class="f-warn">
+              <td><span class="chip warn">WARN</span></td>
+              <td class="who">Sumit Dhage</td>
+              <td class="mono">-</td>
+              <td>missing 6 of 6 required file(s): userRoles.js, userAccess.js, gradeCalculator.js, entryCheck.js, roleSwitch.js, ternaryDemo.js</td>
+            </tr><tr class="f-warn">
+              <td><span class="chip warn">WARN</span></td>
+              <td class="who">Vaishnavi Kurhade</td>
+              <td class="mono">-</td>
+              <td>missing 6 of 6 required file(s): userRoles.js, userAccess.js, gradeCalculator.js, entryCheck.js, roleSwitch.js, ternaryDemo.js</td>
+            </tr><tr class="f-warn">
+              <td><span class="chip warn">WARN</span></td>
+              <td class="who">Vikas Shukla</td>
+              <td class="mono">-</td>
+              <td>missing 6 of 6 required file(s): userRoles.js, userAccess.js, gradeCalculator.js, entryCheck.js, roleSwitch.js, ternaryDemo.js</td>
+            </tr><tr class="f-warn">
+              <td><span class="chip warn">WARN</span></td>
+              <td class="who">Viraj Mandavkar</td>
+              <td class="mono">-</td>
+              <td>missing 6 of 6 required file(s): userRoles.js, userAccess.js, gradeCalculator.js, entryCheck.js, roleSwitch.js, ternaryDemo.js</td>
+            </tr></tbody>
+          </table></div>
+        </details>
+<details class="fgroup" open>
+          <summary>
+            <span class="fname">Week 4 — Functions &amp; Reusability</span>
+            <span class="fcount">15 findings · 1 error</span>
+          </summary>
+          <div class="scroller"><table class="ftable">
+            <thead><tr><th>Level</th><th>Participant</th><th>File</th><th>Finding</th></tr></thead>
+            <tbody><tr class="f-error">
+              <td><span class="chip crit">ERROR</span></td>
+              <td class="who">Shubham Saraswat</td>
+              <td class="mono">is-valid-password.js</td>
+              <td>code is byte-identical (ignoring comments/whitespace) to Abhishek-Kumbhar/isValidPassword.js - review for copying</td>
+            </tr><tr class="f-warn">
+              <td><span class="chip warn">WARN</span></td>
+              <td class="who">Abhishek Kumbhar</td>
+              <td class="mono">-</td>
+              <td>missing 6 of 6 required file(s): helpers.js, arrowHelpers.js, formatProductLabel.js, passwordValidator.js, average.js, testRunner.js</td>
+            </tr><tr class="f-warn">
+              <td><span class="chip warn">WARN</span></td>
+              <td class="who">Amrendra Raj</td>
+              <td class="mono">excercise.js</td>
+              <td>generic filename - use the descriptive name from the Deliverables table</td>
+            </tr><tr class="f-warn">
+              <td><span class="chip warn">WARN</span></td>
+              <td class="who">Amrendra Raj</td>
+              <td class="mono">-</td>
+              <td>missing 6 of 6 required file(s): helpers.js, arrowHelpers.js, formatProductLabel.js, passwordValidator.js, average.js, testRunner.js</td>
+            </tr><tr class="f-warn">
+              <td><span class="chip warn">WARN</span></td>
+              <td class="who">Avinash Singh</td>
+              <td class="mono">-</td>
+              <td>missing 6 of 6 required file(s): helpers.js, arrowHelpers.js, formatProductLabel.js, passwordValidator.js, average.js, testRunner.js</td>
+            </tr><tr class="f-warn">
+              <td><span class="chip warn">WARN</span></td>
+              <td class="who">Deepali Bhatnagar</td>
+              <td class="mono">-</td>
+              <td>missing 3 of 6 required file(s): formatProductLabel.js, average.js, testRunner.js</td>
+            </tr><tr class="f-warn">
+              <td><span class="chip warn">WARN</span></td>
+              <td class="who">Jyoti Kumari</td>
+              <td class="mono">Assignment</td>
+              <td>unexpected subfolder - submissions should be flat in your participant folder</td>
+            </tr><tr class="f-warn">
+              <td><span class="chip warn">WARN</span></td>
+              <td class="who">Jyoti Kumari</td>
+              <td class="mono">-</td>
+              <td>missing 6 of 6 required file(s): helpers.js, arrowHelpers.js, formatProductLabel.js, passwordValidator.js, average.js, testRunner.js</td>
+            </tr><tr class="f-warn">
+              <td><span class="chip warn">WARN</span></td>
+              <td class="who">Nikhil Deshmukh</td>
+              <td class="mono">-</td>
+              <td>missing 6 of 6 required file(s): helpers.js, arrowHelpers.js, formatProductLabel.js, passwordValidator.js, average.js, testRunner.js</td>
+            </tr><tr class="f-warn">
+              <td><span class="chip warn">WARN</span></td>
+              <td class="who">Om Menkudale</td>
+              <td class="mono">arrowfunctions.js</td>
+              <td>shares 5 distinctive comment lines with Abhishek-Kumbhar/arrowfunctions.js - copied work often keeps the original&#39;s comments</td>
+            </tr><tr class="f-warn">
+              <td><span class="chip warn">WARN</span></td>
+              <td class="who">Om Menkudale</td>
+              <td class="mono">-</td>
+              <td>missing 6 of 6 required file(s): helpers.js, arrowHelpers.js, formatProductLabel.js, passwordValidator.js, average.js, testRunner.js</td>
+            </tr><tr class="f-warn">
+              <td><span class="chip warn">WARN</span></td>
+              <td class="who">Shubham Saraswat</td>
+              <td class="mono">arrow-functions.js</td>
+              <td>shares 11 distinctive comment lines with Avinash-Singh/arrowFunction.js - copied work often keeps the original&#39;s comments</td>
+            </tr><tr class="f-warn">
+              <td><span class="chip warn">WARN</span></td>
+              <td class="who">Shubham Saraswat</td>
+              <td class="mono">-</td>
+              <td>missing 6 of 6 required file(s): helpers.js, arrowHelpers.js, formatProductLabel.js, passwordValidator.js, average.js, testRunner.js</td>
+            </tr><tr class="f-warn">
+              <td><span class="chip warn">WARN</span></td>
+              <td class="who">Vikas Shukla</td>
+              <td class="mono">-</td>
+              <td>missing 6 of 6 required file(s): helpers.js, arrowHelpers.js, formatProductLabel.js, passwordValidator.js, average.js, testRunner.js</td>
+            </tr><tr class="f-warn">
+              <td><span class="chip warn">WARN</span></td>
+              <td class="who">Viraj Mandavkar</td>
+              <td class="mono">-</td>
+              <td>missing 6 of 6 required file(s): helpers.js, arrowHelpers.js, formatProductLabel.js, passwordValidator.js, average.js, testRunner.js</td>
+            </tr></tbody>
+          </table></div>
+        </details>
+  </section>
+
+  <section>
+    <div class="shead"><h2>Session index</h2><p>The full curriculum, with submission rate per session</p></div>
+    <div class="card"><div class="scroller">
+      <table id="sessionTable">
+        <thead><tr>
+          <th>Ref</th><th>Topic</th><th>Module</th><th>Owner</th><th>Date</th>
+          <th class="num">Files req.</th><th class="num">Submitted</th><th>Rate</th>
+        </tr></thead>
+        <tbody>
+<tr data-type="Core">
+      <td class="mono tight">W1</td>
+      <td class="who">Environment Setup &amp; First Line of Code</td>
+      <td>JS Fundamentals</td>
+      <td>Vishal Tyagi</td>
+      <td class="tight">Wed, Jul 29, 2026</td>
+      <td class="num">11</td>
+      <td class="num">18 <span class="of">/ 21</span></td>
+      <td><span class="pill warn">86%</span></td>
+    </tr>
+<tr data-type="Optional">
+      <td class="mono tight">Opt-A</td>
+      <td class="who">Git Basics &amp; Local Workflow</td>
+      <td>Git &amp; Version Control</td>
+      <td>Self-study</td>
+      <td class="tight">Self-paced, anytime after Week 1</td>
+      <td class="num">3</td>
+      <td class="num">—</td>
+      <td><span class="pill ahead">Upcoming</span></td>
+    </tr>
+<tr data-type="Core">
+      <td class="mono tight">W2</td>
+      <td class="who">Variables &amp; Basic Data Types</td>
+      <td>JS Fundamentals</td>
+      <td>Tarun</td>
+      <td class="tight">Wed, Aug 05, 2026</td>
+      <td class="num">10</td>
+      <td class="num">17 <span class="of">/ 21</span></td>
+      <td><span class="pill warn">81%</span></td>
+    </tr>
+<tr data-type="Core">
+      <td class="mono tight">W3</td>
+      <td class="who">Conditional Logic &amp; Operators</td>
+      <td>JS Fundamentals</td>
+      <td>Aruneema</td>
+      <td class="tight">Wed, Aug 12, 2026</td>
+      <td class="num">6</td>
+      <td class="num">16 <span class="of">/ 21</span></td>
+      <td><span class="pill warn">76%</span></td>
+    </tr>
+<tr data-type="Core">
+      <td class="mono tight">W4</td>
+      <td class="who">Functions &amp; Reusability</td>
+      <td>JS Fundamentals</td>
+      <td>Prachi</td>
+      <td class="tight">Wed, Aug 19, 2026</td>
+      <td class="num">6</td>
+      <td class="num">10 <span class="of">/ 21</span></td>
+      <td><span class="pill warn">48%</span></td>
+    </tr>
+<tr data-type="Core">
+      <td class="mono tight">W5</td>
+      <td class="who">Arrays &amp; Loops</td>
+      <td>JS Fundamentals</td>
+      <td>Tarun</td>
+      <td class="tight">Wed, Aug 26, 2026</td>
+      <td class="num">5</td>
+      <td class="num">0 <span class="of">/ 21</span></td>
+      <td><span class="pill crit">0%</span></td>
+    </tr>
+<tr data-type="Optional">
+      <td class="mono tight">Opt-B</td>
+      <td class="who">Branching &amp; Merging</td>
+      <td>Git &amp; Version Control</td>
+      <td>Self-study</td>
+      <td class="tight">Self-paced, anytime after Week 5</td>
+      <td class="num">2</td>
+      <td class="num">—</td>
+      <td><span class="pill ahead">Upcoming</span></td>
+    </tr>
+<tr data-type="Core">
+      <td class="mono tight">W6</td>
+      <td class="who">Async/Await &amp; Promises</td>
+      <td>JS Fundamentals</td>
+      <td>Prachi</td>
+      <td class="tight">Wed, Sep 02, 2026</td>
+      <td class="num">5</td>
+      <td class="num">—</td>
+      <td><span class="pill ahead">Upcoming</span></td>
+    </tr>
+<tr data-type="Core">
+      <td class="mono tight">W7</td>
+      <td class="who">Playwright Setup &amp; CodeGen Intro</td>
+      <td>Playwright Core</td>
+      <td>Hritik</td>
+      <td class="tight">Wed, Sep 09, 2026</td>
+      <td class="num">5</td>
+      <td class="num">—</td>
+      <td><span class="pill ahead">Upcoming</span></td>
+    </tr>
+<tr data-type="Optional">
+      <td class="mono tight">Opt-C</td>
+      <td class="who">Remote Repositories &amp; GitHub Collaboration</td>
+      <td>Git &amp; Version Control</td>
+      <td>Self-study</td>
+      <td class="tight">Self-paced, anytime after Week 7</td>
+      <td class="num">2</td>
+      <td class="num">—</td>
+      <td><span class="pill ahead">Upcoming</span></td>
+    </tr>
+<tr data-type="Optional">
+      <td class="mono tight">Opt-D</td>
+      <td class="who">Project Config, package.json &amp; npm</td>
+      <td>Playwright Core</td>
+      <td>Self-study</td>
+      <td class="tight">Self-paced, anytime after Week 7</td>
+      <td class="num">3</td>
+      <td class="num">—</td>
+      <td><span class="pill ahead">Upcoming</span></td>
+    </tr>
+<tr data-type="Optional">
+      <td class="mono tight">Opt-E</td>
+      <td class="who">DOM Basics &amp; Chrome DevTools</td>
+      <td>Playwright Core</td>
+      <td>Self-study</td>
+      <td class="tight">Self-paced, anytime after Week 7</td>
+      <td class="num">3</td>
+      <td class="num">—</td>
+      <td><span class="pill ahead">Upcoming</span></td>
+    </tr>
+<tr data-type="Core">
+      <td class="mono tight">W8</td>
+      <td class="who">Locators &amp; Page Interactions</td>
+      <td>Playwright Core</td>
+      <td>Vishal Tyagi</td>
+      <td class="tight">Wed, Sep 16, 2026</td>
+      <td class="num">5</td>
+      <td class="num">—</td>
+      <td><span class="pill ahead">Upcoming</span></td>
+    </tr>
+<tr data-type="Core">
+      <td class="mono tight">W9</td>
+      <td class="who">Actions &amp; User Inputs</td>
+      <td>Playwright Core</td>
+      <td>Tarun</td>
+      <td class="tight">Wed, Sep 23, 2026</td>
+      <td class="num">5</td>
+      <td class="num">—</td>
+      <td><span class="pill ahead">Upcoming</span></td>
+    </tr>
+<tr data-type="Core">
+      <td class="mono tight">W10</td>
+      <td class="who">Assertions &amp; Verification</td>
+      <td>Playwright Core</td>
+      <td>Hritik</td>
+      <td class="tight">Wed, Sep 30, 2026</td>
+      <td class="num">5</td>
+      <td class="num">—</td>
+      <td><span class="pill ahead">Upcoming</span></td>
+    </tr>
+<tr data-type="Core">
+      <td class="mono tight">W11</td>
+      <td class="who">Auto-Waiting &amp; Handling Delays</td>
+      <td>Playwright Core</td>
+      <td>Vishal Tyagi - Jr</td>
+      <td class="tight">Wed, Oct 07, 2026</td>
+      <td class="num">5</td>
+      <td class="num">—</td>
+      <td><span class="pill ahead">Upcoming</span></td>
+    </tr>
+<tr data-type="Optional">
+      <td class="mono tight">Opt-F</td>
+      <td class="who">IFrames, Dialogs &amp; Complex Popups</td>
+      <td>Playwright Core</td>
+      <td>Self-study</td>
+      <td class="tight">Self-paced, anytime after Week 11</td>
+      <td class="num">5</td>
+      <td class="num">—</td>
+      <td><span class="pill ahead">Upcoming</span></td>
+    </tr>
+<tr data-type="Core">
+      <td class="mono tight">W12</td>
+      <td class="who">Test Execution &amp; Debugging</td>
+      <td>Playwright Core</td>
+      <td>Aruneema</td>
+      <td class="tight">Wed, Oct 14, 2026</td>
+      <td class="num">5</td>
+      <td class="num">—</td>
+      <td><span class="pill ahead">Upcoming</span></td>
+    </tr>
+<tr data-type="Optional">
+      <td class="mono tight">Opt-G</td>
+      <td class="who">Git Workflow for Test Automation Projects</td>
+      <td>Git &amp; Version Control</td>
+      <td>Self-study</td>
+      <td class="tight">Self-paced, anytime after Week 12</td>
+      <td class="num">3</td>
+      <td class="num">—</td>
+      <td><span class="pill ahead">Upcoming</span></td>
+    </tr>
+<tr data-type="Optional">
+      <td class="mono tight">Opt-H</td>
+      <td class="who">Writing Clean &amp; Maintainable Test Code</td>
+      <td>Coding Standards &amp; Best Practices</td>
+      <td>Self-study</td>
+      <td class="tight">Self-paced, anytime after Week 12</td>
+      <td class="num">4</td>
+      <td class="num">—</td>
+      <td><span class="pill ahead">Upcoming</span></td>
+    </tr>
+<tr data-type="Core">
+      <td class="mono tight">W13</td>
+      <td class="who">Test Suite Organization &amp; Hooks</td>
+      <td>Test Architecture</td>
+      <td>Vishal Tyagi - Jr</td>
+      <td class="tight">Wed, Oct 21, 2026</td>
+      <td class="num">5</td>
+      <td class="num">—</td>
+      <td><span class="pill ahead">Upcoming</span></td>
+    </tr>
+<tr data-type="Optional">
+      <td class="mono tight">Opt-I</td>
+      <td class="who">Environment Variables &amp; Config Management</td>
+      <td>Test Architecture</td>
+      <td>Self-study</td>
+      <td class="tight">Self-paced, anytime after Week 13</td>
+      <td class="num">4</td>
+      <td class="num">—</td>
+      <td><span class="pill ahead">Upcoming</span></td>
+    </tr>
+<tr data-type="Core">
+      <td class="mono tight">W14</td>
+      <td class="who">Page Object Model (POM) - Part 1</td>
+      <td>Test Architecture</td>
+      <td>Hritik</td>
+      <td class="tight">Wed, Oct 28, 2026</td>
+      <td class="num">5</td>
+      <td class="num">—</td>
+      <td><span class="pill ahead">Upcoming</span></td>
+    </tr>
+<tr data-type="Core">
+      <td class="mono tight">W15</td>
+      <td class="who">Page Object Model (POM) - Part 2</td>
+      <td>Test Architecture</td>
+      <td>Vishal Tyagi</td>
+      <td class="tight">Wed, Nov 04, 2026</td>
+      <td class="num">5</td>
+      <td class="num">—</td>
+      <td><span class="pill ahead">Upcoming</span></td>
+    </tr>
+<tr data-type="Optional">
+      <td class="mono tight">Opt-J</td>
+      <td class="who">API Testing &amp; Seeding (Bonus)</td>
+      <td>Test Architecture</td>
+      <td>Self-study</td>
+      <td class="tight">Self-paced, anytime after Week 15</td>
+      <td class="num">4</td>
+      <td class="num">—</td>
+      <td><span class="pill ahead">Upcoming</span></td>
+    </tr>
+<tr data-type="Optional">
+      <td class="mono tight">Opt-K</td>
+      <td class="who">AI Tools for Test Automation - Awareness &amp; Judgement</td>
+      <td>AI-Assisted QA &amp; Test Scripting</td>
+      <td>Self-study</td>
+      <td class="tight">Self-paced, anytime after Week 15</td>
+      <td class="num">4</td>
+      <td class="num">—</td>
+      <td><span class="pill ahead">Upcoming</span></td>
+    </tr>
+<tr data-type="Core">
+      <td class="mono tight">W16</td>
+      <td class="who">Transitioning JS to TypeScript</td>
+      <td>TypeScript Intro</td>
+      <td>Vishal Tyagi</td>
+      <td class="tight">Wed, Nov 11, 2026</td>
+      <td class="num">4</td>
+      <td class="num">—</td>
+      <td><span class="pill ahead">Upcoming</span></td>
+    </tr>
+<tr data-type="Core">
+      <td class="mono tight">W17</td>
+      <td class="who">TypeScript Interfaces &amp; Typed Page Objects</td>
+      <td>TypeScript Intro</td>
+      <td>Vishal Tyagi</td>
+      <td class="tight">Wed, Nov 18, 2026</td>
+      <td class="num">5</td>
+      <td class="num">—</td>
+      <td><span class="pill ahead">Upcoming</span></td>
+    </tr>
+<tr data-type="Core">
+      <td class="mono tight">W18</td>
+      <td class="who">Capstone Project &amp; Review</td>
+      <td>TypeScript Intro</td>
+      <td>Vishal Tyagi</td>
+      <td class="tight">Wed, Nov 25, 2026</td>
+      <td class="num">3</td>
+      <td class="num">—</td>
+      <td><span class="pill ahead">Upcoming</span></td>
+    </tr>
+        </tbody>
+      </table>
+    </div></div>
+  </section>
+
+  <footer>
+    <p>Regenerate with <code>node scripts/generate-html-report.js</code> from the repository root. Source of truth is the filesystem under <code>Sessions/</code>.</p>
+    <p>A participant counts as having submitted when their session folder holds at least one real file; <code>.gitkeep</code> placeholders never count.</p>
+  </footer>
+</div>
+
+<script>
+  (function () {
+    var btn = document.getElementById("toggleOptional");
+    var KEY = "cohort-board-hide-optional";
+    function apply(hidden) {
+      document.body.classList.toggle("hide-optional", hidden);
+      btn.setAttribute("aria-pressed", String(hidden));
+      btn.textContent = hidden ? "Show optional sessions" : "Hide optional sessions";
+    }
+    var stored = false;
+    try { stored = localStorage.getItem(KEY) === "1"; } catch (e) {}
+    apply(stored);
+    btn.addEventListener("click", function () {
+      var next = btn.getAttribute("aria-pressed") !== "true";
+      apply(next);
+      try { localStorage.setItem(KEY, next ? "1" : "0"); } catch (e) {}
+    });
+  })();
+</script>
