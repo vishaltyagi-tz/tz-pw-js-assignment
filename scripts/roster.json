@@ -1,0 +1,26 @@
+{
+  "_comment": "Canonical participant list. Folder names MUST match these exactly (Firstname-Lastname, hyphenated). scripts/ensure-participant-folders.js provisions folders from this list; scripts/check-submissions.js flags any folder name not on it.",
+  "participants": [
+    "Abhishek-Kumbhar",
+    "Aishwarya-Thakur",
+    "Akshay-Choudhari",
+    "Amrendra-Raj",
+    "Amruta-Zargad",
+    "Anas-Javed",
+    "Avinash-Singh",
+    "Awanti-Mahadik",
+    "Debasish-Sahoo",
+    "Deepali-Bhatnagar",
+    "Jyoti-Kumari",
+    "Nikhil-Deshmukh",
+    "Om-Menkudale",
+    "Purnima-Gautam",
+    "Shilpa-Mattoo",
+    "Shubham-Saraswat",
+    "Sumit-Dhage",
+    "Utkarsh-Neb",
+    "Vaishnavi-Kurhade",
+    "Vikas-Shukla",
+    "Viraj-Mandavkar"
+  ]
+}

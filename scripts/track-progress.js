@@ -1,8 +1,14 @@
 #!/usr/bin/env node
 // Scans Sessions/<session>/<participant>/ folders and reports submission status
-// based on whether the participant's folder contains any files.
+// based on whether the participant's folder contains any real submitted file.
+// Placeholder files (.gitkeep, placeholder.md) and OS/editor cruft never count -
+// otherwise the folders provisioned by ensure-participant-folders.js would mark
+// every participant as having submitted everything.
 const fs = require("fs");
 const path = require("path");
+
+const IGNORED_FILES = new Set([".gitkeep", "placeholder.md", ".DS_Store", "Thumbs.db"]);
+const isIgnored = (name) => IGNORED_FILES.has(name) || name.startsWith("~$");
 
 const SESSIONS_DIR = path.join(__dirname, "..", "Sessions");
 const OUTPUT_FILE = path.join(__dirname, "..", "PROGRESS.md");
@@ -15,7 +21,7 @@ function hasSubmission(dir) {
       if (entry.name === "Artifacts") continue;
       const full = path.join(current, entry.name);
       if (entry.isDirectory()) stack.push(full);
-      else return true;
+      else if (!isIgnored(entry.name)) return true;
     }
   }
   return false;

@@ -1,0 +1,65 @@
+Participant,Week,Issue Category,Detail,Status
+COHORT-WIDE,W1,Missing deliverable,"Requirement 3 asks for a screenshot of the node output - no image/screenshot file was submitted by anyone (only .js files exist)",Open
+COHORT-WIDE,W2,Missing deliverable,"Requirement 3 asks for template literals (backticks) - only 10 files across W1-W4 use backticks at all; almost the whole cohort used + concatenation instead",Open
+COHORT-WIDE,W2,Missing deliverable,"Requirement 2 (const reassignment error demo) present for only 8 of 18 submitters: Anas, Avinash, Amrendra, Debasish, Deepali, Jyoti, Shubham, Vikas",Open
+COHORT-WIDE,W2,Off-spec variables,"Requirement 1 names appUrl / username / maxTimeout / isLoggedIn - only Amrendra Raj used them; everyone else answered a different exercise set (marks/totalPrice/vote)",Open
+COHORT-WIDE,W1-W4,Generic filenames,"assignment.js, practice.js, final.js, demo1.js, info.js, variable.js, misc.js, excercise.js used instead of the descriptive names the guides ask for",Open
+Aishwarya Thakur,W1,Wrong deliverable,"Single misspelled file ""Assigmnent-day1.js"" instead of hello.js and about-me.js",Open
+Aishwarya Thakur,W2-W4,Not submitted,No submissions since Week 1 - three weeks behind,Open
+Akshay Choudhari,W1,Missing deliverable,No hello.js; demo1.js and intro.js used instead of the required filenames,Open
+Akshay Choudhari,W4,Not submitted,Week-04 folder empty despite completing W1-W3,Open
+Amrendra Raj,W1,Wrong deliverable,"assignment.js / intro.js / placeholder.md instead of hello.js and about-me.js; placeholder.md should be removed",Open
+Amrendra Raj,W2,Duplicate folder naming,"Work landed in ""Amrendra Raj"" (with a space) while the canonical ""Amrendra-Raj"" folder sits empty - move the files and delete the space-named folder",Open
+Amrendra Raj,W2,Junk filenames,"new.js, new2.js, final.js, practice.js - non-descriptive",Open
+Amrendra Raj,W4,Off-spec,"Answered the Artifacts practice file (excercise.js / functionpractice.js) instead of the guide: no calculateTotalPrice or generateUserEmail; filename misspelled ""excercise.js""",Open
+Amruta Zargad,W1,Missing deliverable,No hello.js; about-me.js present but hello message folded elsewhere,Open
+Amruta Zargad,W3,Incomplete structure,All three requirements crammed into a single conditional-logic.js,Open
+Amruta Zargad,W4-W5,Missing folder,"No participant folder exists in Week-04 or Week-05 - cannot submit until created (every other participant has one)",Open
+Anas Javed,W1,Empty file,assignment.js is 0 bytes,Open
+Anas Javed,W3,Empty file,"userroleandaccess.js is 0 bytes, so requirements 1 and 2 (role permissions + else-if chain) are unmet; only the &&/|| script was delivered",Open
+Anas Javed,W4,Not submitted,Week-04 folder empty,Open
+Avinash Singh,W1,Missing deliverable,No about-me.js; intro.js / misc.js used instead,Open
+Avinash Singh,W4,Not submitted,Week-04 folder empty,Open
+Awanti Mahadik,W1,Missing deliverable,No about-me.js,Open
+Awanti Mahadik,W2,Incomplete deliverable,Required exercises crammed into one generic info.js,Open
+Awanti Mahadik,W3-W4,Not submitted,No submissions since Week 2 - two weeks behind,Open
+Debasish Sahoo,W4,Not submitted,Week-04 folder empty despite complete W1-W3,Open
+Deepali Bhatnagar,W1,Nested folder (severe),Files buried under NodeTraining/Day1/assignment/ExerciseSolutions/ - should be flat in the participant folder,Open
+Deepali Bhatnagar,W2,Non-descriptive naming,Numbered generic names (01_printVariable.js ... 10_shortIntro.js) instead of descriptive names,Open
+Jyoti Kumari,W1-W4,Nested folder (all weeks),Every week's files sit inside an extra Assignment/ subfolder instead of flat in the participant folder,Open
+Jyoti Kumari,W1,Missing deliverable,No hello.js,Open
+Nikhil Deshmukh,W1,Duplicated content,Same files committed both flat and inside assignment/ - one copy should be removed,Open
+Nikhil Deshmukh,W1,Empty files,courseName.js is 0 bytes in both the flat and nested copies,Open
+Nikhil Deshmukh,W1,Stray file,index.html committed with no relation to the assignment,Open
+Nikhil Deshmukh,W2,Nested folder,Files inside Assignment/ subfolder,Open
+Nikhil Deshmukh,W4,Naming deviation,"Function named isValidPW() instead of isValidPassword(); generateUserEmail() takes (firstName, lastName, domain) instead of the specified (firstName, domain)",Open
+Om Menkudale,W1,Missing deliverable,No hello.js; generic variable.js / demo1.js used instead,Open
+Purnima Gautam,W1-W4,Not submitted,Zero submissions across four weeks - escalate,Open
+Shilpa Mattoo,W1-W4,Not submitted,Zero submissions across four weeks - escalate,Open
+Sumit Dhage,W1-W2,Not submitted,Backlog still open; only W3 has been submitted,Open
+Sumit Dhage,W3,Misplaced submission,Work was in shared Week-03/Artifacts/Sumit-Dhage/ instead of the participant folder,Fixed 2026-08-19
+Sumit Dhage,W4,Not submitted,Week-04 folder empty,Open
+Utkarsh Neb,W1,Filenames with spaces,"""Assignment 1.js"" and ""Assignment 2.js"" - spaces violate convention and names are non-descriptive",Open
+Utkarsh Neb,W1,Empty file,"""Assignment 2.js"" is 0 bytes",Open
+Utkarsh Neb,W2,Off-spec,Single Assignment2.js covering only arithmetic; none of the three stated requirements,Open
+Utkarsh Neb,W3-W4,Not submitted,No submissions since Week 2 - two weeks behind,Open
+Vaishnavi Kurhade,W1,Missing extension,"File ""Vaishnavi-Assignment1"" has no .js extension so it cannot be run with node",Open
+Vaishnavi Kurhade,W1,Possible copied work,W1 file content is near-identical to Aishwarya Thakur's submission (same typos and comment banner) with only the name changed,Open
+Vaishnavi Kurhade,W3,Off-spec,Assignment3.js is a single ternary age check - none of the three role/access requirements,Open
+Vaishnavi Kurhade,W3,Misplaced submission,Work was in shared Week-03/Artifacts/Vaishnavi-Kurhade/ instead of the participant folder,Fixed 2026-08-19
+Vaishnavi Kurhade,W1,Stray folder,Non-convention folder Vaishnavi-Assignment1 alongside the canonical folder,Fixed - now a file inside the canonical folder
+Vaishnavi Kurhade,W4,Not submitted,Week-04 folder empty,Open
+Vikas Shukla,W1,Nested folder,Files inside assignment/ subfolder,Open
+Vikas Shukla,W1,Missing deliverable,No about-me.js,Open
+Viraj Mandavkar,W1,Missing deliverable,No hello.js,Open
+Viraj Mandavkar,W2,Missing extension,selfIntro has no .js extension,Open
+Viraj Mandavkar,W3,Off-spec,"calculator.js / positiveCheck.js / conditionStatement.js - no role-based permissions, no else-if chain, no &&/|| access check",Open
+Viraj Mandavkar,W4,Missing deliverable,"No arrow-function rewrite (requirement 2); price function named total() instead of calculateTotalPrice()",Open
+Day1test,W1,Stale test folder,"Not a real participant - inflates PROGRESS.md participant count. Recommend deleting Sessions/Week-01-.../Day1test/",Open
+Abhishek Kumbhar,W1-W2,Nested folder,Files were inside an extra assignment/Assignment subfolder,Fixed - now flat
+Akshay Choudhari,W1,Nested folder,Files were inside a Week-1/ subfolder,Fixed - now flat
+Debasish Sahoo,W1,Nested folder,Files were inside an Assignment/ subfolder,Fixed - now flat
+Om Menkudale,W1,Nested folder,Files were split across Assignment/ and Training/ subfolders,Fixed - now flat
+Shubham Saraswat,W1-W3,Nested folder,Files were inside assignment/ subfolders every week,Fixed - now flat
+Amruta Zargad,W1-W2,Inconsistent folder naming,"Folder drifted between ""Amruta"" (W1) and ""Amruta-Zargad"" (W2)",Fixed - Amruta-Zargad everywhere
+Nikhil Deshmukh,W1-W2,Inconsistent folder naming,"Nikhil-Deshmukh (hyphen) vs Nikhil_Deshmukh (underscore)",Fixed - hyphen everywhere

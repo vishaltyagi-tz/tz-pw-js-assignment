@@ -1,31 +1,2739 @@
 [
-  {"folder": "Week-01-Environment-Setup-First-Line-of-Code", "label": "Week 1", "date": "Wed, Jul 29, 2026", "type": "Core", "module": "Module 1: JS Fundamentals", "topic": "Environment Setup & First Line of Code", "owner": "Vishal Tyagi", "concepts": "Node.js, VS Code setup, terminal usage, console.log(), execution flow.", "assignment": "1) Install Node.js & VS Code. Create `hello.js` and print a welcome message, your name, and role using terminal.\n\n2) Create `about-me.js` that logs 3 separate console.log() statements: your name, your favorite tool, and today's date.\n\n3) Run both scripts using `node` from the terminal and take a screenshot of the output."},
-  {"folder": "Optional-A-Git-Basics-Local-Workflow", "label": "Optional Session A", "date": "Self-paced, anytime after Week 1", "type": "Optional", "module": "Git & Version Control", "topic": "Git Basics & Local Workflow", "owner": "Self-study", "concepts": "What is version control & why it matters, installing Git, `git init`, `git status`, `git add`, `git commit`, `git log`, writing good commit messages, `.gitignore` basics.", "assignment": "1) Install Git and configure your username/email (`git config`). Initialize a repo in your training folder and commit `hello.js` and `about-me.js` with a meaningful commit message.\n\n2) Make 3 more small changes across 3 separate commits, then review the history with `git log --oneline`.\n\n3) Create a `.gitignore` file that excludes `node_modules/` and any local config files."},
-  {"folder": "Week-02-Variables-Basic-Data-Types", "label": "Week 2", "date": "Wed, Aug 05, 2026", "type": "Core", "module": "Module 1: JS Fundamentals", "topic": "Variables & Basic Data Types", "owner": "Tarun", "concepts": "let vs const, Strings, Numbers, Booleans, basic string concatenation.", "assignment": "1) Declare variables for test inputs (`appUrl`, `username`, `maxTimeout`, `isLoggedIn`). Print a formatted summary line.\n\n2) Write a script that intentionally tries to reassign a `const` variable and observe/explain the error in a comment.\n\n3) Create variables for `firstName`, `lastName`, and `age`, then build a single sentence using template literals (backticks) instead of `+` concatenation."},
-  {"folder": "Week-03-Conditional-Logic-Operators", "label": "Week 3", "date": "Wed, Aug 12, 2026", "type": "Core", "module": "Module 1: JS Fundamentals", "topic": "Conditional Logic & Operators", "owner": "Aruneema", "concepts": "if/else statements, equality operators (===, !==), logical operators (&&, ||).", "assignment": "1) Write a script that takes a user role variable ('Admin', 'Tester', 'Guest') and prints appropriate permission levels using conditional logic.\n\n2) Extend the script with an `else if` chain to also handle an unrecognized role value.\n\n3) Write a second script using `&&` and `||` to check if a user `isLoggedIn` AND `hasValidSession`, printing 'Access Granted' or 'Access Denied'."},
-  {"folder": "Week-04-Functions-Reusability", "label": "Week 4", "date": "Wed, Aug 19, 2026", "type": "Core", "module": "Module 1: JS Fundamentals", "topic": "Functions & Reusability", "owner": "Prachi", "concepts": "Function declarations, parameters, return values, arrow functions (`() => {}`).", "assignment": "1) Write reusable helper functions: `calculateTotalPrice(price, taxRate)` and `generateUserEmail(firstName, domain)`.\n\n2) Rewrite both functions as arrow functions and compare the syntax in a comment.\n\n3) Write a `isValidPassword(password)` function that returns `true`/`false` based on a minimum length rule, and call it with 3 different test values."},
-  {"folder": "Week-05-Arrays-Loops", "label": "Week 5", "date": "Wed, Aug 26, 2026", "type": "Core", "module": "Module 1: JS Fundamentals", "topic": "Arrays & Loops", "owner": "Tarun", "concepts": "Array creation, indexing, length property, `for` loops, `for...of` loops.", "assignment": "1) Create an array of 5 sample product titles. Loop through the array and print only titles that contain more than 10 characters.\n\n2) Add a 6th product using `.push()` and remove the first one using `.shift()`, printing the array after each change.\n\n3) Use a `for...of` loop to count and print how many titles contain the word 'Shirt' or 'Bag'."},
-  {"folder": "Optional-B-Branching-Merging", "label": "Optional Session B", "date": "Self-paced, anytime after Week 5", "type": "Optional", "module": "Git & Version Control", "topic": "Branching & Merging", "owner": "Self-study", "concepts": "`git branch`, `git checkout`/`git switch`, creating feature branches, `git merge`, understanding and resolving merge conflicts.", "assignment": "1) Create a new branch `feature/arrays-practice`, make a change to your Week 5 script, and commit it on that branch.\n\n2) Merge the branch back into `main`/`master` and confirm the change appears in history.\n\n3) Deliberately create a merge conflict (edit the same line on two branches) and practice resolving it manually, then commit the resolution."},
-  {"folder": "Week-06-Async-Await-Promises", "label": "Week 6", "date": "Wed, Sep 02, 2026", "type": "Core", "module": "Module 1: JS Fundamentals", "topic": "Async/Await & Promises", "owner": "Prachi", "concepts": "Synchronous vs Asynchronous execution, Promises, `async` and `await` keywords in plain English.", "assignment": "1) Create a mock `fetchUserData()` function using `setTimeout` to simulate delay, then call it using `async/await` and log results.\n\n2) Write a second mock function `fetchOrderData()` and call both functions sequentially with `await`, logging total time taken.\n\n3) Introduce a deliberate rejected Promise and handle it with `try/catch`, logging a friendly error message."},
-  {"folder": "Week-07-Playwright-Setup-CodeGen-Intro", "label": "Week 7", "date": "Wed, Sep 09, 2026", "type": "Core", "module": "Module 2: Playwright Core", "topic": "Playwright Setup & CodeGen Intro", "owner": "Hritik", "concepts": "`npm init playwright@latest`, project structure, running Playwright CodeGen (`npx playwright codegen`).", "assignment": "1) Use CodeGen to record a complete login & product search scenario on SauceDemo. Run the generated script and inspect results.\n\n2) Record a second CodeGen flow: adding an item to the cart and completing checkout, then clean up the generated code by removing redundant steps.\n\n3) Explore the generated `playwright.config.ts` and document (in comments) what `baseURL`, `headless`, and `retries` control."},
-  {"folder": "Optional-C-Remote-Repositories-GitHub-Collaboration", "label": "Optional Session C", "date": "Self-paced, anytime after Week 7", "type": "Optional", "module": "Git & Version Control", "topic": "Remote Repositories & GitHub Collaboration", "owner": "Self-study", "concepts": "Creating a GitHub repo, `git remote add`, `git push`/`git pull`, cloning a repo, forking, opening a Pull Request, code review basics.", "assignment": "1) Create a GitHub account/repo (if you don't have one) and push your local Playwright project to it.\n\n2) Clone the repo into a second local folder to simulate a teammate, make a change on a new branch, push it, and open a Pull Request.\n\n3) Review your own PR: add one review comment, then merge it via GitHub and pull the merged changes back into your original local folder."},
-  {"folder": "Optional-D-Project-Config", "label": "Optional Session D", "date": "Self-paced, anytime after Week 7", "type": "Optional", "module": "Module 2: Playwright Core", "topic": "Project Config", "owner": "Self-study", "concepts": "Understanding package.json structure, npm scripts, node_modules folder, dependency management, devDependencies vs dependencies, npm install/update basics.", "assignment": "1) Open your Playwright project's `package.json` and document (in comments) what each section means: name, scripts, dependencies, devDependencies.\n\n2) Add a custom npm script (e.g., `\"test:smoke\": \"npx playwright test --grep @smoke\"`) and run it from the terminal.\n\n3) Delete `node_modules`, run `npm install`, and explain in a comment why this works and when you'd need to do this."},
-  {"folder": "Optional-E-DOM-Basics", "label": "Optional Session E", "date": "Self-paced, anytime after Week 7", "type": "Optional", "module": "Module 2: Playwright Core", "topic": "DOM Basics", "owner": "Self-study", "concepts": "Chrome DevTools usage for element inspection, HTML attributes (id, class, data-*), DOM hierarchy and parent-child relationships, understanding how browsers render pages.", "assignment": "1) Use Chrome DevTools to inspect 5 different elements on a webpage - document their tag names, attributes, and position in the DOM hierarchy.\n\n2) Practice using the Elements panel to temporarily modify HTML/CSS and observe changes in real-time.\n\n3) Use the Console to run `document.querySelector()` commands and locate elements by various attributes, comparing results to Playwright locators."},
-  {"folder": "Week-08-Locators-Page-Interactions", "label": "Week 8", "date": "Wed, Sep 16, 2026", "type": "Core", "module": "Module 2: Playwright Core", "topic": "Locators & Page Interactions", "owner": "Vishal Tyagi", "concepts": "User-facing locators (`getByRole`, `getByLabel`, `getByTestId`), CSS/XPath alternative strategies.", "assignment": "1) Write a script manually (without CodeGen) to navigate to a practice site, locate 5 different elements using `getByRole` & `getByLabel`, and perform actions.\n\n2) Locate the same 5 elements using CSS selectors instead, and note in comments which approach felt more readable/stable.\n\n3) Use `getByTestId` (or `data-testid`) on at least 2 elements and explain why test IDs are considered a more resilient locator strategy."},
-  {"folder": "Week-09-Actions-User-Inputs", "label": "Week 9", "date": "Wed, Sep 23, 2026", "type": "Core", "module": "Module 2: Playwright Core", "topic": "Actions & User Inputs", "owner": "Tarun", "concepts": "Filling inputs (`.fill()`), clicking (`.click()`), radio buttons (`.check()`), dropdowns (`.selectOption()`).", "assignment": "1) Automate filling out a full registration web form with text fields, checkboxes, radio options, and multi-select dropdowns.\n\n2) Add keyboard interactions (`.press('Tab')`, `.press('Enter')`) to move between fields and submit the form without clicking the submit button directly.\n\n3) Write a negative-path test that submits the form with required fields left blank and verify the appropriate validation messages appear."},
-  {"folder": "Week-10-Assertions-Verification", "label": "Week 10", "date": "Wed, Sep 30, 2026", "type": "Core", "module": "Module 2: Playwright Core", "topic": "Assertions & Verification", "owner": "Hritik", "concepts": "Expect assertions (`toHaveTitle`, `toBeVisible`, `toHaveText`, `toContainText`, `toBeEnabled`).", "assignment": "1) Write a login test suite covering 3 scenarios (Success, Invalid Password, Blank Username) with explicit `expect()` assertions for each.\n\n2) Add a 4th scenario for a locked-out/disabled user and assert the error banner text using `toContainText`.\n\n3) Add assertions that check the submit button's enabled/disabled state (`toBeEnabled`/`toBeDisabled`) before and after filling the form."},
-  {"folder": "Week-11-Auto-Waiting-Handling-Delays", "label": "Week 11", "date": "Wed, Oct 07, 2026", "type": "Core", "module": "Module 2: Playwright Core", "topic": "Auto-Waiting & Handling Delays", "owner": "Vishal Tyagi - Jr", "concepts": "Playwright auto-waiting mechanism, explicit waiting (`waitForSelector`, `waitForURL`), timeout configurations.", "assignment": "1) Automate testing a dynamic loading web page where elements appear after a 3-second delay without using hardcoded timeouts.\n\n2) Add a scenario that waits for a URL change after a navigation action using `waitForURL`, and assert the new page's content.\n\n3) Deliberately set a very short custom timeout on one assertion to force a timeout error, then fix it and document the difference in behavior."},
-  {"folder": "Optional-F-Complex-Popups", "label": "Optional Session F", "date": "Self-paced, anytime after Week 11", "type": "Optional", "module": "Module 2: Playwright Core", "topic": "Complex Popups", "owner": "Self-study", "concepts": "Handling IFrames using `frameLocator()`, browser dialogs and alerts using `page.on('dialog')`, accepting/dismissing alerts, nested frames.", "assignment": "1) Write a test that interacts with elements inside an IFrame using `frameLocator()` on a practice site.\n\n2) Handle a JavaScript alert dialog using `page.on('dialog')` - accept it and verify the page state changes accordingly.\n\n3) Create a test scenario that dismisses a confirm dialog and verifies the 'Cancel' action was processed correctly."},
-  {"folder": "Week-12-Test-Execution-Debugging", "label": "Week 12", "date": "Wed, Oct 14, 2026", "type": "Core", "module": "Module 2: Playwright Core", "topic": "Test Execution & Debugging", "owner": "Aruneema", "concepts": "CLI test runner (`npx playwright test`), headed mode, debugging `--debug`, HTML reports, trace viewer.", "assignment": "1) Execute a test suite in headless mode, deliberately fail one test, extract the HTML report, open trace viewer, and analyze the root cause.\n\n2) Re-run the same failing test in headed mode with `--debug` and step through it using Playwright Inspector, documenting what caused the failure.\n\n3) Run the full suite with the `--trace on` flag and use the trace viewer to identify the slowest test step."},
-  {"folder": "Optional-G-Git-Workflow-Test-Automation-Projects", "label": "Optional Session G", "date": "Self-paced, anytime after Week 12", "type": "Optional", "module": "Git & Version Control", "topic": "Git Workflow for Test Automation Projects", "owner": "Self-study", "concepts": "Rebase vs merge, `git stash`, tagging releases, ignoring Playwright artifacts (`test-results/`, `playwright-report/`), commit conventions for test code, undoing mistakes (`git revert`, `git reset`).", "assignment": "1) Set up a proper `.gitignore` for a Playwright project (`node_modules/`, `test-results/`, `playwright-report/`, `.env`).\n\n2) Practice `git stash` while mid-way through a test change, switch branches to fix something urgent, then `git stash pop` to resume.\n\n3) Tag a stable commit as `v1.0-suite` using `git tag`, and practice safely undoing a bad commit with `git revert` (not `reset --hard`)."},
-  {"folder": "Optional-H-Coding-Standards-Best-Practices", "label": "Optional Session H", "date": "Self-paced, anytime after Week 12", "type": "Optional", "module": "Coding Standards & Best Practices", "topic": "Writing Clean & Maintainable Test Code", "owner": "Self-study", "concepts": "Consistent naming conventions (files, functions, variables), ESLint & Prettier setup, avoiding hardcoded waits/magic strings, DRY principle in test code, meaningful assertions vs over-asserting, code review checklist for PRs, folder/file structure conventions.", "assignment": "1) Install and configure ESLint + Prettier in your Playwright project, fix all existing lint warnings across previous weeks' scripts.\n\n2) Refactor one existing test file to remove magic strings/hardcoded values into a constants or config file, and rename any poorly-named variables/functions.\n\n3) Create a short personal 'Code Review Checklist' (5-8 items, e.g. no hardcoded waits, descriptive test names, no duplicated locators) and apply it to review one of your own past assignments, noting what you'd change."},
-  {"folder": "Week-13-Test-Suite-Organization-Hooks", "label": "Week 13", "date": "Wed, Oct 21, 2026", "type": "Core", "module": "Module 3: Test Architecture", "topic": "Test Suite Organization & Hooks", "owner": "Vishal Tyagi - Jr", "concepts": "`test.describe()`, `test.beforeEach()`, `test.afterEach()`, grouping tests logically.", "assignment": "1) Refactor existing login & checkout scripts into structured `test.describe` blocks sharing common `beforeEach` navigation logic.\n\n2) Add an `afterEach` hook that logs the test name and status (pass/fail) after every test.\n\n3) Add a `test.beforeAll`/`test.afterAll` pair to set up and tear down any shared test data, and explain in a comment how their scope differs from `beforeEach`/`afterEach`."},
-  {"folder": "Optional-I-Environment-Vars", "label": "Optional Session I", "date": "Self-paced, anytime after Week 13", "type": "Optional", "module": "Module 3: Test Architecture", "topic": "Environment Vars", "owner": "Self-study", "concepts": "Environment configuration using dotenv / .env files, managing secrets, separating config from code, loading environment-specific URLs and credentials.", "assignment": "1) Install `dotenv` and create a `.env` file with `BASE_URL`, `USERNAME`, and `PASSWORD` variables for your test project.\n\n2) Refactor an existing test to read credentials from environment variables instead of hardcoded values.\n\n3) Create separate `.env.dev` and `.env.staging` files and document how to switch between environments when running tests."},
-  {"folder": "Week-14-Page-Object-Model-Part-1", "label": "Week 14", "date": "Wed, Oct 28, 2026", "type": "Core", "module": "Module 3: Test Architecture", "topic": "Page Object Model (POM) - Part 1", "owner": "Hritik", "concepts": "POM architectural pattern, creating Page classes, encapsulating locators & constructor.", "assignment": "1) Create `LoginPage.js` and `InventoryPage.js` classes encapsulating locators and basic component getters.\n\n2) Add a `CartPage.js` class following the same pattern, encapsulating cart-related locators only.\n\n3) Write a simple test file that imports all 3 page classes and simply verifies each page loads (no actions yet), to confirm the POM structure works end-to-end."},
-  {"folder": "Week-15-Page-Object-Model-Part-2", "label": "Week 15", "date": "Wed, Nov 04, 2026", "type": "Core", "module": "Module 3: Test Architecture", "topic": "Page Object Model (POM) - Part 2", "owner": "Vishal Tyagi", "concepts": "Encapsulating action methods inside Page classes, clean test script instantiation.", "assignment": "1) Complete a 2-page POM framework implementation (Login + Add to Cart + Checkout) and execute clean test scripts importing page objects.\n\n2) Add reusable action methods (e.g. `login()`, `addItemToCart(itemName)`, `checkout()`) to the relevant page classes so tests contain no raw locators.\n\n3) Write 2 additional end-to-end test scenarios (e.g. remove item from cart, sort products by price) purely by composing existing page object methods."},
-  {"folder": "Optional-J-API-Setup-Bonus", "label": "Optional Session J", "date": "Self-paced, anytime after Week 15", "type": "Optional", "module": "Module 3: Test Architecture", "topic": "API Setup (Bonus)", "owner": "Self-study", "concepts": "Basic API seeding using Playwright's request context, setting up test data via API before UI tests, authentication tokens, request/response handling.", "assignment": "1) Use Playwright's `request` context to make a GET request to a public API and log the response.\n\n2) Create a test that seeds test data via API call before running a UI verification step.\n\n3) Write a helper function that authenticates via API and stores the token for subsequent requests."},
-  {"folder": "Optional-K-AI-Assisted-QA-Test-Scripting", "label": "Optional Session K", "date": "Self-paced, anytime after Week 15", "type": "Optional", "module": "AI-Assisted QA & Test Scripting", "topic": "AI Tools for Test Automation Awareness", "owner": "Self-study", "concepts": "Using AI coding assistants (e.g. GitHub Copilot, Claude, ChatGPT) to generate/refactor test scripts, prompt engineering for writing test cases & locators, AI-assisted debugging of failing tests, self-healing locators concept, limitations & risks of AI-generated code (hallucinated selectors, outdated APIs, over-trusting output), always reviewing AI output before committing.", "assignment": "1) Use an AI assistant to generate a new Playwright test scenario (e.g. 'add to cart and remove item') from a plain-English prompt, then manually review and correct any inaccurate locators or logic before running it.\n\n2) Paste one of your own failing tests and its error message into an AI assistant to get a suggested fix; apply the fix only after understanding why it works, and note in a comment what the AI got wrong or right.\n\n3) Write a short reflection (5-6 sentences) on one risk of blindly trusting AI-generated test code and one way you verified the AI's suggestion before using it."},
-  {"folder": "Week-16-Transitioning-JS-to-TypeScript", "label": "Week 16", "date": "Wed, Nov 11, 2026", "type": "Core", "module": "Module 4: TypeScript Intro", "topic": "Transitioning JS to TypeScript", "owner": "Vishal Tyagi", "concepts": "TypeScript intro, `.ts` files, basic type annotations (`string`, `number`, `boolean`, `any`), compile errors vs runtime errors.", "assignment": "1) Rename existing JS helper files to `.ts`, add explicit type annotations to functions/variables, and resolve all TypeScript compiler warnings.\n\n2) Deliberately pass a wrong-typed argument (e.g. a number where a string is expected) to one function and document the compiler error message.\n\n3) Replace any remaining `any` types with more specific types and note which ones were safe to change."},
-  {"folder": "Week-17-TypeScript-Interfaces-Page-Objects", "label": "Week 17", "date": "Wed, Nov 18, 2026", "type": "Core", "module": "Module 4: TypeScript Intro", "topic": "TypeScript Interfaces & Page Objects", "owner": "Vishal Tyagi", "concepts": "Defining `interface` & `type` for test data, typing Page Objects, IntelliSense advantages.", "assignment": "1) Create a `TestData.ts` file containing interfaces for `UserCredentials` & `ProductDetails`. Refactor Page Objects to use typed parameters.\n\n2) Add a third interface `OrderSummary` (e.g. itemCount, totalPrice, shippingAddress) and use it as the return type of a checkout helper function.\n\n3) Create at least 2 typed test data objects using the interfaces and use them to drive a data-driven login test (valid vs invalid credentials)."},
-  {"folder": "Week-18-Capstone-Project-Review", "label": "Week 18", "date": "Wed, Nov 25, 2026", "type": "Core", "module": "Module 4: TypeScript Intro", "topic": "Capstone Project & Review", "owner": "Vishal Tyagi", "concepts": "End-to-End test suite review, framework design, capstone project presentations.", "assignment": "1) Submit complete End-to-End automated regression test suite using TS + Playwright + POM for a sample web application.\n\n2) Add a short README documenting how to install dependencies, run the suite, and view the HTML report.\n\n3) Prepare a 5-10 minute presentation walking through your framework structure, one interesting bug found, and one improvement you'd make with more time."}
+  {
+    "folder": "Week-01-Environment-Setup-First-Line-of-Code",
+    "label": "Week 1",
+    "date": "Wed, Jul 29, 2026",
+    "type": "Core",
+    "module": "Module 1: JS Fundamentals",
+    "topic": "Environment Setup & First Line of Code",
+    "owner": "Vishal Tyagi",
+    "concepts": "Node.js, VS Code setup, terminal usage, console.log(), execution flow.",
+    "prerequisites": [
+      "Windows 10/11 or macOS, admin rights to install software, ~5 GB free disk",
+      "A stable internet connection"
+    ],
+    "agenda": [
+      [
+        "20 min",
+        "Install & verify Node.js LTS (`node -v`, `npm -v`) and VS Code"
+      ],
+      [
+        "15 min",
+        "VS Code tour: integrated terminal, extensions, useful shortcuts"
+      ],
+      [
+        "20 min",
+        "Terminal navigation: `cd`, `ls`/`dir`, creating a project folder"
+      ],
+      [
+        "25 min",
+        "First script: `console.log()`, running `node hello.js`"
+      ],
+      [
+        "20 min",
+        "Top-to-bottom execution flow; reading an error message on purpose"
+      ]
+    ],
+    "keyPoints": [
+      "Node runs a file top to bottom, one statement at a time - nothing is 'called' for you.",
+      "`console.log()` prints and then execution continues; it does not stop the script.",
+      "Always run scripts from the folder the file lives in, or pass the right relative path.",
+      "Read errors from the LAST line up: the message tells you what, the trace tells you where."
+    ],
+    "deliverables": [
+      [
+        "hello.js",
+        "A welcome message, your name, and your role - three `console.log()` calls."
+      ],
+      [
+        "intro.js",
+        "Prints: `Hello Everyone!` / `My Name is ___` / `I am learning Node.js` / `Today's date is ___` / `Thank You`"
+      ],
+      [
+        "profile.js",
+        "Your name, role, city, and one learning goal - separate `console.log()` calls."
+      ],
+      [
+        "numbers.js",
+        "Print any five numbers. Write your predicted output as a comment BEFORE running."
+      ],
+      [
+        "favorite.js",
+        "Your favourite programming language, tool, and learning resource."
+      ],
+      [
+        "courseName.js",
+        "A variable `courseName = \"Node.js Training\"`, printed with `console.log()`."
+      ],
+      [
+        "fullName.js",
+        "Variables `firstName`, `lastName`, `city` printed in one readable line."
+      ],
+      [
+        "sequence.js",
+        "Print `Step 1`, `Step 2`, `Step 3`, `Done` - then note the execution order in a comment."
+      ],
+      [
+        "types.js",
+        "One string, one number, and one boolean value."
+      ],
+      [
+        "message.js",
+        "A welcome message built from at least three separate `console.log()` calls."
+      ],
+      [
+        "syntaxError.js",
+        "Introduce one deliberate syntax error, run it, paste the error text in a comment, then fix it."
+      ]
+    ],
+    "definitionOfDone": [
+      "`node -v` and `npm -v` both print a version",
+      "Every file above runs with `node <file>.js` and produces output with no crash",
+      "`numbers.js` and `sequence.js` each contain your prediction/observation comment",
+      "`syntaxError.js` contains the original error message AND the working fix"
+    ],
+    "commonMistakes": [
+      "`node is not recognized` - Node isn't on PATH. Restart the terminal, then the machine, then reinstall.",
+      "`Cannot find module` - you're in the wrong folder. `cd` into the folder holding the file.",
+      "Running `node hello` instead of `node hello.js`.",
+      "Using a word processor instead of VS Code, which inserts smart quotes that JS can't parse."
+    ],
+    "resources": [
+      [
+        "Node.js downloads (take LTS, not Current)",
+        "https://nodejs.org"
+      ],
+      [
+        "VS Code downloads",
+        "https://code.visualstudio.com"
+      ],
+      [
+        "MDN: console.log()",
+        "https://developer.mozilla.org/en-US/docs/Web/API/console/log_static"
+      ],
+      [
+        "Participant handout in this folder",
+        "Basic-Setup.docx"
+      ]
+    ],
+    "stretch": [
+      "Run a file from a different directory using a relative path (`node ../week01/hello.js`).",
+      "Try `node` with no arguments to open the REPL, evaluate `2 + 2`, then exit with `.exit`."
+    ],
+    "assignment": "See **Deliverables** below - one file per task, all in your own participant folder."
+  },
+  {
+    "folder": "Optional-A-Git-Basics-Local-Workflow",
+    "label": "Optional Session A",
+    "date": "Self-paced, anytime after Week 1",
+    "type": "Optional",
+    "module": "Git & Version Control",
+    "topic": "Git Basics & Local Workflow",
+    "owner": "Self-study",
+    "concepts": "Why version control matters, installing Git, `git init`, `git status`, `git add`, `git commit`, `git log`, writing good commit messages, `.gitignore` basics.",
+    "prerequisites": [
+      "Week 1 complete (you have some `.js` files to commit)",
+      "Git installed (`git --version`)"
+    ],
+    "agenda": [
+      [
+        "15 min",
+        "What problem version control solves; the three states (working tree / staging / commit)"
+      ],
+      [
+        "15 min",
+        "`git config` your name and email; `git init` a repo"
+      ],
+      [
+        "25 min",
+        "The core loop: `git status` -> `git add` -> `git commit` -> `git log`"
+      ],
+      [
+        "15 min",
+        "Writing a commit message someone else can read"
+      ],
+      [
+        "10 min",
+        "`.gitignore`: what never belongs in a repo"
+      ]
+    ],
+    "keyPoints": [
+      "A commit is a snapshot, not a diff you can half-apply. Commit one logical change at a time.",
+      "`git add` stages; `git commit` records. Staging exists so you can commit part of your work.",
+      "`git status` is the answer to almost every 'what's going on?' moment - run it constantly.",
+      "A good message says WHY: `Add password validator with length rule`, not `changes`."
+    ],
+    "deliverables": [
+      [
+        "git-log.txt",
+        "Paste the output of `git log --oneline` showing at least 4 commits."
+      ],
+      [
+        ".gitignore",
+        "Excludes `node_modules/` and any local config; commit it."
+      ],
+      [
+        "notes.md",
+        "In your own words: what staging is for, and one commit message you rewrote and why."
+      ]
+    ],
+    "definitionOfDone": [
+      "`git config user.name` and `user.email` both return your values",
+      "At least 4 commits exist, each a single logical change with a readable message",
+      "`git status` is clean at the end (nothing uncommitted, nothing untracked that matters)"
+    ],
+    "commonMistakes": [
+      "`git add .` sweeping in `node_modules/` - write `.gitignore` FIRST.",
+      "One giant commit at the end of the day. Commit as you finish each piece.",
+      "Commit messages like `update`, `fix`, `asdf` - useless in six weeks' time."
+    ],
+    "resources": [
+      [
+        "Pro Git, chapters 1-2 (free)",
+        "https://git-scm.com/book/en/v2"
+      ],
+      [
+        "Interactive visual tutorial",
+        "https://learngitbranching.js.org/"
+      ],
+      [
+        "gitignore templates",
+        "https://github.com/github/gitignore"
+      ]
+    ],
+    "stretch": [
+      "Use `git diff` and `git diff --staged` and explain the difference in `notes.md`.",
+      "Try `git commit --amend` to fix the most recent commit message."
+    ],
+    "assignment": "See **Deliverables** below."
+  },
+  {
+    "folder": "Week-02-Variables-Basic-Data-Types",
+    "label": "Week 2",
+    "date": "Wed, Aug 05, 2026",
+    "type": "Core",
+    "module": "Module 1: JS Fundamentals",
+    "topic": "Variables & Basic Data Types",
+    "owner": "Tarun",
+    "concepts": "let vs const, block scope, Strings, Numbers, Booleans, string concatenation with `+`.",
+    "prerequisites": [
+      "Week 1 complete - you can create and run a `.js` file"
+    ],
+    "agenda": [
+      [
+        "20 min",
+        "`let` vs `const`; what block scope means and why it prevents bugs"
+      ],
+      [
+        "20 min",
+        "Strings: quotes vs backticks, immutability"
+      ],
+      [
+        "20 min",
+        "Numbers and the arithmetic operators `+ - * / %`"
+      ],
+      [
+        "15 min",
+        "Booleans, and how a comparison produces one"
+      ],
+      [
+        "25 min",
+        "String concatenation with `+`, and remembering your own spaces"
+      ]
+    ],
+    "keyPoints": [
+      "Start with `const`. Reach for `let` only once you know the value must change.",
+      "`const` must be initialised at declaration, and cannot be reassigned.",
+      "Both `let` and `const` are block-scoped - they exist only inside their `{ }`.",
+      "`+` between a string and a number converts the number to text: `\"a\" + 1` is `\"a1\"`.",
+      "Concatenation adds no spaces for you - `first + \" \" + last`, not `first + last`."
+    ],
+    "deliverables": [
+      [
+        "studentName.js",
+        "`let studentName` with your name; print it."
+      ],
+      [
+        "birthYear.js",
+        "`const birthYear`; then TRY to reassign it, run it, and paste the exact error in a comment."
+      ],
+      [
+        "numbers.js",
+        "`num1` and `num2`; print their sum, difference, product, and division result."
+      ],
+      [
+        "courseName.js",
+        "`courseName = \"JavaScript Basics\"`; print `I am learning JavaScript Basics.`"
+      ],
+      [
+        "fullName.js",
+        "`firstName` + `lastName` combined into `fullName`; print it."
+      ],
+      [
+        "marks.js",
+        "`marks`, plus a boolean `isPassed` holding whether marks >= 40."
+      ],
+      [
+        "city.js",
+        "`city`; use concatenation to print `I live in <city>.`"
+      ],
+      [
+        "vote.js",
+        "`age`, plus a boolean `canVote` holding whether age >= 18."
+      ],
+      [
+        "totalPrice.js",
+        "`productPrice` and `quantity`; print e.g. `Total price is 500`."
+      ],
+      [
+        "selfIntro.js",
+        "A self-introduction from `name`, `age`, `city`, `course` joined by concatenation."
+      ]
+    ],
+    "definitionOfDone": [
+      "All ten files run cleanly with `node <file>.js`",
+      "`birthYear.js` contains the real `TypeError: Assignment to constant variable.` text",
+      "Every printed sentence has correct spacing (no `Iliveinnoida`)",
+      "You used `const` wherever the value never changes"
+    ],
+    "commonMistakes": [
+      "Forgetting spaces in concatenation - the single most common bug this week.",
+      "`const` with no value: `const x;` is a SyntaxError.",
+      "Using a variable outside the `{ }` block it was declared in.",
+      "`\"5\" + 3` gives `\"53\"`, not `8`. Watch for numbers arriving as strings."
+    ],
+    "resources": [
+      [
+        "MDN: let",
+        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let"
+      ],
+      [
+        "MDN: const",
+        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const"
+      ],
+      [
+        "javascript.info: Data types",
+        "https://javascript.info/types"
+      ],
+      [
+        "Participant handout in this folder",
+        "PW_Week 2 tranning.docx"
+      ]
+    ],
+    "stretch": [
+      "Rewrite `selfIntro.js` using template literals (backticks and `${}`) and note which reads better. Backticks are formally introduced later - this is a preview.",
+      "Print `typeof` each of your variables and explain any result that surprises you."
+    ],
+    "assignment": "See **Deliverables** below - the ten assignment questions from the participant handout, one file each."
+  },
+  {
+    "folder": "Week-03-Conditional-Logic-Operators",
+    "label": "Week 3",
+    "date": "Wed, Aug 12, 2026",
+    "type": "Core",
+    "module": "Module 1: JS Fundamentals",
+    "topic": "Conditional Logic & Operators",
+    "owner": "Aruneema",
+    "concepts": "if / else / else if, comparison operators (===, !==, >=), logical operators (&&, ||, !), nested if, switch, ternary.",
+    "prerequisites": [
+      "Week 2 complete - comfortable with variables, numbers, booleans"
+    ],
+    "agenda": [
+      [
+        "15 min",
+        "What a condition is: an expression that evaluates to true or false"
+      ],
+      [
+        "20 min",
+        "`if`, `if...else`, and `else if` chains"
+      ],
+      [
+        "15 min",
+        "Why order matters in an `else if` chain"
+      ],
+      [
+        "15 min",
+        "Nested `if` and combining conditions with `&&` / `||` / `!`"
+      ],
+      [
+        "20 min",
+        "`switch` / `case` / `break` / `default`, and fall-through"
+      ],
+      [
+        "15 min",
+        "The ternary `? :` and when it hurts readability"
+      ]
+    ],
+    "keyPoints": [
+      "An `else if` chain stops at the FIRST true branch - put the most specific condition first.",
+      "Always use `===`, not `==`. `==` coerces types and will surprise you.",
+      "`&&` needs both sides true; `||` needs one; `!` flips the result.",
+      "Forgetting `break` in a `switch` causes fall-through into the next case.",
+      "`default` in a `switch` is the `else` - always handle the unrecognised value."
+    ],
+    "deliverables": [
+      [
+        "userRoles.js",
+        "Given `role` of `'Admin'` / `'Tester'` / `'Guest'`, print the matching permission level using `if` / `else if`, with an `else` for an unrecognised role."
+      ],
+      [
+        "userAccess.js",
+        "Using `&&` and `||`, check `isLoggedIn` AND `hasValidSession` and print `Access Granted` or `Access Denied`."
+      ],
+      [
+        "gradeCalculator.js",
+        "An `else if` chain turning `marks` into Grade A/B/C/D/Fail. Then deliberately put `marks >= 40` first, observe the wrong answer, and explain it in a comment."
+      ],
+      [
+        "entryCheck.js",
+        "A nested `if`: outer checks `age >= 18`, inner checks `hasID === true`. Print the outcome for both a passing and a failing case."
+      ],
+      [
+        "roleSwitch.js",
+        "Rewrite `userRoles.js` using `switch` / `case` / `break` / `default`."
+      ],
+      [
+        "ternaryDemo.js",
+        "Use the ternary `? :` to set `\"Adult\"` or `\"Minor\"` from `age`, and note in a comment when a full `if...else` would read better."
+      ]
+    ],
+    "definitionOfDone": [
+      "All six files run cleanly",
+      "Every file uses `===` rather than `==`",
+      "`gradeCalculator.js` documents the wrong-order experiment",
+      "`roleSwitch.js` has a `break` in every case plus a `default`",
+      "Each conditional has been tested with BOTH a true and a false input"
+    ],
+    "commonMistakes": [
+      "`=` (assign) where you meant `===` (compare) - `if (role = 'Admin')` is always true.",
+      "Ordering `else if` from general to specific, so later branches are unreachable.",
+      "Missing `break`, causing two cases to run.",
+      "Comparing a boolean to a string: `if (isLoggedIn === 'true')` is not the same as `=== true`."
+    ],
+    "resources": [
+      [
+        "MDN: if...else",
+        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else"
+      ],
+      [
+        "MDN: switch",
+        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/switch"
+      ],
+      [
+        "javascript.info: Logical operators",
+        "https://javascript.info/logical-operators"
+      ],
+      [
+        "Participant handout in this folder",
+        "Conditional-logical-operators.docx"
+      ]
+    ],
+    "stretch": [
+      "Write a truth table in a comment for `age < 18 || hasPermission === true` covering all four input combinations.",
+      "Explain in a comment why `!isLoggedIn` is preferred over `isLoggedIn === false`."
+    ],
+    "assignment": "See **Deliverables** below."
+  },
+  {
+    "folder": "Week-04-Functions-Reusability",
+    "label": "Week 4",
+    "date": "Wed, Aug 19, 2026",
+    "type": "Core",
+    "module": "Module 1: JS Fundamentals",
+    "topic": "Functions & Reusability",
+    "owner": "Prachi",
+    "concepts": "Function declarations, parameters & arguments, return values, arrow functions, default & rest parameters, higher-order functions, DRY.",
+    "prerequisites": [
+      "Week 3 complete - comfortable with conditions and booleans"
+    ],
+    "agenda": [
+      [
+        "20 min",
+        "Declarations, parameters vs arguments, and `return`"
+      ],
+      [
+        "20 min",
+        "Function expressions and arrow functions (block body vs shorthand)"
+      ],
+      [
+        "15 min",
+        "Declaration vs arrow: hoisting, `this`, when to use which"
+      ],
+      [
+        "15 min",
+        "Default parameters and rest parameters"
+      ],
+      [
+        "20 min",
+        "Why functions = reusability: DRY, single responsibility, naming"
+      ],
+      [
+        "20 min",
+        "Higher-order functions and a hand-rolled `runTest` - your first taste of a test runner"
+      ]
+    ],
+    "keyPoints": [
+      "A function with no `return` returns `undefined` - the most common silent bug this week.",
+      "Declarations are hoisted; arrow functions assigned to a `const` are not.",
+      "One function, one job. `isValidAge` validates - it does not also log or format.",
+      "Name a boolean-returning function so the name reads as a question: `isValidPassword`.",
+      "Test the boundaries (8, 20, 7, 21), not just the comfortable middle."
+    ],
+    "deliverables": [
+      [
+        "helpers.js",
+        "`calculateTotal(price, quantity)` returning price * quantity, and `applyTax(price, taxRate = 5)` using a default parameter."
+      ],
+      [
+        "arrowHelpers.js",
+        "Rewrite `calculateTotal` as a shorthand arrow `calculateTotalArrow`, and compare the two syntaxes in a comment."
+      ],
+      [
+        "formatProductLabel.js",
+        "`formatProductLabel(name, category)` returning e.g. `Shoes (Footwear)`, using a small capitalise helper defined inside."
+      ],
+      [
+        "passwordValidator.js",
+        "`isValidPassword(password)` returning true only for length 8-20 inclusive. Call it with at least 5 values including both boundaries."
+      ],
+      [
+        "average.js",
+        "`average(...numbers)` using a rest parameter, returning the mean of any count of arguments."
+      ],
+      [
+        "testRunner.js",
+        "A `runTest(description, actual, expected)` higher-order helper; use it on three of your functions, with at least one deliberate failing test."
+      ]
+    ],
+    "definitionOfDone": [
+      "All six files run cleanly",
+      "Every function `return`s a value - none rely on `console.log` as the result",
+      "`passwordValidator.js` proves both boundaries (8 and 20 pass; 7 and 21 fail)",
+      "`testRunner.js` output shows at least one PASS and one FAIL",
+      "No logic is copy-pasted between files - shared logic became a function"
+    ],
+    "commonMistakes": [
+      "`console.log()` inside the function instead of `return` - the caller then gets `undefined`.",
+      "Calling an arrow function before the line that defines it (not hoisted).",
+      "Off-by-one on inclusive boundaries: `> 8` excludes 8; you wanted `>= 8`.",
+      "Mutating an argument instead of returning a new value."
+    ],
+    "resources": [
+      [
+        "MDN: Functions guide",
+        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions"
+      ],
+      [
+        "MDN: Arrow functions",
+        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions"
+      ],
+      [
+        "Study guide + practice file in this folder",
+        "javascript-functions-study-guide.docx / javascript-functions-practice.js"
+      ]
+    ],
+    "stretch": [
+      "Rewrite `average` using `.reduce()` and keep both versions side by side.",
+      "Extend `runTest` to keep a pass/fail tally and print a summary line at the end."
+    ],
+    "assignment": "Work through `Artifacts/javascript-functions-practice.js`, then submit the files in **Deliverables** below."
+  },
+  {
+    "folder": "Week-05-Arrays-Loops",
+    "label": "Week 5",
+    "date": "Wed, Aug 26, 2026",
+    "type": "Core",
+    "module": "Module 1: JS Fundamentals",
+    "topic": "Arrays & Loops",
+    "owner": "Tarun",
+    "concepts": "Array creation, indexing, `.length`, `for` loops, `for...of`, `.push()` / `.shift()` / `.pop()`, and a first look at `.includes()`.",
+    "prerequisites": [
+      "Week 4 complete - you can write and call a function that returns a value"
+    ],
+    "agenda": [
+      [
+        "15 min",
+        "Creating arrays, zero-based indexing, `.length`"
+      ],
+      [
+        "20 min",
+        "The classic `for` loop: init / condition / increment"
+      ],
+      [
+        "15 min",
+        "`for...of` - when you want the value, not the index"
+      ],
+      [
+        "20 min",
+        "Mutating arrays: `.push()`, `.pop()`, `.shift()`, `.unshift()`"
+      ],
+      [
+        "20 min",
+        "Searching and filtering by hand: `.includes()`, counting matches"
+      ],
+      [
+        "20 min",
+        "Why this matters for testing: a list of test data driving one assertion"
+      ]
+    ],
+    "keyPoints": [
+      "Indexes start at 0, so the last item is `arr[arr.length - 1]`.",
+      "`for (let i = 0; i < arr.length; i++)` - `<`, never `<=`, or you read `undefined`.",
+      "Use `for...of` when you don't need the index; it's harder to get wrong.",
+      "`.push()` adds to the end, `.shift()` removes from the FRONT (and shifts everything down).",
+      "An array declared with `const` can still have items added - `const` blocks reassignment, not mutation."
+    ],
+    "deliverables": [
+      [
+        "products.js",
+        "An array of 5 product titles. Loop through it and print only titles longer than 10 characters."
+      ],
+      [
+        "arrayMutation.js",
+        "Add a 6th product with `.push()`, remove the first with `.shift()`, printing the whole array after each change."
+      ],
+      [
+        "countMatches.js",
+        "Use `for...of` to count and print how many titles contain `'Shirt'` or `'Bag'`."
+      ],
+      [
+        "loopComparison.js",
+        "Print the same array twice - once with a `for` loop using the index, once with `for...of` - and compare them in a comment."
+      ],
+      [
+        "testDataLoop.js",
+        "An array of 4 login objects (`{ username, password }`); loop it and print a one-line summary per set. This is the shape of data-driven testing."
+      ]
+    ],
+    "definitionOfDone": [
+      "All five files run cleanly",
+      "No loop reads past the end of its array (no stray `undefined` in output)",
+      "`arrayMutation.js` output clearly shows the array before and after each operation",
+      "`loopComparison.js` states which loop you'd choose and why"
+    ],
+    "commonMistakes": [
+      "`i <= arr.length` - off by one, prints `undefined` as the last item.",
+      "Confusing `.shift()` (removes first) with `.pop()` (removes last).",
+      "Trying to reassign a `const` array (`products = [...]`) rather than mutating it.",
+      "Comparing `.length` to a string: `if (title.length > '10')` happens to work but is wrong."
+    ],
+    "resources": [
+      [
+        "MDN: Array",
+        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"
+      ],
+      [
+        "MDN: for...of",
+        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of"
+      ],
+      [
+        "javascript.info: Arrays",
+        "https://javascript.info/array"
+      ]
+    ],
+    "stretch": [
+      "Redo `products.js` with `.filter()` and compare the line count to your `for` loop.",
+      "Write `findLongestTitle(titles)` returning the longest string, and handle the empty-array case."
+    ],
+    "assignment": "See **Deliverables** below. Work through `Artifacts/arrays-loops-practice.js` first."
+  },
+  {
+    "folder": "Optional-B-Branching-Merging",
+    "label": "Optional Session B",
+    "date": "Self-paced, anytime after Week 5",
+    "type": "Optional",
+    "module": "Git & Version Control",
+    "topic": "Branching & Merging",
+    "owner": "Self-study",
+    "concepts": "`git branch`, `git switch` / `checkout`, feature branches, `git merge`, understanding and resolving merge conflicts.",
+    "prerequisites": [
+      "Optional A complete - you can commit confidently"
+    ],
+    "agenda": [
+      [
+        "15 min",
+        "What a branch actually is (a moving pointer to a commit)"
+      ],
+      [
+        "20 min",
+        "Creating and switching branches; committing on a branch"
+      ],
+      [
+        "20 min",
+        "Merging back to `main`; fast-forward vs merge commit"
+      ],
+      [
+        "25 min",
+        "Creating a conflict on purpose and resolving it by hand"
+      ]
+    ],
+    "keyPoints": [
+      "A branch is cheap - one pointer. Make one per assignment; that's what this repo's PR flow expects.",
+      "Commit or stash before switching branches, or your changes follow you across.",
+      "A conflict is git telling you two humans changed the same line - only a human can decide.",
+      "Resolve by deleting the `<<<<<<<`, `=======`, `>>>>>>>` markers AND choosing the real content."
+    ],
+    "deliverables": [
+      [
+        "branch-log.txt",
+        "Output of `git log --oneline --graph --all` showing a branch that was created and merged."
+      ],
+      [
+        "conflict-notes.md",
+        "The conflict you created, the markers you saw (paste them), and how you resolved it."
+      ]
+    ],
+    "definitionOfDone": [
+      "A branch `feature/arrays-practice` was created, committed on, and merged into `main`",
+      "The merged change is visible in `main`'s history",
+      "You created and resolved a real conflict, and no conflict markers remain in any file"
+    ],
+    "commonMistakes": [
+      "Committing a file that still contains `<<<<<<< HEAD` markers - always re-read the file after resolving.",
+      "Working on `main` by habit. Check `git branch` before you start.",
+      "Deleting a branch before it's merged and losing the work."
+    ],
+    "resources": [
+      [
+        "Pro Git ch. 3: Branching",
+        "https://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell"
+      ],
+      [
+        "learngitbranching.js.org (do the Main levels)",
+        "https://learngitbranching.js.org/"
+      ]
+    ],
+    "stretch": [
+      "Try `git merge --abort` mid-conflict to back out, then redo the merge deliberately."
+    ],
+    "assignment": "See **Deliverables** below."
+  },
+  {
+    "folder": "Week-06-Async-Await-Promises",
+    "label": "Week 6",
+    "date": "Wed, Sep 02, 2026",
+    "type": "Core",
+    "module": "Module 1: JS Fundamentals",
+    "topic": "Async/Await & Promises",
+    "owner": "Prachi",
+    "concepts": "Synchronous vs asynchronous execution, the callback problem, Promises, `async` / `await`, `try/catch`, `Promise.all`.",
+    "prerequisites": [
+      "Week 4 complete (functions returning values)",
+      "Week 5 complete (loops)"
+    ],
+    "agenda": [
+      [
+        "20 min",
+        "Sync vs async: why `setTimeout` doesn't block, demonstrated live"
+      ],
+      [
+        "20 min",
+        "A Promise as a receipt for a future value: pending -> fulfilled / rejected"
+      ],
+      [
+        "25 min",
+        "`async` / `await` - the readable way to consume a Promise"
+      ],
+      [
+        "20 min",
+        "Errors: `try/catch` around `await`, and what an unhandled rejection looks like"
+      ],
+      [
+        "20 min",
+        "Sequential vs parallel (`await` in series vs `Promise.all`)"
+      ],
+      [
+        "15 min",
+        "Why every Playwright call you'll write starts with `await`"
+      ]
+    ],
+    "keyPoints": [
+      "`await` only works inside an `async` function. This is the #1 error you'll hit.",
+      "An `async` function ALWAYS returns a Promise, even when you return a plain value.",
+      "Forgetting `await` gives you a `Promise { <pending> }` instead of your value - the single most common Playwright bug too.",
+      "Sequential `await`s add up: two 2-second calls in series take 4s; `Promise.all` takes 2s.",
+      "Only `try/catch` around an `await` catches an async error - a plain `if` won't."
+    ],
+    "deliverables": [
+      [
+        "fetchUserData.js",
+        "A mock `fetchUserData()` returning a Promise that resolves after 2s via `setTimeout`; call it with `async/await` and log the result."
+      ],
+      [
+        "sequential.js",
+        "Add `fetchOrderData()`; await both in sequence and log the total elapsed time using `Date.now()`."
+      ],
+      [
+        "errorHandling.js",
+        "A function that deliberately rejects; handle it with `try/catch` and log a friendly message. Also show what happens with NO try/catch, in a comment."
+      ],
+      [
+        "parallel.js",
+        "Run both mock fetches with `Promise.all` and log the elapsed time. Explain the difference from `sequential.js` in a comment."
+      ],
+      [
+        "missingAwait.js",
+        "Call an async function WITHOUT `await`, log the result, and explain the `Promise { <pending> }` output in a comment."
+      ]
+    ],
+    "definitionOfDone": [
+      "All five files run cleanly with no unhandled promise rejection warnings",
+      "`sequential.js` and `parallel.js` both print real elapsed times, and the parallel one is measurably faster",
+      "`errorHandling.js` never crashes the process",
+      "`missingAwait.js` contains your explanation of the pending-Promise output"
+    ],
+    "commonMistakes": [
+      "`await` at the top level of an old-style script - wrap it in an `async function main()` and call `main()`.",
+      "Forgetting `await`, then wondering why a value is `undefined` or `[object Promise]`.",
+      "`try/catch` placed around the function DEFINITION rather than the `await` call.",
+      "Using `.then()` and `await` on the same call at once."
+    ],
+    "resources": [
+      [
+        "MDN: async function",
+        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function"
+      ],
+      [
+        "javascript.info: Promises, async/await",
+        "https://javascript.info/async"
+      ],
+      [
+        "MDN: Promise.all",
+        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all"
+      ]
+    ],
+    "stretch": [
+      "Write `retry(fn, attempts)` that awaits `fn()` and retries on rejection - the pattern behind flaky-test retries.",
+      "Compare `Promise.all` with `Promise.allSettled` when one promise rejects."
+    ],
+    "assignment": "See **Deliverables** below. This week is the gateway to Playwright - every Playwright action is async."
+  },
+  {
+    "folder": "Week-07-Playwright-Setup-CodeGen-Intro",
+    "label": "Week 7",
+    "date": "Wed, Sep 09, 2026",
+    "type": "Core",
+    "module": "Module 2: Playwright Core",
+    "topic": "Playwright Setup & CodeGen Intro",
+    "owner": "Hritik",
+    "concepts": "`npm init playwright@latest`, project structure, `playwright.config`, running tests, `npx playwright codegen`, the HTML report.",
+    "prerequisites": [
+      "Week 6 complete - you understand `async` / `await`",
+      "Node.js LTS installed and working (`node -v`)"
+    ],
+    "agenda": [
+      [
+        "20 min",
+        "`npm init playwright@latest` walkthrough; what each prompt means"
+      ],
+      [
+        "20 min",
+        "Project tour: `tests/`, `tests-examples/`, `playwright.config.js`, `package.json`"
+      ],
+      [
+        "15 min",
+        "Running tests: headless, `--headed`, `--project=chromium`, `--ui`"
+      ],
+      [
+        "25 min",
+        "CodeGen live: recording a login and search on SauceDemo"
+      ],
+      [
+        "20 min",
+        "Cleaning up generated code - why you never commit CodeGen output raw"
+      ],
+      [
+        "20 min",
+        "Reading the HTML report"
+      ]
+    ],
+    "keyPoints": [
+      "CodeGen is a starting point, not a deliverable. It over-records and picks brittle locators.",
+      "`baseURL` in the config lets your tests say `page.goto('/')` instead of a full URL.",
+      "`headless: true` is the default and the right choice for CI; `--headed` is for humans debugging.",
+      "`retries` hides flakiness - useful in CI, dangerous as a substitute for fixing a real race.",
+      "Never commit `node_modules/`, `test-results/`, or `playwright-report/`."
+    ],
+    "practiceSite": "https://www.saucedemo.com (user `standard_user` / `secret_sauce`)",
+    "deliverables": [
+      [
+        "tests/login-search.spec.js",
+        "A CodeGen recording of login + product search on SauceDemo, cleaned up: no redundant clicks, meaningful test name."
+      ],
+      [
+        "tests/checkout.spec.js",
+        "A second CodeGen flow - add to cart and complete checkout - also cleaned up."
+      ],
+      [
+        "config-notes.md",
+        "What `baseURL`, `headless`, `retries`, `timeout`, and `projects` each control in `playwright.config.js`, in your own words."
+      ],
+      [
+        "codegen-cleanup.md",
+        "Paste 5 lines CodeGen generated that you deleted or rewrote, and say why for each."
+      ],
+      [
+        ".gitignore",
+        "Must exclude `node_modules/`, `test-results/`, `playwright-report/`, `playwright/.cache/`."
+      ]
+    ],
+    "definitionOfDone": [
+      "`npx playwright test` runs both spec files green from a clean checkout after `npm install`",
+      "`npx playwright show-report` opens a report with both tests passing",
+      "No `node_modules/`, `test-results/`, or `playwright-report/` in your commit",
+      "Both spec files are readable - a colleague could tell what each test does from the test name alone"
+    ],
+    "commonMistakes": [
+      "Committing `node_modules/` - write `.gitignore` before your first `git add`.",
+      "Leaving CodeGen's `page.getByRole('cell', { name: '...' }).nth(3)` style locators in place.",
+      "Running `npx playwright test` from the wrong folder (no config found).",
+      "Skipping `npx playwright install` and getting a 'browser not found' error."
+    ],
+    "resources": [
+      [
+        "Playwright: Installation",
+        "https://playwright.dev/docs/intro"
+      ],
+      [
+        "Playwright: Test generator (CodeGen)",
+        "https://playwright.dev/docs/codegen"
+      ],
+      [
+        "Playwright: Configuration",
+        "https://playwright.dev/docs/test-configuration"
+      ],
+      [
+        "Practice site",
+        "https://www.saucedemo.com"
+      ]
+    ],
+    "stretch": [
+      "Run the same spec against `--project=firefox` and `--project=webkit` and note any difference.",
+      "Try `npx playwright test --ui` and explore the time-travel view."
+    ],
+    "assignment": "See **Deliverables** below. Submit the spec files and notes - NOT your `node_modules`."
+  },
+  {
+    "folder": "Optional-C-Remote-Repositories-GitHub-Collaboration",
+    "label": "Optional Session C",
+    "date": "Self-paced, anytime after Week 7",
+    "type": "Optional",
+    "module": "Git & Version Control",
+    "topic": "Remote Repositories & GitHub Collaboration",
+    "owner": "Self-study",
+    "concepts": "`git remote`, `git push` / `git pull`, cloning, forking, Pull Requests, code review basics.",
+    "prerequisites": [
+      "Optional A and B complete",
+      "A GitHub account with an SSH key set up (see the repo README)"
+    ],
+    "agenda": [
+      [
+        "15 min",
+        "Local vs remote; what `origin` means"
+      ],
+      [
+        "20 min",
+        "Creating a GitHub repo and pushing an existing local project"
+      ],
+      [
+        "20 min",
+        "Cloning into a second folder to simulate a teammate"
+      ],
+      [
+        "25 min",
+        "Opening a Pull Request; what a reviewer looks for"
+      ],
+      [
+        "15 min",
+        "Merging, then pulling the merge back down"
+      ]
+    ],
+    "keyPoints": [
+      "`git push` only sends committed work. Uncommitted changes stay on your machine.",
+      "A PR is a request for review, not a delivery mechanism - the conversation is the point.",
+      "Small PRs get reviewed; 40-file PRs get rubber-stamped. This is why one PR per assignment.",
+      "After a PR merges, `git pull` on `main` locally or your next branch starts from stale code."
+    ],
+    "deliverables": [
+      [
+        "pr-link.md",
+        "The URL of a Pull Request you opened, plus a paste of the review comment you left on it."
+      ],
+      [
+        "remote-notes.md",
+        "In your own words: the difference between `git fetch`, `git pull`, and `git push`."
+      ]
+    ],
+    "definitionOfDone": [
+      "Your Playwright project is pushed to a GitHub repo you own",
+      "You opened a PR from a branch, left at least one review comment, and merged it",
+      "You pulled the merged result back into your original local clone"
+    ],
+    "commonMistakes": [
+      "Pushing to `main` directly out of habit - this repo uses a branch + PR per assignment.",
+      "`git push` rejected because someone else pushed first. Fix: `git pull --rebase`, then push.",
+      "Committing secrets (a `.env`, a token) - once pushed, treat it as leaked and rotate it."
+    ],
+    "resources": [
+      [
+        "GitHub: About Pull Requests",
+        "https://docs.github.com/en/pull-requests"
+      ],
+      [
+        "Pro Git ch. 2.5: Working with Remotes",
+        "https://git-scm.com/book/en/v2/Git-Basics-Working-with-Remotes"
+      ],
+      [
+        "This repo's README - SSH setup and the everyday workflow",
+        "../../README.md"
+      ]
+    ],
+    "stretch": [
+      "Enable branch protection on your repo requiring one approving review, then try to push straight to `main`."
+    ],
+    "assignment": "See **Deliverables** below."
+  },
+  {
+    "folder": "Optional-D-Project-Config",
+    "label": "Optional Session D",
+    "date": "Self-paced, anytime after Week 7",
+    "type": "Optional",
+    "module": "Module 2: Playwright Core",
+    "topic": "Project Config, package.json & npm",
+    "owner": "Self-study",
+    "concepts": "`package.json` structure, npm scripts, `node_modules`, dependencies vs devDependencies, semantic versioning, `package-lock.json`.",
+    "prerequisites": [
+      "Week 7 complete - you have a Playwright project"
+    ],
+    "agenda": [
+      [
+        "15 min",
+        "Every field in `package.json`, line by line"
+      ],
+      [
+        "20 min",
+        "npm scripts: writing them, chaining them, `npm run`"
+      ],
+      [
+        "15 min",
+        "dependencies vs devDependencies - why Playwright is a devDependency"
+      ],
+      [
+        "15 min",
+        "Semver: what `^1.2.3` actually allows, and why `package-lock.json` exists"
+      ],
+      [
+        "15 min",
+        "Deleting `node_modules` and reinstalling from the lockfile"
+      ]
+    ],
+    "keyPoints": [
+      "`node_modules` is disposable and derived - never commit it, always commit `package-lock.json`.",
+      "`^1.2.3` allows any 1.x.y at or above 1.2.3. That's how a green suite breaks overnight.",
+      "Test tooling belongs in `devDependencies` - it isn't needed to run the product.",
+      "npm scripts are the project's documented entry points; a new joiner should need only `npm ci` and `npm test`."
+    ],
+    "deliverables": [
+      [
+        "package-json-notes.md",
+        "Every section of your `package.json` explained: `name`, `version`, `scripts`, `dependencies`, `devDependencies`."
+      ],
+      [
+        "package.json",
+        "With at least three custom scripts added: `test:smoke` (a `--grep @smoke` run), `test:headed`, and `report`."
+      ],
+      [
+        "npm-notes.md",
+        "What happened when you deleted `node_modules` and ran `npm install`; why it works, and when you'd do it. Include the difference between `npm install` and `npm ci`."
+      ]
+    ],
+    "definitionOfDone": [
+      "`npm run test:smoke`, `npm run test:headed`, and `npm run report` all execute",
+      "`node_modules` was deleted and restored successfully",
+      "You can explain why `package-lock.json` is committed but `node_modules` is not"
+    ],
+    "commonMistakes": [
+      "Committing `node_modules` (hundreds of MB) or ignoring `package-lock.json` (breaks reproducibility).",
+      "Editing files inside `node_modules` - changes vanish on reinstall.",
+      "Installing Playwright with `-g` instead of into the project."
+    ],
+    "resources": [
+      [
+        "npm docs: package.json",
+        "https://docs.npmjs.com/cli/v10/configuring-npm/package-json"
+      ],
+      [
+        "npm docs: scripts",
+        "https://docs.npmjs.com/cli/v10/using-npm/scripts"
+      ],
+      [
+        "Semantic versioning",
+        "https://semver.org/"
+      ]
+    ],
+    "stretch": [
+      "Add a `pretest` script and observe npm running it automatically before `test`."
+    ],
+    "assignment": "See **Deliverables** below."
+  },
+  {
+    "folder": "Optional-E-DOM-Basics",
+    "label": "Optional Session E",
+    "date": "Self-paced, anytime after Week 7",
+    "type": "Optional",
+    "module": "Module 2: Playwright Core",
+    "topic": "DOM Basics & Chrome DevTools",
+    "owner": "Self-study",
+    "concepts": "DevTools Elements & Console panels, HTML attributes (id, class, data-*), DOM hierarchy, `document.querySelector()`, how this maps to Playwright locators.",
+    "prerequisites": [
+      "Week 7 complete - you've seen locators in CodeGen output"
+    ],
+    "agenda": [
+      [
+        "20 min",
+        "The Elements panel: inspecting, the DOM tree, parent/child/sibling"
+      ],
+      [
+        "20 min",
+        "Attributes that matter for testing: `id`, `class`, `name`, `data-testid`, ARIA roles"
+      ],
+      [
+        "20 min",
+        "Live-editing HTML/CSS in DevTools to understand rendering"
+      ],
+      [
+        "25 min",
+        "The Console: `document.querySelector()` / `querySelectorAll()` and CSS selector syntax"
+      ],
+      [
+        "15 min",
+        "Mapping a CSS selector to the equivalent Playwright locator"
+      ]
+    ],
+    "keyPoints": [
+      "If you can't select it in the Console, Playwright won't find it either - debug there first.",
+      "`querySelector` returns the FIRST match. A selector matching 12 things is a future flaky test.",
+      "Auto-generated classes like `css-1x2y3z` change on every build. Never target them.",
+      "The accessibility tree is what `getByRole` reads - inspect it, not just the HTML."
+    ],
+    "deliverables": [
+      [
+        "dom-inspection.md",
+        "5 elements you inspected: tag, key attributes, and position in the DOM hierarchy for each."
+      ],
+      [
+        "selectors.md",
+        "10 `document.querySelector()` commands you ran, the result of each, and the equivalent Playwright locator beside it."
+      ],
+      [
+        "live-edit-notes.md",
+        "What you changed live in DevTools, what happened, and why it disappeared on reload."
+      ]
+    ],
+    "definitionOfDone": [
+      "All 5 inspected elements are documented with real attribute values, not placeholders",
+      "Each of your 10 selectors has a Playwright equivalent written next to it",
+      "You can explain why a DevTools edit doesn't persist"
+    ],
+    "commonMistakes": [
+      "Using DevTools 'Copy selector', which produces long brittle paths like `body > div:nth-child(3) > ...`.",
+      "Confusing the Elements panel (live DOM) with View Source (original HTML).",
+      "Assuming an element is missing when it's inside an iframe or a shadow root."
+    ],
+    "resources": [
+      [
+        "Chrome DevTools: Elements",
+        "https://developer.chrome.com/docs/devtools/dom"
+      ],
+      [
+        "MDN: CSS selectors",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors"
+      ],
+      [
+        "Playwright: Other locators",
+        "https://playwright.dev/docs/other-locators"
+      ]
+    ],
+    "stretch": [
+      "Find an element inside an iframe and work out why `document.querySelector` from the top frame can't reach it."
+    ],
+    "assignment": "See **Deliverables** below."
+  },
+  {
+    "folder": "Week-08-Locators-Page-Interactions",
+    "label": "Week 8",
+    "date": "Wed, Sep 16, 2026",
+    "type": "Core",
+    "module": "Module 2: Playwright Core",
+    "topic": "Locators & Page Interactions",
+    "owner": "Vishal Tyagi",
+    "concepts": "User-facing locators (`getByRole`, `getByLabel`, `getByText`, `getByPlaceholder`, `getByTestId`), CSS/XPath alternatives, locator chaining, strictness.",
+    "prerequisites": [
+      "Week 7 complete - a working Playwright project",
+      "Optional E recommended (DevTools)"
+    ],
+    "agenda": [
+      [
+        "20 min",
+        "The locator priority list and why `getByRole` comes first"
+      ],
+      [
+        "20 min",
+        "`getByRole`, `getByLabel`, `getByPlaceholder`, `getByText` with live examples"
+      ],
+      [
+        "15 min",
+        "`getByTestId` and why teams add `data-testid` on purpose"
+      ],
+      [
+        "20 min",
+        "CSS and XPath: when they're still the right answer"
+      ],
+      [
+        "20 min",
+        "Strict mode: 'resolved to 2 elements' and how to narrow with chaining / `.filter()`"
+      ],
+      [
+        "15 min",
+        "A locator is lazy - it's a query, not an element"
+      ]
+    ],
+    "keyPoints": [
+      "Locator priority: role > label > placeholder > text > testid > CSS > XPath.",
+      "A locator is lazy. Creating it does nothing; the query runs when you act or assert.",
+      "Strict mode is a feature: 'resolved to 2 elements' means your selector is ambiguous, so fix it.",
+      "Narrow by chaining (`page.getByRole('row').getByRole('button')`) or `.filter({ hasText })`, not by `.nth(3)`.",
+      "`getByRole` survives redesigns because it targets what the user perceives, not the markup."
+    ],
+    "practiceSite": "https://www.saucedemo.com and https://demo.playwright.dev/todomvc",
+    "deliverables": [
+      [
+        "tests/locators-userfacing.spec.js",
+        "Written by hand, no CodeGen: locate 5 different elements with `getByRole` / `getByLabel` and act on each."
+      ],
+      [
+        "tests/locators-css.spec.js",
+        "The same 5 elements via CSS selectors. Add a comment on which approach was more readable and more stable."
+      ],
+      [
+        "tests/locators-testid.spec.js",
+        "At least 2 elements via `getByTestId`, plus a comment explaining why test IDs are the most resilient strategy."
+      ],
+      [
+        "tests/strict-mode.spec.js",
+        "Deliberately write an ambiguous locator, capture the strict-mode error in a comment, then fix it by chaining or filtering."
+      ],
+      [
+        "locator-notes.md",
+        "Rank the locator strategies you used from most to least maintainable, with one sentence of justification each."
+      ]
+    ],
+    "definitionOfDone": [
+      "All four spec files pass with `npx playwright test`",
+      "No `.nth()` or `:nth-child()` remains as a final answer - each was replaced by a semantic locator",
+      "`strict-mode.spec.js` contains the real error text and the working fix",
+      "Not one locator was pasted from CodeGen"
+    ],
+    "commonMistakes": [
+      "`page.click('...')` old-style API instead of `page.locator(...).click()` / `getByRole(...)`.",
+      "Using `.first()` to silence strict mode instead of making the locator specific.",
+      "Targeting generated class names (`.css-1x2y3z`) that change every deploy.",
+      "Forgetting `await` on the action - the test passes without doing anything."
+    ],
+    "resources": [
+      [
+        "Playwright: Locators",
+        "https://playwright.dev/docs/locators"
+      ],
+      [
+        "Playwright: Best practices for locators",
+        "https://playwright.dev/docs/best-practices#use-locators"
+      ],
+      [
+        "ARIA roles reference",
+        "https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles"
+      ]
+    ],
+    "stretch": [
+      "Use `page.getByRole('row').filter({ hasText: 'Sauce Labs Bike Light' })` to act inside one table row only.",
+      "Write the same locator three ways and time each with `--trace on` to see if it matters (it usually doesn't - readability wins)."
+    ],
+    "assignment": "See **Deliverables** below. CodeGen is banned this week - the point is to write locators yourself."
+  },
+  {
+    "folder": "Week-09-Actions-User-Inputs",
+    "label": "Week 9",
+    "date": "Wed, Sep 23, 2026",
+    "type": "Core",
+    "module": "Module 2: Playwright Core",
+    "topic": "Actions & User Inputs",
+    "owner": "Tarun",
+    "concepts": "`.fill()`, `.click()`, `.check()` / `.uncheck()`, `.selectOption()`, `.press()`, `.hover()`, `.setInputFiles()`, negative-path validation.",
+    "prerequisites": [
+      "Week 8 complete - you can locate any element by hand"
+    ],
+    "agenda": [
+      [
+        "15 min",
+        "`.fill()` vs `.type()` vs `.pressSequentially()` - which and why"
+      ],
+      [
+        "20 min",
+        "Clicks, checkboxes, radio buttons; `.check()` is idempotent, `.click()` is a toggle"
+      ],
+      [
+        "20 min",
+        "Dropdowns: `.selectOption()` by value, label, and index; multi-select"
+      ],
+      [
+        "20 min",
+        "Keyboard: `.press('Tab')`, `.press('Enter')`, submitting without clicking"
+      ],
+      [
+        "20 min",
+        "File upload with `.setInputFiles()`"
+      ],
+      [
+        "15 min",
+        "The negative path: submitting an empty form and asserting the validation"
+      ]
+    ],
+    "keyPoints": [
+      "`.fill()` clears then sets in one step - prefer it. `.type()` is for when the app listens to keystrokes.",
+      "`.check()` guarantees checked state; `.click()` on a checkbox flips it, so twice = unchanged.",
+      "`.selectOption({ label: 'India' })` is far more readable than `.selectOption('IN')`.",
+      "Every action auto-waits for the element to be visible, stable, enabled, and receiving events.",
+      "Negative-path tests find more real bugs than happy-path tests. Write them deliberately."
+    ],
+    "practiceSite": "https://demoqa.com/automation-practice-form and https://www.saucedemo.com/checkout-step-one.html",
+    "deliverables": [
+      [
+        "tests/registration-form.spec.js",
+        "Fill a full registration form: text fields, checkboxes, radio buttons, and a multi-select dropdown."
+      ],
+      [
+        "tests/keyboard-nav.spec.js",
+        "Move between fields with `.press('Tab')` and submit with `.press('Enter')` - no click on the submit button."
+      ],
+      [
+        "tests/negative-path.spec.js",
+        "Submit the form with required fields blank and assert each validation message that appears."
+      ],
+      [
+        "tests/file-upload.spec.js",
+        "Upload a small file with `.setInputFiles()` and assert the filename appears in the UI. Commit the fixture file too."
+      ],
+      [
+        "action-notes.md",
+        "When you'd choose `.fill()` over `.type()`, `.check()` over `.click()`, and `.selectOption({label})` over a raw value."
+      ]
+    ],
+    "definitionOfDone": [
+      "All four spec files pass",
+      "`negative-path.spec.js` asserts real validation text, not just that the page didn't navigate",
+      "No `page.waitForTimeout()` anywhere - rely on auto-waiting",
+      "The upload fixture is committed and the test passes from a clean clone"
+    ],
+    "commonMistakes": [
+      "`.click()` twice on a checkbox and wondering why nothing changed.",
+      "`.selectOption('India')` when the option's VALUE is `IN` - pass `{ label: 'India' }`.",
+      "Asserting on a validation message before the app renders it - assert on the locator, let Playwright wait.",
+      "An absolute path in `.setInputFiles()` that only exists on your machine. Use `path.join(__dirname, ...)`."
+    ],
+    "resources": [
+      [
+        "Playwright: Actions",
+        "https://playwright.dev/docs/input"
+      ],
+      [
+        "Playwright: Auto-waiting",
+        "https://playwright.dev/docs/actionability"
+      ],
+      [
+        "Practice form",
+        "https://demoqa.com/automation-practice-form"
+      ]
+    ],
+    "stretch": [
+      "Automate a date picker without typing into it - clicking through the calendar widget.",
+      "Handle a `<select multiple>` and assert all selected values."
+    ],
+    "assignment": "See **Deliverables** below."
+  },
+  {
+    "folder": "Week-10-Assertions-Verification",
+    "label": "Week 10",
+    "date": "Wed, Sep 30, 2026",
+    "type": "Core",
+    "module": "Module 2: Playwright Core",
+    "topic": "Assertions & Verification",
+    "owner": "Hritik",
+    "concepts": "Web-first assertions: `toBeVisible`, `toHaveText`, `toContainText`, `toHaveTitle`, `toHaveURL`, `toBeEnabled` / `toBeDisabled`, `toHaveValue`, `toHaveCount`, soft assertions.",
+    "prerequisites": [
+      "Week 9 complete - you can drive a form end to end"
+    ],
+    "agenda": [
+      [
+        "20 min",
+        "Web-first assertions: they retry until timeout, which is why they kill flakiness"
+      ],
+      [
+        "20 min",
+        "The visibility and text family; `toHaveText` (exact) vs `toContainText` (substring)"
+      ],
+      [
+        "15 min",
+        "State assertions: enabled/disabled, checked, editable"
+      ],
+      [
+        "20 min",
+        "Page-level: `toHaveTitle`, `toHaveURL`"
+      ],
+      [
+        "20 min",
+        "`expect.soft()` - collecting several failures in one run"
+      ],
+      [
+        "15 min",
+        "What makes a good assertion: one behaviour, a real expected value"
+      ]
+    ],
+    "keyPoints": [
+      "`await expect(locator).toBeVisible()` retries for the timeout. `expect(await locator.isVisible())` checks ONCE and is the top cause of flaky tests.",
+      "Every `expect` on a locator needs `await`. Missing it makes the assertion silently pass.",
+      "`toHaveText` matches the full string; `toContainText` matches a substring. Choose deliberately.",
+      "Assert the thing the user cares about, not an implementation detail.",
+      "`expect.soft()` reports and continues; plain `expect` stops the test at the first failure."
+    ],
+    "practiceSite": "https://www.saucedemo.com (users: `standard_user`, `locked_out_user`, `problem_user`)",
+    "deliverables": [
+      [
+        "tests/login.spec.js",
+        "Three scenarios - success, invalid password, blank username - each with explicit `expect()` assertions."
+      ],
+      [
+        "tests/locked-out.spec.js",
+        "A fourth scenario for `locked_out_user`, asserting the error banner with `toContainText`."
+      ],
+      [
+        "tests/button-state.spec.js",
+        "Assert the submit button's enabled/disabled state before and after filling the form (`toBeEnabled` / `toBeDisabled`)."
+      ],
+      [
+        "tests/page-assertions.spec.js",
+        "Assert `toHaveTitle` and `toHaveURL` after a successful login, plus `toHaveCount` on the product list."
+      ],
+      [
+        "assertion-notes.md",
+        "For each assertion you wrote, one line on what user-visible behaviour it protects."
+      ]
+    ],
+    "definitionOfDone": [
+      "All four spec files pass, and each test fails for the right reason when you break the app expectation on purpose",
+      "Every `expect` on a locator is awaited",
+      "No `if (await x.isVisible())` branching in place of an assertion",
+      "At least one test uses `expect.soft()` and you can explain why it suited that case"
+    ],
+    "commonMistakes": [
+      "`expect(await page.locator('.x').textContent()).toBe('Hi')` - no retry, instantly flaky. Use `toHaveText`.",
+      "Forgetting `await` on `expect` - the test passes no matter what.",
+      "`toHaveText` where the element has extra whitespace or a nested span; `toContainText` was what you wanted.",
+      "A test with no assertion at all - it can only fail on a crash."
+    ],
+    "resources": [
+      [
+        "Playwright: Assertions",
+        "https://playwright.dev/docs/test-assertions"
+      ],
+      [
+        "Playwright: Soft assertions",
+        "https://playwright.dev/docs/test-assertions#soft-assertions"
+      ],
+      [
+        "Playwright best practices",
+        "https://playwright.dev/docs/best-practices"
+      ]
+    ],
+    "stretch": [
+      "Write a custom matcher with `expect.extend()` for a domain rule you keep repeating.",
+      "Use `toHaveScreenshot()` for a visual assertion and think about when that's worth the maintenance."
+    ],
+    "assignment": "See **Deliverables** below."
+  },
+  {
+    "folder": "Week-11-Auto-Waiting-Handling-Delays",
+    "label": "Week 11",
+    "date": "Wed, Oct 07, 2026",
+    "type": "Core",
+    "module": "Module 2: Playwright Core",
+    "topic": "Auto-Waiting & Handling Delays",
+    "owner": "Vishal Tyagi - Jr",
+    "concepts": "The auto-waiting model, actionability checks, `waitForURL`, `waitForSelector`, `waitForLoadState`, `waitForResponse`, timeout configuration, why `waitForTimeout` is a smell.",
+    "prerequisites": [
+      "Week 10 complete - you write retrying assertions"
+    ],
+    "agenda": [
+      [
+        "20 min",
+        "What Playwright waits for before every action (visible, stable, enabled, receives events)"
+      ],
+      [
+        "20 min",
+        "Why `page.waitForTimeout()` is the wrong tool, always"
+      ],
+      [
+        "20 min",
+        "`waitForURL` after a navigation; `waitForLoadState`"
+      ],
+      [
+        "20 min",
+        "`waitForResponse` / `waitForRequest` - waiting on the network, not the clock"
+      ],
+      [
+        "20 min",
+        "Timeouts: global, per-test, per-action, per-assertion - and which to change"
+      ],
+      [
+        "15 min",
+        "Diagnosing a real timeout error message"
+      ]
+    ],
+    "keyPoints": [
+      "You almost never need an explicit wait. If you think you do, the assertion is probably non-retrying.",
+      "`waitForTimeout` makes a fast machine slow and a slow machine still flaky. It fixes nothing.",
+      "`await expect(locator).toBeVisible()` IS your wait - it retries until the timeout.",
+      "A timeout error names the locator and what it was waiting for. Read it before changing any number.",
+      "Raising the global timeout hides the bug. Fix the wait, not the number."
+    ],
+    "practiceSite": "https://demo.playwright.dev/todomvc and https://the-internet.herokuapp.com/dynamic_loading",
+    "deliverables": [
+      [
+        "tests/dynamic-loading.spec.js",
+        "Test a page whose element appears after a ~3s delay, with NO hardcoded timeout."
+      ],
+      [
+        "tests/wait-for-url.spec.js",
+        "Wait for a URL change after navigating with `waitForURL`, then assert content on the new page."
+      ],
+      [
+        "tests/timeout-experiment.spec.js",
+        "Set a deliberately short timeout on one assertion to force a failure; paste the error, then fix it and document the difference."
+      ],
+      [
+        "tests/wait-for-response.spec.js",
+        "Use `waitForResponse` to wait for a specific network call rather than a fixed delay."
+      ],
+      [
+        "waiting-notes.md",
+        "Every wait you used, and why the auto-wait alone wasn't enough in that one case."
+      ]
+    ],
+    "definitionOfDone": [
+      "`grep -r 'waitForTimeout' tests/` returns nothing",
+      "All four spec files pass, and pass again 5 times in a row (`--repeat-each=5`)",
+      "`timeout-experiment.spec.js` contains the real timeout error text and the fix",
+      "No global timeout was raised to make a test pass"
+    ],
+    "commonMistakes": [
+      "Reaching for `waitForTimeout(5000)` the moment a test fails.",
+      "`waitForSelector` immediately followed by an assertion on the same element - redundant.",
+      "Raising `timeout` in the config to mask a genuinely broken locator.",
+      "Waiting for `networkidle` on a page with polling or analytics - it never settles."
+    ],
+    "resources": [
+      [
+        "Playwright: Auto-waiting / actionability",
+        "https://playwright.dev/docs/actionability"
+      ],
+      [
+        "Playwright: Timeouts",
+        "https://playwright.dev/docs/test-timeouts"
+      ],
+      [
+        "Dynamic loading practice page",
+        "https://the-internet.herokuapp.com/dynamic_loading"
+      ]
+    ],
+    "stretch": [
+      "Use `page.route()` to delay a response artificially and prove your test still passes.",
+      "Run the suite with `--repeat-each=10` and hunt any test that isn't 10/10."
+    ],
+    "assignment": "See **Deliverables** below. Hard rule this week: no `waitForTimeout`."
+  },
+  {
+    "folder": "Optional-F-Complex-Popups",
+    "label": "Optional Session F",
+    "date": "Self-paced, anytime after Week 11",
+    "type": "Optional",
+    "module": "Module 2: Playwright Core",
+    "topic": "IFrames, Dialogs & Complex Popups",
+    "owner": "Self-study",
+    "concepts": "`frameLocator()`, nested frames, `page.on('dialog')`, accepting/dismissing alerts and confirms, new tabs/windows via `context.on('page')`.",
+    "prerequisites": [
+      "Week 11 complete"
+    ],
+    "agenda": [
+      [
+        "20 min",
+        "Why an iframe is a separate document and locators don't cross into it"
+      ],
+      [
+        "20 min",
+        "`frameLocator()` and chaining into nested frames"
+      ],
+      [
+        "20 min",
+        "Native dialogs: `page.on('dialog')`, accept vs dismiss"
+      ],
+      [
+        "15 min",
+        "New tabs and popups: waiting for the `page` event"
+      ]
+    ],
+    "keyPoints": [
+      "`page.getByRole(...)` cannot see inside an iframe - you must go through `frameLocator()`.",
+      "Playwright auto-dismisses dialogs unless you register a `dialog` handler FIRST.",
+      "Register the handler before the action that triggers the dialog, or you'll miss it.",
+      "A popup arrives as a new `Page` - capture it with `context.waitForEvent('page')`."
+    ],
+    "practiceSite": "https://the-internet.herokuapp.com/iframe, /javascript_alerts, /windows",
+    "deliverables": [
+      [
+        "tests/iframe.spec.js",
+        "Interact with an element inside an iframe using `frameLocator()`."
+      ],
+      [
+        "tests/alert-accept.spec.js",
+        "Handle a JS alert with `page.on('dialog')`, accept it, and assert the resulting page state."
+      ],
+      [
+        "tests/confirm-dismiss.spec.js",
+        "Dismiss a confirm dialog and assert the Cancel path was taken."
+      ],
+      [
+        "tests/new-tab.spec.js",
+        "Click a link that opens a new tab, capture the new page, and assert its title."
+      ],
+      [
+        "popup-notes.md",
+        "Why dialogs need a handler registered in advance, and what happens if you forget."
+      ]
+    ],
+    "definitionOfDone": [
+      "All four spec files pass",
+      "No test relies on Playwright's default auto-dismiss behaviour by accident",
+      "`new-tab.spec.js` asserts against the NEW page object, not the original"
+    ],
+    "commonMistakes": [
+      "Registering the dialog handler after the click - too late.",
+      "Expecting `page.locator()` to reach into an iframe.",
+      "Forgetting `await newPage.waitForLoadState()` before asserting on a fresh tab."
+    ],
+    "resources": [
+      [
+        "Playwright: Frames",
+        "https://playwright.dev/docs/frames"
+      ],
+      [
+        "Playwright: Dialogs",
+        "https://playwright.dev/docs/dialogs"
+      ],
+      [
+        "Playwright: Pages / popups",
+        "https://playwright.dev/docs/pages#handling-new-pages"
+      ]
+    ],
+    "stretch": [
+      "Handle a nested iframe (a frame inside a frame) by chaining two `frameLocator()` calls."
+    ],
+    "assignment": "See **Deliverables** below."
+  },
+  {
+    "folder": "Week-12-Test-Execution-Debugging",
+    "label": "Week 12",
+    "date": "Wed, Oct 14, 2026",
+    "type": "Core",
+    "module": "Module 2: Playwright Core",
+    "topic": "Test Execution & Debugging",
+    "owner": "Aruneema",
+    "concepts": "CLI runner flags, headed mode, `--debug` / Inspector, UI mode, HTML reports, trace viewer, screenshots & videos on failure, `--repeat-each`, `--grep`.",
+    "prerequisites": [
+      "Weeks 7-11 complete - you have a suite worth debugging"
+    ],
+    "agenda": [
+      [
+        "20 min",
+        "The flags that matter: `--headed`, `--debug`, `--ui`, `--grep`, `--repeat-each`, `--workers`"
+      ],
+      [
+        "20 min",
+        "The HTML report: reading a failure without rerunning it"
+      ],
+      [
+        "25 min",
+        "Trace viewer: timeline, DOM snapshots, network, console - a live walkthrough"
+      ],
+      [
+        "20 min",
+        "Playwright Inspector: stepping through, live-editing a locator"
+      ],
+      [
+        "15 min",
+        "Configuring `screenshot` / `video` / `trace` on failure"
+      ],
+      [
+        "15 min",
+        "A debugging method: reproduce, isolate, read the trace, then fix"
+      ]
+    ],
+    "keyPoints": [
+      "Read the trace before you change any code. The DOM snapshot shows what the page really looked like.",
+      "`trace: 'on-first-retry'` is the standard config - full traces for failures, no cost when green.",
+      "`--debug` opens the Inspector and pauses; `--ui` is the better day-to-day tool.",
+      "A test that only fails in CI is usually a timing or test-data assumption, not a browser difference.",
+      "`--repeat-each=10` is how you prove a flaky test is actually fixed."
+    ],
+    "deliverables": [
+      [
+        "tests/*",
+        "Your existing suite, with one test deliberately failing."
+      ],
+      [
+        "debug-report.md",
+        "The HTML report and trace for that failure: what the trace showed, and the root cause you identified."
+      ],
+      [
+        "inspector-notes.md",
+        "Re-run the same test with `--debug`, step through it, and document what caused the failure and the moment you spotted it."
+      ],
+      [
+        "slowest-step.md",
+        "Run the suite with `--trace on`; name the slowest step and explain why it's slow."
+      ],
+      [
+        "playwright.config.js",
+        "Configured with `trace: 'on-first-retry'`, `screenshot: 'only-on-failure'`, `video: 'retain-on-failure'`."
+      ]
+    ],
+    "definitionOfDone": [
+      "You can open a trace and explain a failure without rerunning the test",
+      "The config captures trace, screenshot, and video on failure",
+      "The deliberately failing test is fixed by the end, and the fix is explained",
+      "`npx playwright show-report` works from a clean checkout"
+    ],
+    "commonMistakes": [
+      "Guessing at fixes instead of reading the trace.",
+      "Committing `test-results/` or `playwright-report/`.",
+      "Debugging headed-only and never checking whether it passes headless.",
+      "`console.log` debugging when the trace already shows you the DOM."
+    ],
+    "resources": [
+      [
+        "Playwright: Trace viewer",
+        "https://playwright.dev/docs/trace-viewer"
+      ],
+      [
+        "Playwright: Debugging tests",
+        "https://playwright.dev/docs/debug"
+      ],
+      [
+        "Playwright: Running and debugging",
+        "https://playwright.dev/docs/running-tests"
+      ]
+    ],
+    "stretch": [
+      "Use `--workers=1` vs the default and see whether any test depends on execution order (it shouldn't).",
+      "Upload a trace to trace.playwright.dev and share the link in your notes."
+    ],
+    "assignment": "See **Deliverables** below."
+  },
+  {
+    "folder": "Optional-G-Git-Workflow-Test-Automation-Projects",
+    "label": "Optional Session G",
+    "date": "Self-paced, anytime after Week 12",
+    "type": "Optional",
+    "module": "Git & Version Control",
+    "topic": "Git Workflow for Test Automation Projects",
+    "owner": "Self-study",
+    "concepts": "Rebase vs merge, `git stash`, tagging, ignoring Playwright artifacts, commit conventions for test code, undoing safely (`git revert` vs `git reset`).",
+    "prerequisites": [
+      "Optional A, B, C complete",
+      "A Playwright project with some history"
+    ],
+    "agenda": [
+      [
+        "20 min",
+        "Merge vs rebase: what each does to history, and when each is safe"
+      ],
+      [
+        "15 min",
+        "`git stash` for the urgent interruption"
+      ],
+      [
+        "15 min",
+        "Tagging a known-good suite state"
+      ],
+      [
+        "15 min",
+        "What a Playwright `.gitignore` must contain"
+      ],
+      [
+        "20 min",
+        "Undoing: `revert` (safe, public) vs `reset --hard` (destructive, local only)"
+      ]
+    ],
+    "keyPoints": [
+      "Never rebase a branch someone else has pulled - it rewrites shared history.",
+      "`git revert` creates a new commit undoing an old one. That's the safe public undo.",
+      "`git reset --hard` destroys uncommitted work with no recovery. Know what you're doing.",
+      "`test-results/` and `playwright-report/` are regenerated every run - never commit them.",
+      "Commit test code by intent: `Add negative-path checkout test`, not `update spec`."
+    ],
+    "deliverables": [
+      [
+        ".gitignore",
+        "A complete Playwright ignore file: `node_modules/`, `test-results/`, `playwright-report/`, `playwright/.cache/`, `.env`."
+      ],
+      [
+        "stash-notes.md",
+        "The `git stash` / switch / fix / `git stash pop` sequence you ran, with the commands and what each did."
+      ],
+      [
+        "tag-and-revert.md",
+        "The `git tag v1.0-suite` you created, plus a `git revert` you performed and why `reset --hard` would have been wrong there."
+      ]
+    ],
+    "definitionOfDone": [
+      "`git status` is clean and no generated Playwright folder is tracked",
+      "`git tag` lists `v1.0-suite`",
+      "You reverted a commit without rewriting history, and can explain the difference from reset"
+    ],
+    "commonMistakes": [
+      "`git reset --hard` to 'clean up', losing a day's work.",
+      "Rebasing a pushed branch and then force-pushing over a teammate.",
+      "Committing `playwright-report/` - it makes every PR diff unreadable.",
+      "`git stash` then forgetting it exists. `git stash list` is your friend."
+    ],
+    "resources": [
+      [
+        "Pro Git: Rebasing",
+        "https://git-scm.com/book/en/v2/Git-Branching-Rebasing"
+      ],
+      [
+        "Pro Git: Stashing",
+        "https://git-scm.com/book/en/v2/Git-Tools-Stashing-and-Cleaning"
+      ],
+      [
+        "Conventional Commits",
+        "https://www.conventionalcommits.org/"
+      ]
+    ],
+    "stretch": [
+      "Use `git bisect` to find which commit broke a test."
+    ],
+    "assignment": "See **Deliverables** below."
+  },
+  {
+    "folder": "Optional-H-Coding-Standards-Best-Practices",
+    "label": "Optional Session H",
+    "date": "Self-paced, anytime after Week 12",
+    "type": "Optional",
+    "module": "Coding Standards & Best Practices",
+    "topic": "Writing Clean & Maintainable Test Code",
+    "owner": "Self-study",
+    "concepts": "Naming conventions, ESLint & Prettier, avoiding hardcoded waits and magic strings, DRY in test code, meaningful vs over-asserting, PR review checklists, folder structure.",
+    "prerequisites": [
+      "Weeks 7-12 complete - you have real test code to clean up"
+    ],
+    "agenda": [
+      [
+        "20 min",
+        "Naming: files, tests, page objects, variables - conventions that scale"
+      ],
+      [
+        "20 min",
+        "Installing and configuring ESLint + Prettier; fixing the first wave of warnings"
+      ],
+      [
+        "20 min",
+        "Magic strings and hardcoded waits: extracting constants and config"
+      ],
+      [
+        "15 min",
+        "DRY vs premature abstraction in tests - when duplication is fine"
+      ],
+      [
+        "15 min",
+        "Over-asserting: the test that breaks on every unrelated change"
+      ],
+      [
+        "20 min",
+        "Building your own code review checklist"
+      ]
+    ],
+    "keyPoints": [
+      "A test name should say what behaviour is protected: `rejects login with a blank username`.",
+      "Some duplication in tests is healthy - readability beats cleverness in a spec file.",
+      "Over-asserting couples your test to layout. Assert the behaviour under test, not the whole page.",
+      "A linter ends style arguments in review, so review can be about substance.",
+      "Extract a locator into a page object when it's used twice, not on the first sighting."
+    ],
+    "deliverables": [
+      [
+        ".eslintrc / eslint.config.js and .prettierrc",
+        "Configured, committed, and all existing warnings across your previous weeks' scripts fixed."
+      ],
+      [
+        "refactor-notes.md",
+        "One test file refactored: magic strings/hardcoded values moved into a constants or config file, and poorly-named things renamed. Show before/after."
+      ],
+      [
+        "code-review-checklist.md",
+        "Your own 5-8 item checklist (e.g. no hardcoded waits, descriptive test names, no duplicated locators)."
+      ],
+      [
+        "self-review.md",
+        "Apply your checklist to one of your own past assignments and note what you'd change."
+      ]
+    ],
+    "definitionOfDone": [
+      "`npx eslint .` reports zero errors",
+      "`npx prettier --check .` passes",
+      "No magic strings or hardcoded credentials remain in the refactored file",
+      "Your self-review names at least three concrete changes"
+    ],
+    "commonMistakes": [
+      "Installing ESLint then disabling every rule that complains.",
+      "Extracting everything into helpers until the test is unreadable indirection.",
+      "A checklist of vague items ('write good code') instead of checkable ones."
+    ],
+    "resources": [
+      [
+        "ESLint: Getting started",
+        "https://eslint.org/docs/latest/use/getting-started"
+      ],
+      [
+        "Prettier",
+        "https://prettier.io/docs/en/index.html"
+      ],
+      [
+        "Playwright best practices",
+        "https://playwright.dev/docs/best-practices"
+      ]
+    ],
+    "stretch": [
+      "Add `eslint-plugin-playwright` and fix what it finds."
+    ],
+    "assignment": "See **Deliverables** below."
+  },
+  {
+    "folder": "Week-13-Test-Suite-Organization-Hooks",
+    "label": "Week 13",
+    "date": "Wed, Oct 21, 2026",
+    "type": "Core",
+    "module": "Module 3: Test Architecture",
+    "topic": "Test Suite Organization & Hooks",
+    "owner": "Vishal Tyagi - Jr",
+    "concepts": "`test.describe()`, `beforeEach` / `afterEach`, `beforeAll` / `afterAll`, tags & `--grep`, `test.skip` / `test.only`, test independence.",
+    "prerequisites": [
+      "Weeks 7-12 complete - a suite with repeated setup worth extracting"
+    ],
+    "agenda": [
+      [
+        "20 min",
+        "`test.describe()` for grouping, and how it shapes the report"
+      ],
+      [
+        "25 min",
+        "`beforeEach` / `afterEach` - extracting shared navigation and login"
+      ],
+      [
+        "20 min",
+        "`beforeAll` / `afterAll` and how their scope differs (and the trap)"
+      ],
+      [
+        "20 min",
+        "Test independence: why order-dependent tests eventually break"
+      ],
+      [
+        "15 min",
+        "Tagging (`@smoke`) and running subsets with `--grep`"
+      ],
+      [
+        "10 min",
+        "`test.only` / `test.skip` and never committing `only`"
+      ]
+    ],
+    "keyPoints": [
+      "Each test must pass alone AND in any order. If it doesn't, it's not a test, it's a step.",
+      "`beforeEach` runs per test (fresh state); `beforeAll` runs once for the group (shared state, shared risk).",
+      "State created in `beforeAll` leaks between tests. Prefer `beforeEach` unless setup is genuinely expensive.",
+      "A committed `test.only` silently skips your whole suite in CI. Lint for it.",
+      "Playwright gives each test a fresh browser context already - don't re-invent isolation."
+    ],
+    "deliverables": [
+      [
+        "tests/login.spec.js",
+        "Existing login tests refactored into `test.describe` blocks sharing `beforeEach` navigation."
+      ],
+      [
+        "tests/checkout.spec.js",
+        "Same for checkout, with an `afterEach` that logs the test name and pass/fail status using `testInfo`."
+      ],
+      [
+        "tests/shared-setup.spec.js",
+        "A `beforeAll` / `afterAll` pair setting up and tearing down shared test data, with a comment explaining how their scope differs from `beforeEach` / `afterEach`."
+      ],
+      [
+        "tests/tagged.spec.js",
+        "At least three tests tagged `@smoke`; show the `--grep @smoke` command and its output in a comment."
+      ],
+      [
+        "organization-notes.md",
+        "Why you chose `beforeEach` vs `beforeAll` in each case, and the risk you avoided."
+      ]
+    ],
+    "definitionOfDone": [
+      "The whole suite passes, and also passes with `--workers=1` and in a shuffled order",
+      "Every test passes when run alone via `--grep`",
+      "No `test.only` is committed",
+      "`--grep @smoke` runs only the tagged subset"
+    ],
+    "commonMistakes": [
+      "Test 2 depending on data test 1 created - it breaks the moment tests run in parallel.",
+      "Logging in via the UI in `beforeEach` for 40 tests (slow) instead of reusing storage state.",
+      "Putting an assertion in a hook, so a failure is reported against the wrong test.",
+      "Committing `test.only` and shipping a green-but-empty CI run."
+    ],
+    "resources": [
+      [
+        "Playwright: Test hooks / describe",
+        "https://playwright.dev/docs/api/class-test"
+      ],
+      [
+        "Playwright: Annotations & tags",
+        "https://playwright.dev/docs/test-annotations"
+      ],
+      [
+        "Playwright: Parallelism",
+        "https://playwright.dev/docs/test-parallel"
+      ]
+    ],
+    "stretch": [
+      "Use `storageState` to log in once and reuse the session across tests; measure the time saved.",
+      "Write a custom fixture that provides an already-logged-in page."
+    ],
+    "assignment": "See **Deliverables** below."
+  },
+  {
+    "folder": "Optional-I-Environment-Vars",
+    "label": "Optional Session I",
+    "date": "Self-paced, anytime after Week 13",
+    "type": "Optional",
+    "module": "Module 3: Test Architecture",
+    "topic": "Environment Variables & Config Management",
+    "owner": "Self-study",
+    "concepts": "`dotenv`, `.env` files, managing secrets, separating config from code, environment-specific URLs and credentials, `.env.example`.",
+    "prerequisites": [
+      "Week 13 complete"
+    ],
+    "agenda": [
+      [
+        "15 min",
+        "Why credentials in a spec file is a security incident waiting to happen"
+      ],
+      [
+        "20 min",
+        "Installing `dotenv` and loading it in `playwright.config.js`"
+      ],
+      [
+        "20 min",
+        "Refactoring hardcoded values out of tests"
+      ],
+      [
+        "20 min",
+        "Per-environment files and switching between them"
+      ],
+      [
+        "10 min",
+        "`.env.example` - documenting what's needed without leaking values"
+      ]
+    ],
+    "keyPoints": [
+      "`.env` is NEVER committed. `.env.example` with dummy values always is.",
+      "A secret committed once is leaked forever - rotate it, don't just delete the file.",
+      "Load `dotenv` in `playwright.config.js` so config and tests both see the values.",
+      "Give every env var a sensible default or fail loudly - a silent `undefined` URL is a confusing failure."
+    ],
+    "deliverables": [
+      [
+        ".env.example",
+        "Committed, listing `BASE_URL`, `TEST_USERNAME`, `TEST_PASSWORD` with placeholder values."
+      ],
+      [
+        "playwright.config.js",
+        "Loading `dotenv` and using `process.env.BASE_URL` for `baseURL`."
+      ],
+      [
+        "tests/env-login.spec.js",
+        "An existing test refactored to read credentials from environment variables instead of hardcoded strings."
+      ],
+      [
+        "env-notes.md",
+        "How to switch between `.env.dev` and `.env.staging` when running tests, with the exact commands."
+      ]
+    ],
+    "definitionOfDone": [
+      "No credential appears anywhere in committed code",
+      "`.env` is in `.gitignore`; `.env.example` IS committed",
+      "The suite runs against two different environments by changing only the env file",
+      "A missing required variable produces a clear error, not `undefined`"
+    ],
+    "commonMistakes": [
+      "Committing `.env`. Check `git status` before every commit.",
+      "Loading `dotenv` inside a spec file instead of the config, so `baseURL` stays undefined.",
+      "`process.env.PORT` being a string when you needed a number."
+    ],
+    "resources": [
+      [
+        "dotenv",
+        "https://github.com/motdotla/dotenv"
+      ],
+      [
+        "Playwright: Parameterize with env files",
+        "https://playwright.dev/docs/test-parameterize#passing-environment-variables"
+      ]
+    ],
+    "stretch": [
+      "Add a config-validation step that throws a readable error listing every missing variable at startup."
+    ],
+    "assignment": "See **Deliverables** below."
+  },
+  {
+    "folder": "Week-14-Page-Object-Model-Part-1",
+    "label": "Week 14",
+    "date": "Wed, Oct 28, 2026",
+    "type": "Core",
+    "module": "Module 3: Test Architecture",
+    "topic": "Page Object Model (POM) - Part 1",
+    "owner": "Hritik",
+    "concepts": "The POM pattern, page classes, constructors, encapsulating locators, `pages/` folder structure, what does NOT belong in a page object.",
+    "prerequisites": [
+      "Week 13 complete - organised tests with hooks"
+    ],
+    "agenda": [
+      [
+        "20 min",
+        "The problem POM solves: one locator changing in 30 spec files"
+      ],
+      [
+        "20 min",
+        "Anatomy of a page class: constructor, `page`, locator properties"
+      ],
+      [
+        "25 min",
+        "Building `LoginPage.js` together"
+      ],
+      [
+        "20 min",
+        "`InventoryPage.js` and `CartPage.js` on your own"
+      ],
+      [
+        "15 min",
+        "What does NOT go in a page object: assertions, test data, other pages' locators"
+      ],
+      [
+        "10 min",
+        "Folder structure: `pages/`, `tests/`, `fixtures/`"
+      ]
+    ],
+    "keyPoints": [
+      "One page class owns the locators for one page. No overlap, no reaching into another page.",
+      "Define locators as properties in the constructor - resolved lazily, so it's safe.",
+      "Assertions belong in the TEST, not the page object. The page object exposes state; the test judges it.",
+      "A page object never contains test data. Pass it in as a parameter.",
+      "If a class needs another page's locators, you've drawn the boundary in the wrong place."
+    ],
+    "deliverables": [
+      [
+        "pages/LoginPage.js",
+        "A class encapsulating the login page's locators and a constructor taking `page`. Locators only this week."
+      ],
+      [
+        "pages/InventoryPage.js",
+        "Same pattern for the inventory/products page."
+      ],
+      [
+        "pages/CartPage.js",
+        "Same pattern, cart-related locators only."
+      ],
+      [
+        "tests/pom-smoke.spec.js",
+        "Imports all three classes and verifies each page loads - no actions yet - proving the structure works end to end."
+      ],
+      [
+        "pom-notes.md",
+        "Why you assigned each locator to the page you did, and one locator you were tempted to duplicate across two classes."
+      ]
+    ],
+    "definitionOfDone": [
+      "`pom-smoke.spec.js` passes and uses all three page classes",
+      "No page class contains an `expect()`",
+      "No page class contains a hardcoded username or password",
+      "No locator string appears in the spec file"
+    ],
+    "commonMistakes": [
+      "Resolving locators in the constructor with `await` - a constructor can't be async. Store the locator, not the element.",
+      "Putting assertions in the page object, so failures point at the wrong file.",
+      "A god-object `AppPage.js` holding every locator in the app.",
+      "Hardcoding credentials inside the page class."
+    ],
+    "resources": [
+      [
+        "Playwright: Page object models",
+        "https://playwright.dev/docs/pom"
+      ],
+      [
+        "Practice site",
+        "https://www.saucedemo.com"
+      ]
+    ],
+    "stretch": [
+      "Add a `BasePage` with shared navigation helpers and have the three pages extend it - then argue whether it earned its place."
+    ],
+    "assignment": "See **Deliverables** below. Locators and constructors only - action methods are next week."
+  },
+  {
+    "folder": "Week-15-Page-Object-Model-Part-2",
+    "label": "Week 15",
+    "date": "Wed, Nov 04, 2026",
+    "type": "Core",
+    "module": "Module 3: Test Architecture",
+    "topic": "Page Object Model (POM) - Part 2",
+    "owner": "Vishal Tyagi",
+    "concepts": "Action methods inside page classes, method chaining, composing E2E tests from page objects, keeping tests free of raw locators.",
+    "prerequisites": [
+      "Week 14 complete - three page classes with locators"
+    ],
+    "agenda": [
+      [
+        "25 min",
+        "Adding action methods: `login()`, `addItemToCart(name)`, `checkout(details)`"
+      ],
+      [
+        "20 min",
+        "Method granularity: one user action per method, and composing them"
+      ],
+      [
+        "25 min",
+        "Writing a clean E2E test that reads like a user story"
+      ],
+      [
+        "20 min",
+        "Returning a page object from a navigation method (chaining)"
+      ],
+      [
+        "20 min",
+        "Two more E2E scenarios built purely by composition"
+      ]
+    ],
+    "keyPoints": [
+      "After this week, a spec file should contain zero locator strings. If one remains, a method is missing.",
+      "A method should be one user-meaningful action. `login(user, pass)`, not `typeIntoUsernameField()`.",
+      "Return the next page object from a navigation method to enable readable chaining.",
+      "Keep the assertions in the test. The page object gets you into position; the test judges the outcome.",
+      "A well-composed test reads top to bottom like the manual test case it replaced."
+    ],
+    "deliverables": [
+      [
+        "pages/*.js",
+        "Your page classes extended with reusable action methods: `login()`, `addItemToCart(itemName)`, `checkout()`."
+      ],
+      [
+        "tests/e2e-checkout.spec.js",
+        "A complete Login -> Add to Cart -> Checkout flow with no raw locators in the test."
+      ],
+      [
+        "tests/e2e-remove-item.spec.js",
+        "Remove an item from the cart, composed purely from existing page object methods."
+      ],
+      [
+        "tests/e2e-sort-products.spec.js",
+        "Sort products by price and assert the order, again by composition only."
+      ],
+      [
+        "pom-part2-notes.md",
+        "Any method you had to add for the two new scenarios, and what that tells you about your Week 14 boundaries."
+      ]
+    ],
+    "definitionOfDone": [
+      "`grep -rE \"getBy|locator\\(|page\\.\\\\$\" tests/` returns nothing - every locator lives in `pages/`",
+      "All three E2E specs pass and pass in parallel",
+      "The two new scenarios needed few or no new locators - only new methods",
+      "Every assertion is in a spec file, none in a page class"
+    ],
+    "commonMistakes": [
+      "One giant `completePurchase()` method that no other test can reuse.",
+      "Methods that assert internally, so the test can't say what it expected.",
+      "Leaving `page.getByRole(...)` in the spec 'just this once'.",
+      "Forgetting to `await` an action method that returns a Promise."
+    ],
+    "resources": [
+      [
+        "Playwright: Page object models",
+        "https://playwright.dev/docs/pom"
+      ],
+      [
+        "Playwright best practices",
+        "https://playwright.dev/docs/best-practices"
+      ]
+    ],
+    "stretch": [
+      "Convert your page objects into Playwright fixtures so tests receive them ready-made.",
+      "Add a data-driven variant of the checkout test using an array of test-data objects."
+    ],
+    "assignment": "See **Deliverables** below. Target: a spec file a manual tester could read."
+  },
+  {
+    "folder": "Optional-J-API-Setup-Bonus",
+    "label": "Optional Session J",
+    "date": "Self-paced, anytime after Week 15",
+    "type": "Optional",
+    "module": "Module 3: Test Architecture",
+    "topic": "API Testing & Seeding (Bonus)",
+    "owner": "Self-study",
+    "concepts": "Playwright's `request` context, GET/POST, status and body assertions, seeding test data via API before UI tests, auth tokens, `request` fixture vs `apiRequest.newContext()`.",
+    "prerequisites": [
+      "Week 15 complete",
+      "Optional I recommended (env vars for tokens)"
+    ],
+    "agenda": [
+      [
+        "20 min",
+        "Why API setup beats UI setup: 200ms vs 30s, and far less flake"
+      ],
+      [
+        "20 min",
+        "The `request` fixture: GET, POST, asserting status and body"
+      ],
+      [
+        "20 min",
+        "Seeding data via API, then verifying it in the UI"
+      ],
+      [
+        "20 min",
+        "Authenticating via API and reusing the token"
+      ]
+    ],
+    "keyPoints": [
+      "Never test through the UI what you can set up through the API. Reserve the UI for what you're actually testing.",
+      "`await expect(response).toBeOK()` is the quick health check; assert the body for real verification.",
+      "A token fetched once and reused across tests is the single biggest suite speed-up available.",
+      "API responses are JSON - `await response.json()` and assert on the parsed object."
+    ],
+    "practiceSite": "https://reqres.in/api or https://jsonplaceholder.typicode.com",
+    "deliverables": [
+      [
+        "tests/api-get.spec.js",
+        "A GET request to a public API using the `request` context; log and assert the response."
+      ],
+      [
+        "tests/api-seed.spec.js",
+        "Seed test data via an API call, then verify the result with a UI step."
+      ],
+      [
+        "helpers/auth.js",
+        "A helper that authenticates via API and returns a token for reuse by later requests."
+      ],
+      [
+        "api-notes.md",
+        "What you seeded, why doing it through the UI would have been slower/flakier, and where the token is stored."
+      ]
+    ],
+    "definitionOfDone": [
+      "All spec files pass",
+      "Status codes AND response bodies are both asserted",
+      "No token or credential is hardcoded - they come from environment variables"
+    ],
+    "commonMistakes": [
+      "Asserting only the status code, so a 200 with an error body passes.",
+      "Forgetting `await response.json()` and asserting on a Promise.",
+      "Hardcoding a bearer token into the spec.",
+      "Seeding data and never cleaning it up, so the suite degrades over time."
+    ],
+    "resources": [
+      [
+        "Playwright: API testing",
+        "https://playwright.dev/docs/api-testing"
+      ],
+      [
+        "Playwright: APIRequestContext",
+        "https://playwright.dev/docs/api/class-apirequestcontext"
+      ],
+      [
+        "Free practice API",
+        "https://jsonplaceholder.typicode.com"
+      ]
+    ],
+    "stretch": [
+      "Use `request.storageState()` to carry an API-authenticated session into the browser and skip UI login entirely."
+    ],
+    "assignment": "See **Deliverables** below."
+  },
+  {
+    "folder": "Optional-K-AI-Assisted-QA-Test-Scripting",
+    "label": "Optional Session K",
+    "date": "Self-paced, anytime after Week 15",
+    "type": "Optional",
+    "module": "AI-Assisted QA & Test Scripting",
+    "topic": "AI Tools for Test Automation - Awareness & Judgement",
+    "owner": "Self-study",
+    "concepts": "AI assistants for generating/refactoring tests, prompting for test cases and locators, AI-assisted debugging, self-healing locators, limitations & risks, reviewing AI output before committing.",
+    "prerequisites": [
+      "Weeks 7-15 complete - you must know enough to judge the output"
+    ],
+    "agenda": [
+      [
+        "20 min",
+        "What AI is genuinely good at here: boilerplate, refactors, explaining an error"
+      ],
+      [
+        "20 min",
+        "Prompting well: give it the DOM, the framework version, and the convention you follow"
+      ],
+      [
+        "20 min",
+        "Where it fails: hallucinated selectors, outdated APIs, plausible-but-wrong waits"
+      ],
+      [
+        "15 min",
+        "Self-healing locators - the idea and the trade-off"
+      ],
+      [
+        "20 min",
+        "A review discipline: never commit what you can't explain"
+      ]
+    ],
+    "keyPoints": [
+      "AI writes plausible code, not correct code. Plausible-and-wrong is harder to catch than obviously broken.",
+      "The classic failure is a confidently invented selector that doesn't exist on the page.",
+      "It's often trained on older Playwright - watch for `page.click()` and other pre-locator APIs.",
+      "You are accountable for what you commit. 'The AI wrote it' is not a review response.",
+      "Never paste production credentials, customer data, or proprietary source into a public assistant."
+    ],
+    "deliverables": [
+      [
+        "tests/ai-generated.spec.js",
+        "A scenario generated from a plain-English prompt, then manually corrected. Keep the original AI version in a comment block for comparison."
+      ],
+      [
+        "ai-debug-notes.md",
+        "A failing test and its error given to an AI: the suggested fix, whether you applied it, and specifically what it got right and wrong."
+      ],
+      [
+        "ai-reflection.md",
+        "5-6 sentences on one real risk of trusting AI-generated test code, and the concrete way you verified the suggestion before using it."
+      ],
+      [
+        "prompts.md",
+        "The prompts you used, and how you improved a weak prompt into a good one."
+      ]
+    ],
+    "definitionOfDone": [
+      "`ai-generated.spec.js` passes and every line is one you can explain",
+      "At least one AI error is documented concretely (the invented locator, the outdated API)",
+      "No credential or proprietary code was pasted into an assistant",
+      "The reflection names a specific verification step, not 'I checked it'"
+    ],
+    "commonMistakes": [
+      "Committing AI output that passes for the wrong reason (e.g. a test asserting nothing).",
+      "Accepting a `waitForTimeout` the AI suggested - it's the most common bad advice in this space.",
+      "Trusting an invented `data-testid` that isn't in the DOM.",
+      "Using AI to skip learning the fundamentals, then being unable to debug the result."
+    ],
+    "resources": [
+      [
+        "Playwright MCP server (drive a real browser from an assistant)",
+        "https://github.com/microsoft/playwright-mcp"
+      ],
+      [
+        "Playwright best practices - your checklist for reviewing AI output",
+        "https://playwright.dev/docs/best-practices"
+      ]
+    ],
+    "stretch": [
+      "Ask an assistant to review one of YOUR tests, then judge its findings - which were real and which were noise?"
+    ],
+    "assignment": "See **Deliverables** below. The graded skill here is judgement, not generation."
+  },
+  {
+    "folder": "Week-16-Transitioning-JS-to-TypeScript",
+    "label": "Week 16",
+    "date": "Wed, Nov 11, 2026",
+    "type": "Core",
+    "module": "Module 4: TypeScript Intro",
+    "topic": "Transitioning JS to TypeScript",
+    "owner": "Vishal Tyagi",
+    "concepts": "Why TypeScript, `.ts` files, `tsconfig.json`, basic annotations (`string`, `number`, `boolean`, arrays), inference, `any` vs `unknown`, compile-time vs run-time errors.",
+    "prerequisites": [
+      "Week 15 complete - a working POM framework in JavaScript"
+    ],
+    "agenda": [
+      [
+        "20 min",
+        "What TypeScript buys a test suite: errors at write time, real autocomplete"
+      ],
+      [
+        "20 min",
+        "Renaming `.js` to `.ts`; what Playwright already does for you"
+      ],
+      [
+        "20 min",
+        "Annotating parameters, return types, and variables; letting inference do the rest"
+      ],
+      [
+        "20 min",
+        "`tsconfig.json`: the options that actually matter (`strict`, `target`, `types`)"
+      ],
+      [
+        "20 min",
+        "Compile error vs runtime error, demonstrated side by side"
+      ],
+      [
+        "15 min",
+        "`any` is an escape hatch, `unknown` is a safe one"
+      ]
+    ],
+    "keyPoints": [
+      "Playwright runs `.ts` out of the box - no build step to configure.",
+      "Don't annotate what's obvious. `const name: string = 'x'` is noise; inference has it.",
+      "DO annotate function parameters and return types - that's where the value is.",
+      "`any` disables checking for that value and everything it touches. Every `any` is a deferred bug.",
+      "A compile error happens before the browser opens; a runtime error happens 40 seconds in. Prefer the first."
+    ],
+    "deliverables": [
+      [
+        "helpers/*.ts",
+        "Your existing JS helper files renamed to `.ts` with explicit annotations, and all compiler warnings resolved."
+      ],
+      [
+        "tsconfig.json",
+        "Committed, with `strict: true`, and a comment on each option you changed."
+      ],
+      [
+        "type-error-demo.ts",
+        "Deliberately pass a wrong-typed argument; paste the exact compiler error in a comment, then fix it."
+      ],
+      [
+        "any-removal.md",
+        "Every `any` you replaced, what you replaced it with, and any you deliberately kept plus why."
+      ]
+    ],
+    "definitionOfDone": [
+      "`npx tsc --noEmit` reports zero errors",
+      "The whole Playwright suite still passes after the conversion",
+      "Every exported function has annotated parameters and a return type",
+      "`type-error-demo.ts` contains the real compiler error text"
+    ],
+    "commonMistakes": [
+      "Silencing errors with `any` or `@ts-ignore` instead of fixing the type.",
+      "Over-annotating every local variable until the code is unreadable.",
+      "Forgetting to install `@types/node` and getting errors on `process` or `path`.",
+      "Renaming to `.ts` and never actually running `tsc`, so nothing is checked."
+    ],
+    "resources": [
+      [
+        "TypeScript in 5 minutes",
+        "https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html"
+      ],
+      [
+        "Playwright: TypeScript support",
+        "https://playwright.dev/docs/test-typescript"
+      ],
+      [
+        "tsconfig reference",
+        "https://www.typescriptlang.org/tsconfig"
+      ]
+    ],
+    "stretch": [
+      "Turn on `noUncheckedIndexedAccess` and fix what it surfaces.",
+      "Convert one page object to `.ts` and see what autocomplete gives you that JS didn't."
+    ],
+    "assignment": "See **Deliverables** below."
+  },
+  {
+    "folder": "Week-17-TypeScript-Interfaces-Page-Objects",
+    "label": "Week 17",
+    "date": "Wed, Nov 18, 2026",
+    "type": "Core",
+    "module": "Module 4: TypeScript Intro",
+    "topic": "TypeScript Interfaces & Typed Page Objects",
+    "owner": "Vishal Tyagi",
+    "concepts": "`interface` vs `type`, optional & readonly properties, typing page objects, typed test data, union types, data-driven tests, IntelliSense payoff.",
+    "prerequisites": [
+      "Week 16 complete - the suite compiles under `strict`"
+    ],
+    "agenda": [
+      [
+        "20 min",
+        "`interface` vs `type` - and a rule of thumb for which to reach for"
+      ],
+      [
+        "25 min",
+        "Modelling test data: `UserCredentials`, `ProductDetails`"
+      ],
+      [
+        "20 min",
+        "Typing page object methods and their parameters"
+      ],
+      [
+        "20 min",
+        "Optional (`?`) and `readonly` properties; union types for fixed sets"
+      ],
+      [
+        "25 min",
+        "Data-driven tests over a typed array of cases"
+      ]
+    ],
+    "keyPoints": [
+      "A typed test-data object catches a typo'd property at write time, not at 3am in CI.",
+      "Union types are ideal for fixed sets: `type Role = 'Admin' | 'Tester' | 'Guest'`.",
+      "Typing a page object method's parameters is where IntelliSense starts paying you back.",
+      "Use `interface` for object shapes you may extend; `type` for unions and aliases.",
+      "A typed array of cases plus one `for...of` loop replaces ten near-identical tests."
+    ],
+    "deliverables": [
+      [
+        "types/TestData.ts",
+        "Interfaces for `UserCredentials` and `ProductDetails`, plus a third `OrderSummary` (itemCount, totalPrice, shippingAddress)."
+      ],
+      [
+        "pages/*.ts",
+        "Page objects refactored to take typed parameters; a checkout helper returning `OrderSummary`."
+      ],
+      [
+        "fixtures/users.ts",
+        "At least two typed test-data objects built from the interfaces."
+      ],
+      [
+        "tests/data-driven-login.spec.ts",
+        "A data-driven login test over your typed data covering valid and invalid credentials."
+      ],
+      [
+        "types-notes.md",
+        "Where you chose `interface` over `type` and why; plus one bug the compiler caught for you."
+      ]
+    ],
+    "definitionOfDone": [
+      "`npx tsc --noEmit` is clean",
+      "The data-driven test generates one reported test per data case (not one test with a loop inside)",
+      "No `any` remains in `types/`, `pages/`, or `fixtures/`",
+      "`OrderSummary` is the actual declared return type of the checkout helper"
+    ],
+    "commonMistakes": [
+      "A loop inside a single `test()`, so the report shows one test and stops at the first failure. Loop OUTSIDE and call `test()` per case.",
+      "Marking everything optional with `?`, which defeats the point.",
+      "Duplicating an interface instead of extending it.",
+      "Typing a parameter as `object` - that's barely better than `any`."
+    ],
+    "resources": [
+      [
+        "TS Handbook: Object types",
+        "https://www.typescriptlang.org/docs/handbook/2/objects.html"
+      ],
+      [
+        "TS Handbook: Unions",
+        "https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#union-types"
+      ],
+      [
+        "Playwright: Parameterize tests",
+        "https://playwright.dev/docs/test-parameterize"
+      ]
+    ],
+    "stretch": [
+      "Use a generic helper `pickTestUser<T extends UserCredentials>()` and explain what the generic buys you.",
+      "Derive a type from your data with `typeof` / `keyof` instead of hand-writing it."
+    ],
+    "assignment": "See **Deliverables** below."
+  },
+  {
+    "folder": "Week-18-Capstone-Project-Review",
+    "label": "Week 18",
+    "date": "Wed, Nov 25, 2026",
+    "type": "Core",
+    "module": "Module 4: TypeScript Intro",
+    "topic": "Capstone Project & Review",
+    "owner": "Vishal Tyagi",
+    "concepts": "End-to-end suite review, framework design, documentation, presenting your work.",
+    "prerequisites": [
+      "Weeks 1-17 complete. This assembles everything - start it by Week 15, not Week 17."
+    ],
+    "agenda": [
+      [
+        "10 min",
+        "What's being assessed and how"
+      ],
+      [
+        "60 min",
+        "Capstone presentations (5-10 min each)"
+      ],
+      [
+        "20 min",
+        "Cross-cutting feedback: what the cohort did well, what to work on"
+      ],
+      [
+        "15 min",
+        "Where to go next: CI, sharding, visual testing, contract testing"
+      ]
+    ],
+    "keyPoints": [
+      "The suite is judged on maintainability, not test count. Ten clear tests beat forty copy-pasted ones.",
+      "A README that lets someone else run your suite is part of the deliverable, not an afterthought.",
+      "Every test must pass from a clean clone: `npm ci`, `npx playwright install`, `npm test`.",
+      "Be honest about limitations in the presentation - naming what you'd improve is a senior signal."
+    ],
+    "deliverables": [
+      [
+        "A complete E2E regression suite",
+        "TypeScript + Playwright + POM against a sample web application. Committed to your own participant folder or a linked repo."
+      ],
+      [
+        "README.md",
+        "How to install dependencies, run the suite, run a subset, and view the HTML report. Plus your framework structure and any known limitations."
+      ],
+      [
+        "presentation.md (or slides)",
+        "A 5-10 minute walkthrough: framework structure, one interesting bug you found, and one improvement you'd make with more time."
+      ]
+    ],
+    "definitionOfDone": [
+      "`npm ci && npx playwright install && npm test` passes from a clean clone with no manual steps",
+      "`npx tsc --noEmit` is clean",
+      "Zero `waitForTimeout`, zero `test.only`, zero hardcoded credentials, zero raw locators in spec files",
+      "Every page object lives in `pages/`, every type in `types/`, every spec in `tests/`",
+      "The README is good enough that a reviewer never has to ask you a question to run it",
+      "The suite passes twice in a row (`--repeat-each=2`) - no flakiness"
+    ],
+    "commonMistakes": [
+      "Leaving it until Week 17. Start in Week 15.",
+      "A suite that only runs on your machine (absolute paths, a manually-created `.env`, missing fixtures).",
+      "Padding the test count with trivial duplicates.",
+      "No README, so the reviewer can't run it at all."
+    ],
+    "resources": [
+      [
+        "Playwright best practices - the review checklist",
+        "https://playwright.dev/docs/best-practices"
+      ],
+      [
+        "Playwright: CI",
+        "https://playwright.dev/docs/ci-intro"
+      ]
+    ],
+    "stretch": [
+      "Add a GitHub Actions workflow running the suite on every push, with the HTML report as an artifact.",
+      "Shard the suite across workers and report the wall-clock improvement."
+    ],
+    "assignment": "See **Deliverables** and the **Definition of Done** below - the DoD is the grading rubric."
+  }
 ]

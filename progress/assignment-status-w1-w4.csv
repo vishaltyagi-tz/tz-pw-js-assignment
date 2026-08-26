@@ -1,0 +1,23 @@
+Participant,Week 1,Week 2,Week 3,Week 4,Weeks Submitted,Notes
+Abhishek Kumbhar,Complete,Submitted (missing const-error demo),Complete,Complete,4/4,Strongest consistent submitter after Shubham; W1 nesting from earlier weeks has been flattened
+Aishwarya Thakur,Submitted (wrong deliverables),Not submitted,Not submitted,Not submitted,1/4,"Only file is misspelled ""Assigmnent-day1.js"" containing all exercises; no hello.js / about-me.js. No activity since W1"
+Akshay Choudhari,Submitted (no hello.js),Submitted (missing const-error demo),Complete,Not submitted,3/4,W1 nesting fixed; uses demo1.js/intro.js instead of required hello.js/about-me.js
+Amrendra Raj,Submitted (wrong deliverables),Submitted (in mis-named folder),Complete,Submitted (off-spec),4/4,"W2 work sits in ""Amrendra Raj"" (space) while canonical ""Amrendra-Raj"" folder is empty; only participant to use the spec's appUrl/maxTimeout variables"
+Amruta Zargad,Submitted (no hello.js),Submitted (missing const-error demo),Submitted (all-in-one file),Not submitted,3/4,No participant folder exists in Week-04 or Week-05 at all; W3 crammed into single conditional-logic.js
+Anas Javed,Submitted (1 empty file),Complete,Submitted (partial + empty file),Not submitted,3/4,"W1 assignment.js is 0 bytes; W3 userroleandaccess.js is 0 bytes so reqs 1-2 are effectively missing"
+Avinash Singh,Submitted (no about-me.js),Complete,Complete,Not submitted,3/4,W1 uses intro.js/misc.js in place of about-me.js
+Awanti Mahadik,Submitted (no about-me.js),Submitted (incomplete/generic),Not submitted,Not submitted,2/4,W2 crams required exercises into one generic info.js; no activity since W2
+Debasish Sahoo,Complete,Complete,Complete,Not submitted,3/4,W1 nesting fixed; consistently good filenames. Only gap is W4
+Deepali Bhatnagar,Submitted (deeply nested),Submitted (numbered generic names),Complete,Complete,4/4,W1 still buried under NodeTraining/Day1/assignment/ExerciseSolutions/; W2 uses 01_..10_ prefixes
+Jyoti Kumari,Submitted (nested; no hello.js),Submitted (nested),Complete (nested),Complete (nested),4/4,Every week is nested inside an extra Assignment/ subfolder instead of flat in the participant folder
+Nikhil Deshmukh,Submitted (duplicated + 2 empty files),Submitted (nested),Complete,Submitted (naming deviations),4/4,"W1 content duplicated flat and in assignment/; courseName.js empty in both copies; stray index.html; W4 uses isValidPW() not isValidPassword()"
+Om Menkudale,Submitted (no hello.js),Submitted (missing const-error demo),Complete,Complete,4/4,W1 nesting fixed; still generic variable.js/demo1.js instead of required filenames
+Purnima Gautam,Not submitted,Not submitted,Not submitted,Not submitted,0/4,No submissions at all in four weeks - needs follow-up
+Shilpa Mattoo,Not submitted,Not submitted,Not submitted,Not submitted,0/4,No submissions at all in four weeks - needs follow-up
+Shubham Saraswat,Complete,Complete,Complete,Complete,4/4,Most complete and best-named submissions in the cohort; earlier nesting now flattened
+Sumit Dhage,Not submitted,Not submitted,Complete,Not submitted,1/4,W3 was misfiled in Week-03/Artifacts/ and moved to the participant folder on 2026-08-19; W1/W2 backlog still open
+Utkarsh Neb,Submitted (bad filenames; 1 empty),Submitted (off-spec),Not submitted,Not submitted,2/4,"W1 filenames contain spaces (""Assignment 1.js""); ""Assignment 2.js"" is 0 bytes; W2 only covers arithmetic. No activity since W2"
+Vaishnavi Kurhade,Submitted (extensionless file),Submitted (partial),Submitted (off-spec one-liner),Not submitted,3/4,"W1 file ""Vaishnavi-Assignment1"" has no .js extension and duplicates Aishwarya Thakur's content; W3 is a single ternary age check, not the role/access exercise"
+Vikas Shukla,Submitted (nested; no about-me.js),Complete,Complete,Complete,4/4,W1 files still inside assignment/ subfolder
+Viraj Mandavkar,Submitted (no hello.js),Submitted (1 extensionless file),Submitted (off-spec),Submitted (no arrow rewrite),4/4,"W2 selfIntro has no extension; W3 does calculator/positive-check instead of role logic and &&/||; W4 missing the arrow-function rewrite"
+Day1test,Submitted (test/placeholder),n/a,n/a,n/a,n/a,Not a real participant - stale test folder in Week-01 that inflates PROGRESS.md. Recommend deleting
