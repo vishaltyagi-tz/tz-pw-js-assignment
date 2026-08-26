@@ -1,6 +1,6 @@
 let marks= 50;
-let ipassed = marks>=40
-console.log(ipassed)
+let ipassed = marks>=40;
+console.log(ipassed);
 // if ( marks >=40 )
 // {
 // ipassed =true 
