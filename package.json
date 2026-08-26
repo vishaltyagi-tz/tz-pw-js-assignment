@@ -1,0 +1,20 @@
+{
+  "name": "tz-pw-js-assignment",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Workspace and progress tracker for the QA JavaScript & Playwright test automation training programme",
+  "scripts": {
+    "guides": "node scripts/generate-session-artifacts.js",
+    "folders": "node scripts/ensure-participant-folders.js",
+    "progress": "node scripts/track-progress.js",
+    "check": "node scripts/check-submissions.js",
+    "check:strict": "node scripts/check-submissions.js --strict",
+    "report": "node scripts/generate-html-report.js",
+    "refresh": "npm run folders && npm run guides && npm run progress && npm run check && npm run report",
+    "test": "npm run check:strict"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "UNLICENSED"
+}
