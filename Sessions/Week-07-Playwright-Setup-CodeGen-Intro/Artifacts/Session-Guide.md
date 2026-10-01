@@ -1,6 +1,6 @@
 # Playwright Setup & CodeGen Intro
 
-**Week 7** · Wed, Sep 09, 2026 · Core · Module 2: Playwright Core
+**Week 7** · Wed, Sep 16, 2026 · Core · Module 2: Playwright Core
 **Session Owner:** Hritik
 **Practice site:** https://www.saucedemo.com (user `standard_user` / `secret_sauce`)
 

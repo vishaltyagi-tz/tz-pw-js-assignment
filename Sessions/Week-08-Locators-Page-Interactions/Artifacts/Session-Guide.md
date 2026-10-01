@@ -1,6 +1,6 @@
 # Locators & Page Interactions
 
-**Week 8** · Wed, Sep 16, 2026 · Core · Module 2: Playwright Core
+**Week 8** · Wed, Sep 23, 2026 · Core · Module 2: Playwright Core
 **Session Owner:** Vishal Tyagi
 **Practice site:** https://www.saucedemo.com and https://demo.playwright.dev/todomvc
 

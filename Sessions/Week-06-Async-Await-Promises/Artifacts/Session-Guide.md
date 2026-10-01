@@ -1,6 +1,6 @@
 # Async/Await & Promises
 
-**Week 6** · Wed, Sep 02, 2026 · Core · Module 1: JS Fundamentals
+**Week 6** · Wed, Sep 09, 2026 · Core · Module 1: JS Fundamentals
 **Session Owner:** Prachi
 
 > This guide is the single source of truth for this session's assignment.
@@ -72,6 +72,7 @@ Your submission is complete when every box below is true:
 - [MDN: async function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function)
 - [javascript.info: Promises, async/await](https://javascript.info/async)
 - [MDN: Promise.all](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all)
+- Study guide + practice file in this folder — `async-await-study-guide.md / async-await-practice.js`
 
 ## Submission Instructions
 

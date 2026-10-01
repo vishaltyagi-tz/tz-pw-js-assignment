@@ -1,6 +1,6 @@
 # Capstone Project & Review
 
-**Week 18** · Wed, Nov 25, 2026 · Core · Module 4: TypeScript Intro
+**Week 18** · Wed, Dec 02, 2026 · Core · Module 4: TypeScript Intro
 **Session Owner:** Vishal Tyagi
 
 > This guide is the single source of truth for this session's assignment.

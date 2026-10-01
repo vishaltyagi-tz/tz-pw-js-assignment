@@ -1,6 +1,6 @@
 # Test Execution & Debugging
 
-**Week 12** · Wed, Oct 14, 2026 · Core · Module 2: Playwright Core
+**Week 12** · Wed, Oct 21, 2026 · Core · Module 2: Playwright Core
 **Session Owner:** Aruneema
 
 > This guide is the single source of truth for this session's assignment.

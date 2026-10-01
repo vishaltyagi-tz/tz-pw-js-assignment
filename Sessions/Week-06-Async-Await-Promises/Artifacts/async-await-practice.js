@@ -90,6 +90,18 @@ async function retry(fn, attempts) {
 }
 
 /* ------------------------------------------------------------
+   EXERCISE 8 — allSettled, when you don't want to fail fast
+   Redo Exercise 4 with Promise.allSettled, where ONE of the two
+   fetches rejects. Compare what you get back with what
+   Promise.all would have given you.
+   ------------------------------------------------------------ */
+
+async function parallelAllSettled() {
+  // TODO: Promise.allSettled([fetchUserData(), fetchBrokenData()])
+  //       then log each result's status
+}
+
+/* ------------------------------------------------------------
    RUNNER — everything must live inside an async function, because
    top-level await isn't available in a plain CommonJS script.
    This is why you'll see `async ({ page }) => { ... }` in every
@@ -143,8 +155,11 @@ try {
 } catch (error) {
   console.log("Could not load data:", error.message);
 }
-// Without try/catch, Node prints an UnhandledPromiseRejection warning
-// and (in modern Node) exits with a non-zero code.
+// Without try/catch, the rejection is unhandled: current Node prints the
+// error and a stack trace, then exits with code 1 (older Node 15-19 printed
+// an [UnhandledPromiseRejection] warning block instead). Paste whatever
+// YOUR machine prints. Check the exit code with:
+//     node errorHandling.js; echo "exit code: $?"
 
 // 6
 console.log(fetchUserData());   // Promise { <pending> }
@@ -161,4 +176,19 @@ async function retry(fn, attempts) {
     }
   }
 }
+
+// 8
+async function parallelAllSettled() {
+  const results = await Promise.allSettled([fetchUserData(), fetchBrokenData()]);
+  for (const result of results) {
+    if (result.status === "fulfilled") {
+      console.log("ok:", result.value);
+    } else {
+      console.log("failed:", result.reason.message);
+    }
+  }
+}
+// Promise.all would have rejected the moment fetchBrokenData threw, and you
+// would have LOST the successful user result. allSettled always resolves and
+// hands you an entry per promise, so you can report on each one.
    ============================================================== */

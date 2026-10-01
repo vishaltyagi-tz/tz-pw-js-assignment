@@ -1,6 +1,6 @@
 # TypeScript Interfaces & Typed Page Objects
 
-**Week 17** · Wed, Nov 18, 2026 · Core · Module 4: TypeScript Intro
+**Week 17** · Wed, Nov 25, 2026 · Core · Module 4: TypeScript Intro
 **Session Owner:** Vishal Tyagi
 
 > This guide is the single source of truth for this session's assignment.

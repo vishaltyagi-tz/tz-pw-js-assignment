@@ -1,6 +1,6 @@
 # Page Object Model (POM) - Part 1
 
-**Week 14** · Wed, Oct 28, 2026 · Core · Module 3: Test Architecture
+**Week 14** · Wed, Nov 04, 2026 · Core · Module 3: Test Architecture
 **Session Owner:** Hritik
 
 > This guide is the single source of truth for this session's assignment.

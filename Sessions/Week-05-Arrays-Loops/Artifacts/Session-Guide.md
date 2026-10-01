@@ -71,6 +71,7 @@ Your submission is complete when every box below is true:
 - [MDN: Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)
 - [MDN: for...of](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of)
 - [javascript.info: Arrays](https://javascript.info/array)
+- Study guide + practice file in this folder — `PW Training Week 5 JavaScript Arrays and Loops.docx / arrays-loops-practice.js`
 
 ## Submission Instructions
 

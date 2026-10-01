@@ -1,6 +1,6 @@
 # Test Suite Organization & Hooks
 
-**Week 13** · Wed, Oct 21, 2026 · Core · Module 3: Test Architecture
+**Week 13** · Wed, Oct 28, 2026 · Core · Module 3: Test Architecture
 **Session Owner:** Vishal Tyagi - Jr
 
 > This guide is the single source of truth for this session's assignment.

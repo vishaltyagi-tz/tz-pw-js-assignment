@@ -7,7 +7,7 @@ COHORT-WIDE,W1-W4,Generic filenames,"assignment.js, practice.js, final.js, demo1
 Aishwarya Thakur,W1,Wrong deliverable,"Single misspelled file ""Assigmnent-day1.js"" instead of hello.js and about-me.js",Open
 Aishwarya Thakur,W2-W4,Not submitted,No submissions since Week 1 - three weeks behind,Open
 Akshay Choudhari,W1,Missing deliverable,No hello.js; demo1.js and intro.js used instead of the required filenames,Open
-Akshay Choudhari,W4,Not submitted,Week-04 folder empty despite completing W1-W3,Open
+Akshay Choudhari,W4,Not submitted,Week-04 folder empty despite completing W1-W3,Open - Week-04 folder is still empty as of 2026-09-09
 Amrendra Raj,W1,Wrong deliverable,assignment.js / intro.js / placeholder.md instead of hello.js and about-me.js; placeholder.md should be removed,Partially fixed 2026-08-26 - stray placeholder.md removed; filenames still off-spec
 Amrendra Raj,W2,Duplicate folder naming,"Work landed in ""Amrendra Raj"" (with a space) while the canonical ""Amrendra-Raj"" folder sits empty - move the files and delete the space-named folder",Fixed 2026-08-26
 Amrendra Raj,W2,Junk filenames,"new.js, new2.js, final.js, practice.js - non-descriptive",Open
@@ -17,13 +17,13 @@ Amruta Zargad,W3,Incomplete structure,All three requirements crammed into a sing
 Amruta Zargad,W4-W5,Missing folder,No participant folder exists in Week-04 or Week-05 - cannot submit until created (every other participant has one),Fixed 2026-08-26 - all 21 participants now have folders in all 29 sessions
 Anas Javed,W1,Empty file,assignment.js is 0 bytes,Fixed 2026-08-26 - empty file removed
 Anas Javed,W3,Empty file,"userroleandaccess.js is 0 bytes, so requirements 1 and 2 (role permissions + else-if chain) are unmet; only the &&/|| script was delivered",Fixed 2026-08-26 - empty file removed; the deliverable itself is still outstanding
-Anas Javed,W4,Not submitted,Week-04 folder empty,Open
+Anas Javed,W4,Not submitted,Week-04 folder empty,"Open - Week-04 folder is still empty as of 2026-09-09, now three weeks stale"
 Avinash Singh,W1,Missing deliverable,No about-me.js; intro.js / misc.js used instead,Open
-Avinash Singh,W4,Not submitted,Week-04 folder empty,Open
+Avinash Singh,W4,Not submitted,Week-04 folder empty,Fixed 2026-09-09 - arrowFunction.js / isValidPassword.js / reusableFunction.js submitted
 Awanti Mahadik,W1,Missing deliverable,No about-me.js,Open
 Awanti Mahadik,W2,Incomplete deliverable,Required exercises crammed into one generic info.js,Open
 Awanti Mahadik,W3-W4,Not submitted,No submissions since Week 2 - two weeks behind,Open
-Debasish Sahoo,W4,Not submitted,Week-04 folder empty despite complete W1-W3,Open
+Debasish Sahoo,W4,Not submitted,Week-04 folder empty despite complete W1-W3,Fixed 2026-09-09 - arrowFunction.js / isValidPassword.js / reusableFunction.js submitted
 Deepali Bhatnagar,W1,Nested folder (severe),Files buried under NodeTraining/Day1/assignment/ExerciseSolutions/ - should be flat in the participant folder,Withdrawn 2026-08-26 - the Week 1 handout instructed 'create a folder named assignment and place all assignment files inside it' - these participants followed the material
 Deepali Bhatnagar,W2,Non-descriptive naming,Numbered generic names (01_printVariable.js ... 10_shortIntro.js) instead of descriptive names,Open
 Jyoti Kumari,W1-W4,Nested folder (all weeks),Every week's files sit inside an extra Assignment/ subfolder instead of flat in the participant folder,Revised 2026-08-26 - W1 nesting was instructed by the handout; only the W2-W4 Assignment/ nesting remains a finding
@@ -34,11 +34,11 @@ Nikhil Deshmukh,W1,Stray file,index.html committed with no relation to the assig
 Nikhil Deshmukh,W2,Nested folder,Files inside Assignment/ subfolder,Open
 Nikhil Deshmukh,W4,Naming deviation,"Function named isValidPW() instead of isValidPassword(); generateUserEmail() takes (firstName, lastName, domain) instead of the specified (firstName, domain)",Open
 Om Menkudale,W1,Missing deliverable,No hello.js; generic variable.js / demo1.js used instead,Open
-Purnima Gautam,W1-W4,Not submitted,Zero submissions across four weeks - escalate,Open
-Shilpa Mattoo,W1-W4,Not submitted,Zero submissions across four weeks - escalate,Open
-Sumit Dhage,W1-W2,Not submitted,Backlog still open; only W3 has been submitted,Open
+Purnima Gautam,W1-W4,Not submitted,Zero submissions across four weeks - escalate,Open - escalate; still zero submissions across five weeks as of 2026-09-09
+Shilpa Mattoo,W1-W4,Not submitted,Zero submissions across four weeks - escalate,Open - escalate; still zero submissions across five weeks as of 2026-09-09
+Sumit Dhage,W1-W2,Not submitted,Backlog still open; only W3 has been submitted,Open - W1/W2 backlog still open as of 2026-09-09; W3/W4 now complete
 Sumit Dhage,W3,Misplaced submission,Work was in shared Week-03/Artifacts/Sumit-Dhage/ instead of the participant folder,Fixed 2026-08-19
-Sumit Dhage,W4,Not submitted,Week-04 folder empty,Open
+Sumit Dhage,W4,Not submitted,Week-04 folder empty,Fixed 2026-09-09 - Password.js / reusablefunctions.js / Arrow_function.js submitted
 Utkarsh Neb,W1,Filenames with spaces,"""Assignment 1.js"" and ""Assignment 2.js"" - spaces violate convention and names are non-descriptive",Open
 Utkarsh Neb,W1,Empty file,"""Assignment 2.js"" is 0 bytes",Fixed 2026-08-26 - empty file removed
 Utkarsh Neb,W2,Off-spec,Single Assignment2.js covering only arithmetic; none of the three stated requirements,Open
@@ -48,7 +48,7 @@ Vaishnavi Kurhade,W1,Possible copied work,W1 file content is near-identical to A
 Vaishnavi Kurhade,W3,Off-spec,Assignment3.js is a single ternary age check - none of the three role/access requirements,Open
 Vaishnavi Kurhade,W3,Misplaced submission,Work was in shared Week-03/Artifacts/Vaishnavi-Kurhade/ instead of the participant folder,Fixed 2026-08-19
 Vaishnavi Kurhade,W1,Stray folder,Non-convention folder Vaishnavi-Assignment1 alongside the canonical folder,Fixed - now a file inside the canonical folder
-Vaishnavi Kurhade,W4,Not submitted,Week-04 folder empty,Open
+Vaishnavi Kurhade,W4,Not submitted,Week-04 folder empty,Open - Week-04 folder is still empty as of 2026-09-09
 Vikas Shukla,W1,Nested folder,Files inside assignment/ subfolder,Withdrawn 2026-08-26 - the Week 1 handout instructed 'create a folder named assignment and place all assignment files inside it' - these participants followed the material
 Vikas Shukla,W1,Missing deliverable,No about-me.js,Open
 Viraj Mandavkar,W1,Missing deliverable,No hello.js,Open
@@ -63,3 +63,16 @@ Om Menkudale,W1,Nested folder,Files were split across Assignment/ and Training/ 
 Shubham Saraswat,W1-W3,Nested folder,Files were inside assignment/ subfolders every week,Fixed - now flat
 Amruta Zargad,W1-W2,Inconsistent folder naming,"Folder drifted between ""Amruta"" (W1) and ""Amruta-Zargad"" (W2)",Fixed - Amruta-Zargad everywhere
 Nikhil Deshmukh,W1-W2,Inconsistent folder naming,Nikhil-Deshmukh (hyphen) vs Nikhil_Deshmukh (underscore),Fixed - hyphen everywhere
+COHORT-WIDE,W5,Not submitted,"Only 2 of 21 submitted the Aug 26 Arrays & Loops assignment (Vikas Shukla, Sumit Dhage). 19 participants have an empty Week-05 folder two weeks on - including every otherwise-consistent submitter (Shubham, Abhishek, Debasish, Deepali, Jyoti, Om, Nikhil, Viraj)",Open - escalate to the cohort; this is a step change from W1-W4 participation and suggests the assignment was never communicated
+COHORT-WIDE,W5,Guide/handout drift,"The handout (Artifacts docx) sets 10 free-form exercises (cities, prices, colours, mobile brands) and names no files; the guide requires 5 specific filenames (products.js, arrayMutation.js, countMatches.js, loopComparison.js, testDataLoop.js). Same defect as W1-W2. The 5 deliverables do map 1:1 onto arrays-loops-practice.js exercises 2/4/5/3/7, which was never referenced from the guide","Fixed 2026-09-09 - the practice file and handout are now listed in the W5 guide resources, matching the W4 precedent; the handout was also mistitled ""Week 2"" and has been renamed to ""Week 5"""
+Sumit Dhage,W5,Off-spec,"exercise_1.js / exercise_2.js answer practice-file exercises 1-2 (indexing, for loop) - covers products.js content only; arrayMutation, countMatches, loopComparison and testDataLoop are absent. Generic filenames","Open - partially mitigated: answering the practice file is legitimate per the W4 precedent, so treat as 2 of 5 delivered rather than off-spec"
+Vikas Shukla,W5,None,All five named deliverables submitted and correct - the only complete W5 submission in the cohort,Closed 2026-09-09 - no action
+Vikas Shukla,W5,Hardcoded credential,testDataLoop.js contains literal passwords - expected for this exercise (the guide asks for login objects) but worth naming as a habit to break before the Playwright weeks,"Open - coaching point, not a defect"
+Abhishek Kumbhar / Om Menkudale,W3,Possible copied work,"All three W3 files (login.js, access_using_switch.js, useraccess.js) are byte-for-byte identical, including the requirement text pasted as a comment AND a shared bug: let usertype=""tester"" (lowercase) falls through to the else, so both print ""No permission granted"". W3 has no practice .js in Artifacts, so this did not come from handed-out material. W4 arrowfunctions.js also shares 5 distinctive comment lines","Open - escalate; ask both to walk through useraccess.js and explain why it prints ""No permission granted"""
+Abhishek Kumbhar / Shubham Saraswat,W4,Possible copied work,"isValidPassword.js is byte-for-byte identical, including the MIN_PASSWORD_LENGTH constant and the bespoke test strings ""abc123"" / ""Taazaa@2026"" / ""pass1234"". Not from the practice file, which uses different strings and requires an 8-20 inclusive range - both submissions omit the <=20 upper bound identically",Open - escalate; ask both why the upper bound is missing
+Anas Javed / Avinash Singh,W1-W3,Possible copied work,"Five flags across three weeks: W1 favorite.js identical + misc.js shares 3 comment lines, W2 arithmaticOperations.js identical + introduction.js shares 4 comment lines, W3 loginAccess.js identical. Individually the arithmetic exercises could converge; the pattern across three consecutive weeks is the concern",Open - worth a look; pair them for a live walkthrough rather than treating as confirmed
+Utkarsh Neb / Vaishnavi Kurhade,W2,Possible copied work,"Vaishnavi Assignment2.js and assignmentarithmatic.js are both identical to Utkarsh Assignment2.js (num1=15, num2=15 and the same console.log(num1,""+"",num2,""="",sum) style). Vaishnavi is already flagged for a W1 near-identical to Aishwarya Thakur, so this is her second cluster",Open - escalate; second copy flag for Vaishnavi Kurhade
+Vaishnavi Kurhade,W2,Duplicate file,Assignment2.js and assignmentarithmatic.js are the same content committed twice under two names - one should be removed,Open
+COHORT-WIDE,W1-W5,Missing deliverable,"28 findings of ""session asks for the real error or output to be pasted in, and no runtime or compiler message appears anywhere in the submission"" - the deliberate-error exercises (syntax error, const reassignment, off-by-one) are being written but not run, or the output is not captured",Open - the guides ask for the pasted output; worth restating in session rather than marking down
+COHORT-WIDE,W3-W5,Guide/handout drift,"24 findings of ""missing 6 of 6 required file(s)"" in W3 plus similar in W4-W5: the W3 handout is a concepts document with no assignment section at all, so its six required filenames (userRoles, userAccess, gradeCalculator, entryCheck, roleSwitch, ternaryDemo) were never handed out","Open - decide whether to reconcile the W3 guide down to what was actually taught, or reissue the assignment; do not mark participants down against it"
+PROGRAMME,W6,Schedule change,The Wed Sep 02 Week 6 (Async/Await & Promises) session was postponed by one week to Wed Sep 09 2026. W6-W18 slid by 7 days in session-data.json; the programme now ends Wed Dec 02 2026 instead of Nov 25,Fixed 2026-09-09 - dates shifted and all guides regenerated; CLAUDE.md date range updated

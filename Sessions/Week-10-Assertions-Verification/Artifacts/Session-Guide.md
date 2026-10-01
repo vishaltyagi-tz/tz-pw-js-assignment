@@ -1,6 +1,6 @@
 # Assertions & Verification
 
-**Week 10** · Wed, Sep 30, 2026 · Core · Module 2: Playwright Core
+**Week 10** · Wed, Oct 07, 2026 · Core · Module 2: Playwright Core
 **Session Owner:** Hritik
 **Practice site:** https://www.saucedemo.com (users: `standard_user`, `locked_out_user`, `problem_user`)
 

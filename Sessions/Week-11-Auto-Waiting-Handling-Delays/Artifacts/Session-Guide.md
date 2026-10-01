@@ -1,6 +1,6 @@
 # Auto-Waiting & Handling Delays
 
-**Week 11** · Wed, Oct 07, 2026 · Core · Module 2: Playwright Core
+**Week 11** · Wed, Oct 14, 2026 · Core · Module 2: Playwright Core
 **Session Owner:** Vishal Tyagi - Jr
 **Practice site:** https://demo.playwright.dev/todomvc and https://the-internet.herokuapp.com/dynamic_loading
 

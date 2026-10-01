@@ -629,6 +629,10 @@
       [
         "javascript.info: Arrays",
         "https://javascript.info/array"
+      ],
+      [
+        "Study guide + practice file in this folder",
+        "PW Training Week 5 JavaScript Arrays and Loops.docx / arrays-loops-practice.js"
       ]
     ],
     "stretch": [
@@ -711,7 +715,7 @@
   {
     "folder": "Week-06-Async-Await-Promises",
     "label": "Week 6",
-    "date": "Wed, Sep 02, 2026",
+    "date": "Wed, Sep 09, 2026",
     "type": "Core",
     "module": "Module 1: JS Fundamentals",
     "topic": "Async/Await & Promises",
@@ -800,6 +804,10 @@
       [
         "MDN: Promise.all",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all"
+      ],
+      [
+        "Study guide + practice file in this folder",
+        "async-await-study-guide.md / async-await-practice.js"
       ]
     ],
     "stretch": [
@@ -811,7 +819,7 @@
   {
     "folder": "Week-07-Playwright-Setup-CodeGen-Intro",
     "label": "Week 7",
-    "date": "Wed, Sep 09, 2026",
+    "date": "Wed, Sep 16, 2026",
     "type": "Core",
     "module": "Module 2: Playwright Core",
     "topic": "Playwright Setup & CodeGen Intro",
@@ -1162,7 +1170,7 @@
   {
     "folder": "Week-08-Locators-Page-Interactions",
     "label": "Week 8",
-    "date": "Wed, Sep 16, 2026",
+    "date": "Wed, Sep 23, 2026",
     "type": "Core",
     "module": "Module 2: Playwright Core",
     "topic": "Locators & Page Interactions",
@@ -1263,7 +1271,7 @@
   {
     "folder": "Week-09-Actions-User-Inputs",
     "label": "Week 9",
-    "date": "Wed, Sep 23, 2026",
+    "date": "Wed, Sep 30, 2026",
     "type": "Core",
     "module": "Module 2: Playwright Core",
     "topic": "Actions & User Inputs",
@@ -1363,7 +1371,7 @@
   {
     "folder": "Week-10-Assertions-Verification",
     "label": "Week 10",
-    "date": "Wed, Sep 30, 2026",
+    "date": "Wed, Oct 07, 2026",
     "type": "Core",
     "module": "Module 2: Playwright Core",
     "topic": "Assertions & Verification",
@@ -1463,7 +1471,7 @@
   {
     "folder": "Week-11-Auto-Waiting-Handling-Delays",
     "label": "Week 11",
-    "date": "Wed, Oct 07, 2026",
+    "date": "Wed, Oct 14, 2026",
     "type": "Core",
     "module": "Module 2: Playwright Core",
     "topic": "Auto-Waiting & Handling Delays",
@@ -1651,7 +1659,7 @@
   {
     "folder": "Week-12-Test-Execution-Debugging",
     "label": "Week 12",
-    "date": "Wed, Oct 14, 2026",
+    "date": "Wed, Oct 21, 2026",
     "type": "Core",
     "module": "Module 2: Playwright Core",
     "topic": "Test Execution & Debugging",
@@ -1929,7 +1937,7 @@
   {
     "folder": "Week-13-Test-Suite-Organization-Hooks",
     "label": "Week 13",
-    "date": "Wed, Oct 21, 2026",
+    "date": "Wed, Oct 28, 2026",
     "type": "Core",
     "module": "Module 3: Test Architecture",
     "topic": "Test Suite Organization & Hooks",
@@ -2112,7 +2120,7 @@
   {
     "folder": "Week-14-Page-Object-Model-Part-1",
     "label": "Week 14",
-    "date": "Wed, Oct 28, 2026",
+    "date": "Wed, Nov 04, 2026",
     "type": "Core",
     "module": "Module 3: Test Architecture",
     "topic": "Page Object Model (POM) - Part 1",
@@ -2206,7 +2214,7 @@
   {
     "folder": "Week-15-Page-Object-Model-Part-2",
     "label": "Week 15",
-    "date": "Wed, Nov 04, 2026",
+    "date": "Wed, Nov 11, 2026",
     "type": "Core",
     "module": "Module 3: Test Architecture",
     "topic": "Page Object Model (POM) - Part 2",
@@ -2469,7 +2477,7 @@
   {
     "folder": "Week-16-Transitioning-JS-to-TypeScript",
     "label": "Week 16",
-    "date": "Wed, Nov 11, 2026",
+    "date": "Wed, Nov 18, 2026",
     "type": "Core",
     "module": "Module 4: TypeScript Intro",
     "topic": "Transitioning JS to TypeScript",
@@ -2564,7 +2572,7 @@
   {
     "folder": "Week-17-TypeScript-Interfaces-Page-Objects",
     "label": "Week 17",
-    "date": "Wed, Nov 18, 2026",
+    "date": "Wed, Nov 25, 2026",
     "type": "Core",
     "module": "Module 4: TypeScript Intro",
     "topic": "TypeScript Interfaces & Typed Page Objects",
@@ -2659,7 +2667,7 @@
   {
     "folder": "Week-18-Capstone-Project-Review",
     "label": "Week 18",
-    "date": "Wed, Nov 25, 2026",
+    "date": "Wed, Dec 02, 2026",
     "type": "Core",
     "module": "Module 4: TypeScript Intro",
     "topic": "Capstone Project & Review",

@@ -1,6 +1,6 @@
 # Transitioning JS to TypeScript
 
-**Week 16** · Wed, Nov 11, 2026 · Core · Module 4: TypeScript Intro
+**Week 16** · Wed, Nov 18, 2026 · Core · Module 4: TypeScript Intro
 **Session Owner:** Vishal Tyagi
 
 > This guide is the single source of truth for this session's assignment.

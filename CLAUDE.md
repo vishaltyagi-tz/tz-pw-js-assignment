@@ -25,7 +25,7 @@ JavaScript & Playwright test automation training programme** — not an applicat
 and not a test suite. There is nothing to build and no dependencies: the
 `package.json` exists only to give the Node scripts documented entry points.
 
-The curriculum is 18 core weekly sessions (Wed, Jul 29 2026 → Wed, Nov 25 2026)
+The curriculum is 18 core weekly sessions (Wed, Jul 29 2026 → Wed, Dec 02 2026)
 plus 11 self-paced optional sessions (A–K), across four modules:
 
 1. Module 1: JS Fundamentals (W1–W6)

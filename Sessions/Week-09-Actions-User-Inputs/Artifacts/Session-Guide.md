@@ -1,6 +1,6 @@
 # Actions & User Inputs
 
-**Week 9** · Wed, Sep 23, 2026 · Core · Module 2: Playwright Core
+**Week 9** · Wed, Sep 30, 2026 · Core · Module 2: Playwright Core
 **Session Owner:** Tarun
 **Practice site:** https://demoqa.com/automation-practice-form and https://www.saucedemo.com/checkout-step-one.html
 
