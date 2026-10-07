@@ -1,0 +1,16 @@
+{
+  "name": "pw-demo",
+  "version": "1.0.0",
+  "description": "This is playwright default project",
+  "license": "ISC",
+  "author": "Vishal",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.63.0",
+    "@types/node": "^26.6.3"
+  }
+}
