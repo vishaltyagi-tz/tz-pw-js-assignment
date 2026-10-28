@@ -28,7 +28,7 @@ jobs:
           CASE_IDS: ${{ inputs.case_ids }}
           RUN_TOKEN: ${{ inputs.qc_link_run_token }}
           SECRET: ${{ secrets.QC_LINK_SIGNING_SECRET }}
-          URL: ${{ vars.QC_LINK_RESULTS_URL }}
+          URL: ${{ vars.QC_LINK_RESULTS_URL || 'https://sciences-automated-pike-pupils.trycloudflare.com/api/automation/results' }}
           FAIL_IDS: ${{ vars.QC_LINK_WALK_FAIL_IDS }}
           EXTRA_IDS: ${{ vars.QC_LINK_WALK_EXTRA_IDS }}
           PROBES: ${{ vars.QC_LINK_WALK_PROBES }}
