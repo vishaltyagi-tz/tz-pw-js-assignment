@@ -1,0 +1,12 @@
+name: qc-link-walk-dispatch
+on:
+  workflow_dispatch:
+    inputs:
+      note:
+        description: walk note
+        required: false
+jobs:
+  noop:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "QC-Link walk dispatch"
