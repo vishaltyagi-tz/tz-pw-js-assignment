@@ -2,7 +2,7 @@ name: qc-link-walk-cases
 # Gate-8 walk fixture for QC-Link feature 112 (T6.5 stand-in). Plain bash/curl/openssl/jq, no custom actions.
 # Contract (QC-Link backend):
 #   inputs   case_ids (comma list), environment (optional), qc_link_run_token  (buildDispatchInputs)
-#   POST     $QC_LINK_RESULTS_URL  (repo variable; e.g. https://<host>/api/automation/results)
+#   POST     $QC_LINK_RESULTS_URL  (repo variable; e.g. https://<host>/api/v1/automation/results)
 #   headers  x-qc-link-run-token: <token>   x-qc-link-signature: sha256=<hex HMAC-SHA256 over canonical JSON>
 #   canonical JSON = keys sorted, no whitespace (jq -S -c); secret = repo secret QC_LINK_SIGNING_SECRET
 #   body     {runId:"<github run id>", repository, runUrl, results:[{caseId,outcome,durationMs,errorDetail}]}
@@ -28,7 +28,7 @@ jobs:
           CASE_IDS: ${{ inputs.case_ids }}
           RUN_TOKEN: ${{ inputs.qc_link_run_token }}
           SECRET: ${{ secrets.QC_LINK_SIGNING_SECRET }}
-          URL: ${{ vars.QC_LINK_RESULTS_URL || 'https://sciences-automated-pike-pupils.trycloudflare.com/api/automation/results' }}
+          URL: ${{ vars.QC_LINK_RESULTS_URL || 'https://sciences-automated-pike-pupils.trycloudflare.com/api/v1/automation/results' }}
           FAIL_IDS: ${{ vars.QC_LINK_WALK_FAIL_IDS }}
           EXTRA_IDS: ${{ vars.QC_LINK_WALK_EXTRA_IDS }}
           PROBES: ${{ vars.QC_LINK_WALK_PROBES }}
